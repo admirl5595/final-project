@@ -42,16 +42,6 @@ export default function LoginScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-
-      <Image
-        style={{
-          width: imageSize.width,
-          height: imageSize.height,
-          margin: 20,
-          borderRadius: 50,
-        }}
-        source={require("../../config/images/app-logo.png")}
-      />
       <View style={styles.InputView}>
         <TextInput
           style={styles.TextInput}

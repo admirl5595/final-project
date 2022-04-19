@@ -1,16 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 
-import { LogBox, Platform } from "react-native";
+import { LogBox } from "react-native";
 // prevent annoying yellow warning
 LogBox.ignoreLogs(["Setting a timer"]);
 
-import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
 
-import {
-  notificationSetup,
-  schedulePushNotification,
-} from "./config/notifications-config";
+import { notificationSetup } from "./config/notifications-config";
 
 import ScreenSwitcher from "./screens/ScreenSwitcher";
 

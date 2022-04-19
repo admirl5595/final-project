@@ -9,13 +9,11 @@ import { TouchableOpacity } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import LoadingScreen from "./LoadingScreen";
-import AllHabits from "./AllHabits";
-import DailyHabits from "./DailyHabits";
-import AddHabit from "./AddHabit";
-import EditHabit from "./EditHabit";
+import HomeScreen from "./HomeScreen";
+import Settings from "./Settings";
+
 import LoginScreen from "./auth/LoginScreen";
 import RegisterScreen from "./auth/RegisterScreen";
-import Settings from "./Settings";
 
 import { auth } from "../firebase-config";
 
@@ -35,12 +33,9 @@ const ScreenSwitcher = () => {
     <>
       <Stack.Screen
         options={options}
-        name="DailyHabits"
-        component={DailyHabits}
+        name="HomeScreen"
+        component={HomeScreen}
       />
-      <Stack.Screen options={options} name="AllHabits" component={AllHabits} />
-      <Stack.Screen options={options} name="AddHabit" component={AddHabit} />
-      <Stack.Screen options={options} name="EditHabit" component={EditHabit} />
       <Stack.Screen name="Settings" component={Settings} />
     </>
   );
