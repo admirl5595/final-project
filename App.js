@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 
 import { LogBox } from "react-native";
 // prevent annoying yellow warning
 LogBox.ignoreLogs(["Setting a timer"]);
 
 import * as Notifications from "expo-notifications";
-
-import { notificationSetup } from "./config/notifications-config";
 
 import ScreenSwitcher from "./src/screens/ScreenSwitcher";
 
@@ -79,13 +77,6 @@ Notifications.setNotificationHandler({
 });
 
 const App = () => {
-  const notificationListener = useRef();
-  const responseListener = useRef();
-
-  useEffect(() => {
-    notificationSetup(notificationListener, responseListener);
-  }, []);
-
   const [habits, setHabits] = useState([]);
 
   // conditional rendering of screens
