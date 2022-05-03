@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 
-import { primaryColor } from "../config/theme/styles";
+import { primaryColor } from "../../config/theme/styles";
 
 export default class LoadingScreen extends React.Component {
   render() {

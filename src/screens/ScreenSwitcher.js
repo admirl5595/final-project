@@ -15,7 +15,7 @@ import Settings from "./Settings";
 import LoginScreen from "./auth/LoginScreen";
 import RegisterScreen from "./auth/RegisterScreen";
 
-import { auth } from "../firebase-config";
+import { auth } from "../../firebase-config";
 
 // conditional rendering for authenticated vs unauthenticated users
 const ScreenSwitcher = () => {

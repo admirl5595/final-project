@@ -7,7 +7,7 @@ import {
   Keyboard,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import { auth } from "../../firebase-config";
+import { auth } from "../../../firebase-config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { StatusBar } from "expo-status-bar";
 import styles from "./AuthScreensStyle";

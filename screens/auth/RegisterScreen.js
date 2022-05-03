@@ -8,11 +8,11 @@ import {
   Alert,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import { auth } from "../../.././firebase-config";
+import { auth } from "../../firebase-config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { StatusBar } from "expo-status-bar";
 
-import { db } from "../../../firebase-config";
+import { db } from "../../firebase-config";
 import { doc, setDoc } from "firebase/firestore";
 
 import styles from "./AuthScreensStyle";

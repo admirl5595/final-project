@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { View, StyleSheet, ScrollView, Text } from "react-native";
-import HabitsContext from "../config/HabitsContext";
+import HabitsContext from "../../config/HabitsContext";
 import DropDownItems from "../components/settings/DropDownItems";
 import LogoutBtn from "../components/auth/LogoutBtn";
-import { auth } from "./../firebase-config";
+import { auth } from "../../firebase-config";
 
 export default function Settings({ navigation }) {
   const { habits } = useContext(HabitsContext);

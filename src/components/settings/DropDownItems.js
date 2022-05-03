@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import React, { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import HabitsContext from "../../config/HabitsContext";
+import HabitsContext from "../../../config/HabitsContext";
 import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 export default function DropDownItems(props) {
@@ -19,8 +19,8 @@ export default function DropDownItems(props) {
         <Image
           source={
             isOpen
-              ? require("../../config/images/up-arrow.png")
-              : require("../../config/images/down-arrow.png")
+              ? require("../../../config/images/up-arrow.png")
+              : require("../../../config/images/down-arrow.png")
           }
         />
       </TouchableOpacity>

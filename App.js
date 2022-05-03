@@ -8,7 +8,7 @@ import * as Notifications from "expo-notifications";
 
 import { notificationSetup } from "./config/notifications-config";
 
-import ScreenSwitcher from "./screens/ScreenSwitcher";
+import ScreenSwitcher from "./src/screens/ScreenSwitcher";
 
 // icons
 import { library } from "@fortawesome/fontawesome-svg-core";
