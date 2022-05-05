@@ -63,22 +63,24 @@ const ScreenSwitcher = () => {
   // listen to user authentication state
   const [user, loading] = useAuthState(auth);
 
-  // get signed in user
-  const userData = auth.currentUser;
-
-  // reference to user document
-  const userDocRef = doc(db, "users", userData.uid);
-
   const [role, setRole] = useState("");
 
   useEffect(async () => {
-    const userDoc = await getDoc(userDocRef);
+    if (user) {
+      // get signed in user
+      const user = auth.currentUser;
 
-    const userData = userDoc.data();
+      // reference to user document
+      const userDocRef = doc(db, "users", user.uid);
 
-    setRole(userData.role);
+      const userDoc = await getDoc(userDocRef);
 
-    console.log(role);
+      const userData = userDoc.data();
+
+      setRole(userData.role);
+
+      console.log(role);
+    }
   }, [user]);
 
   return (
