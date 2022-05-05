@@ -33,10 +33,15 @@ export default function LoginScreen({ navigation }) {
   });
 
   const handleLogin = () => {
-    signInWithEmailAndPassword(auth, email, password).catch((error) => {
-      alert("Invalid email or password!");
-      console.log(error.message);
-    });
+    signInWithEmailAndPassword(auth, email, password)
+      .then((credentials) => {
+        console.log("CREDS:");
+        console.log(credentials);
+      })
+      .catch((error) => {
+        alert("Invalid email or password!");
+        console.log(error.message);
+      });
   };
 
   return (
