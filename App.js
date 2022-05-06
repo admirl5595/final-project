@@ -22,9 +22,7 @@ import { addIcons } from "./src/res/icons/fontAwsome";
 
 import ScreenSwitcher from "./src/screens/ScreenSwitcher";
 
-// icons
-// TODO: Test om den virker
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { useRoute } from "@react-navigation/native";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -54,24 +52,7 @@ const App = () => {
 export default App;
 
 async function setupSnapshot(setPatients) {
-  const collectionRef = collection(db, "rooms");
-
-  const roomsCollection = await getDocs(collectionRef);
-
-  let rooms = roomsCollection.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  }));
-
-  let patientIds = rooms.map((room) => room.patientId);
-
-  console.log("patient ids");
-  console.log(patientIds);
-
-  const q = query(
-    collection(db, "patients"),
-    where(documentId(), "in", patientIds)
-  );
+  const q = query(collection(db, "patients"), where("admitted", "==", true));
 
   onSnapshot(q, (snapshot) => {
     console.log("Patient:");
@@ -103,7 +84,20 @@ async function setupSnapshot(setPatients) {
       // update vitals
       if (change.type === "modified") {
         // TODO: pop and push new vital to context
+        // note: we have all the data points so might as well slice again
+
+        patient.breathRate = patient.breathRate.slice(-50);
+        patient.diastolicBP = patient.diastolicBP.slice(-50);
+        patient.heartRate = patient.heartRate.slice(-50);
+        patient.o2Level = patient.o2Level.slice(-50);
+        patient.systolicBP = patient.systolicBP.slice(-50);
+
+        // add new patient to global context
+        setPatients((prevPatients) => [...prevPatients, patient]);
+
         // check for abnormalities and trigger notification
+
+        // later...
       }
       // redirect to rooms page
       if (change.type === "removed") {
