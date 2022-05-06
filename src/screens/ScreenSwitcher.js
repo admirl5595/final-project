@@ -12,6 +12,7 @@ import LoadingScreen from "./LoadingScreen";
 import HomeScreen from "./HomeScreen";
 import Settings from "./Settings";
 import AdminScreen from "./AdminScreen";
+import Room from "./Room";
 
 import LoginScreen from "./auth/LoginScreen";
 import RegisterScreen from "./auth/RegisterScreen";
@@ -33,6 +34,7 @@ const ScreenSwitcher = () => {
 
   const EmployeeScreens = (
     <>
+      <Stack.Screen options={options} name="Room" component={Room} />
       <Stack.Screen
         options={options}
         name="HomeScreen"
