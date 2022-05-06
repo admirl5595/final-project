@@ -40,7 +40,7 @@ const App = () => {
   const [patients, setPatients] = useState([]);
 
   useEffect(() => {
-    setupSnapshot();
+    setupSnapshot(setPatients);
   }, []);
 
   // conditional rendering of screens
@@ -53,12 +53,10 @@ const App = () => {
 
 export default App;
 
-async function setupSnapshot() {
+async function setupSnapshot(setPatients) {
   const collectionRef = collection(db, "rooms");
 
   const roomsCollection = await getDocs(collectionRef);
-
-  console.log("collection: ");
 
   let rooms = roomsCollection.docs.map((doc) => ({
     id: doc.id,
@@ -81,13 +79,26 @@ async function setupSnapshot() {
     snapshot.docChanges().forEach((change) => {
       let patient = change.doc.data();
 
-      console.log(change.type);
-      console.log(patient);
+      console.log("change type: " + change.type);
+      // console.log(patient);
 
       // add patient to state
       if (change.type === "added") {
         // TODO: add to global context
+
         // filter by 50 latest vitals into stack
+
+        patient.breathRate = patient.breathRate.slice(-50);
+        patient.diastolicBP = patient.diastolicBP.slice(-50);
+        patient.heartRate = patient.heartRate.slice(-50);
+        patient.o2Level = patient.o2Level.slice(-50);
+        patient.systolicBP = patient.systolicBP.slice(-50);
+
+        console.log("edited patient");
+        console.log(patient.breathRate.length);
+
+        // add new patient to global context
+        setPatients((prevPatients) => [...prevPatients, patient]);
       }
       // update vitals
       if (change.type === "modified") {
