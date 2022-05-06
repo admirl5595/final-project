@@ -102,7 +102,7 @@ async function setupSnapshot(setPatients) {
       // redirect to rooms page
       if (change.type === "removed") {
         // TODO: redirect to home screen if we're already inside the patient
-
+        // later...
         navigation.navigate("HomeScreen");
       }
     });
