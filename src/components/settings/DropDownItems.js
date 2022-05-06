@@ -19,8 +19,8 @@ export default function DropDownItems(props) {
         <Image
           source={
             isOpen
-              ? require("../../../config/images/up-arrow.png")
-              : require("../../../config/images/down-arrow.png")
+              ? require("../../res/images/up-arrow.png")
+              : require("../../res/images/down-arrow.png")
           }
         />
       </TouchableOpacity>

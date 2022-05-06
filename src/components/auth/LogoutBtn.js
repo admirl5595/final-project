@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
-import { primaryColor } from "../../../config/theme/styles";
+import { primaryColor } from "../../res/theme/styles";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../firebase-config";
 
