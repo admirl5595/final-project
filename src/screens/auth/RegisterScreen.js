@@ -9,15 +9,16 @@ import {
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { auth } from "../../.././firebase-config";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { StatusBar } from "expo-status-bar";
 
 import { db } from "../../../firebase-config";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
 
 import styles from "./AuthScreensStyle";
 
 export default function RegisterScreen({ navigation }) {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
@@ -38,14 +39,15 @@ export default function RegisterScreen({ navigation }) {
     };
   });
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     console.log("registering");
     if (password !== passwordConfirm) {
       Alert.alert("Failed to confirm password");
       return;
     }
 
-    createUserWithEmailAndPassword(auth, email, password)
+   await createUserWithEmailAndPassword(auth, email, password)
+
       .then(() => {
         // get user information
         const user = auth.currentUser;
@@ -63,11 +65,42 @@ export default function RegisterScreen({ navigation }) {
         const errorCode = error.code;
         Alert.alert(errorCode);
       });
+
+    const user = auth.currentUser;
+
+   await updateProfile(user, { displayName: name })
+
+      .then(() => {
+        // get user information
+        const user = auth.currentUser;
+
+        // store username 
+        const userName = {
+          displayName: name,
+        }
+
+        // create new document in users collection with user id as name
+        updateDoc(doc(db, "users", user.uid), userName);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        Alert.alert(errorCode);
+      });
   };
 
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
+      <View style={styles.InputView}>
+      </View>
+      <View style={styles.InputView}>
+        <TextInput
+          style={styles.TextInput}
+          placeholder="Full Name"
+          placeholderTextColor="#003f5c"
+          onChangeText={(name) => setName(name)}
+        />
+      </View>
       <View style={styles.InputView}>
         <TextInput
           style={styles.TextInput}

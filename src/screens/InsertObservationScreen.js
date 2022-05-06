@@ -7,29 +7,34 @@ import {
     TextInput
 } from "react-native";
 import React, { useState, useEffect, useContext } from "react";
-import PatientContext from "../../config/PatientContext";   
+import PatientContext from "../../config/PatientContext";
 import { postObservation } from "../services/crud-operations"
+import { auth } from "../../firebase-config";
+
 
 // TODO: Denne skal brukes når contexten er laget
 // let { patients, setPatients } = useContext(PatientContext); 
 
 export default function InsertObservationScreen(patient) {
+    const user = auth.currentUser;
 
-patient = {
-  id: "01019905055",
-  heartRate: null,
-  breathRate: null,
-  o2Level: null,
-  systolicBP: null,
-  diastolicBP: null,
-  timeOfAdmission: null,
-  observations:[null],
-};
+
+    patient = {
+        id: "01019905055",
+        heartRate: null,
+        breathRate: null,
+        o2Level: null,
+        systolicBP: null,
+        diastolicBP: null,
+        timeOfAdmission: null,
+        observations: [null],
+    };
 
 
     const [newobservationdesc, setNewObservationDesc] = useState("")
 
     const newobservationInfo = {
+        author: user.displayName,
         description: newobservationdesc,
         time: Date.now(),
     }
