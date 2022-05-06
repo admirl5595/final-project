@@ -15,9 +15,6 @@ export default function Room({ patientId, navigation }) {
   // get this specific patient from context
   // let patient = patients.filter(() => id === patientId);
 
-  patientId = "01019905055";
-  console.log(patientId);
-
   return (
     <View>
       <RoomInfo roomNr="ABC123" name="John Doe" date={Date.now()} />
