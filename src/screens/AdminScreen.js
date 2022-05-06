@@ -4,7 +4,7 @@ import { View, Text } from "react-native";
 import { db, auth } from "../../firebase-config";
 import { doc, getDoc } from "firebase/firestore";
 
-export default function HomeScreen() {
+export default function AdminScreen() {
   // get signed in user
   const user = auth.currentUser;
 
@@ -23,7 +23,7 @@ export default function HomeScreen() {
 
   return (
     <View>
-      <Text>EMPLOYEE SCREEN: {role}</Text>
+      <Text>Hello, logged in as {role}</Text>
     </View>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -11,11 +11,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import LoadingScreen from "./LoadingScreen";
 import HomeScreen from "./HomeScreen";
 import Settings from "./Settings";
+import AdminScreen from "./AdminScreen";
 
 import LoginScreen from "./auth/LoginScreen";
 import RegisterScreen from "./auth/RegisterScreen";
 
-import { auth } from "../../firebase-config";
+import { auth, db } from "../../firebase-config";
+import { doc, getDoc } from "firebase/firestore";
 
 // conditional rendering for authenticated vs unauthenticated users
 const ScreenSwitcher = () => {
@@ -29,7 +31,7 @@ const ScreenSwitcher = () => {
     ),
   });
 
-  const AppScreens = (
+  const EmployeeScreens = (
     <>
       <Stack.Screen
         options={options}
@@ -39,6 +41,18 @@ const ScreenSwitcher = () => {
       <Stack.Screen name="Settings" component={Settings} />
     </>
   );
+
+  const AdminScreens = (
+    <>
+      <Stack.Screen
+        options={options}
+        name="AdminScreen"
+        component={AdminScreen}
+      />
+      <Stack.Screen name="Settings" component={Settings} />
+    </>
+  );
+
   const AuthScreens = (
     <>
       <Stack.Screen name="Login" component={LoginScreen} />
@@ -49,11 +63,35 @@ const ScreenSwitcher = () => {
   // listen to user authentication state
   const [user, loading] = useAuthState(auth);
 
+  const [role, setRole] = useState("");
+
+  useEffect(async () => {
+    if (user) {
+      // get signed in user
+      const user = auth.currentUser;
+
+      // reference to user document
+      const userDocRef = doc(db, "users", user.uid);
+
+      const userDoc = await getDoc(userDocRef);
+
+      const userData = userDoc.data();
+
+      setRole(userData.role);
+
+      console.log(role);
+    }
+  }, [user]);
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
         {user ? (
-          AppScreens
+          role === "admin" ? (
+            AdminScreens
+          ) : (
+            EmployeeScreens
+          )
         ) : loading ? (
           <Stack.Screen name="Loading" component={LoadingScreen} />
         ) : (
