@@ -1,12 +1,9 @@
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import React, { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import HabitsContext from "../../../config/HabitsContext";
 import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 export default function DropDownItems(props) {
-  const { habits } = useContext(HabitsContext);
-
   const [isOpen, setOpen] = useState(false);
 
   return (
@@ -28,7 +25,7 @@ export default function DropDownItems(props) {
         ? habits.map((habit) => (
             <DisplayItems
               key={habit.id}
-              habit={habit}
+              habit={[]}
               navigation={props.navigation}
             />
           ))
