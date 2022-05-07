@@ -25,6 +25,10 @@ import {
   faCaretRight,
   faCaretLeft,
   faGear,
+  faHeartPulse,
+  faLungs,
+  faMaskVentilator,
+  faChartLine,
 } from "@fortawesome/free-solid-svg-icons";
 
 export function addIcons() {
@@ -53,6 +57,11 @@ export function addIcons() {
     faCaretDown,
     faCaretRight,
     faCaretLeft,
-    faGear
+    faGear,
+    faHeartPulse,
+    faLungs,
+    faMaskVentilator,
+
+    faChartLine
   );
 }
