@@ -68,22 +68,26 @@ const ScreenSwitcher = () => {
 
   const [role, setRole] = useState("");
 
-  useEffect(async () => {
-    if (user) {
-      // get signed in user
-      const user = auth.currentUser;
+  useEffect(() => {
+    async function getRole() {
+      if (user) {
+        // get signed in user
+        const user = auth.currentUser;
 
-      // reference to user document
-      const userDocRef = doc(db, "users", user.uid);
+        // reference to user document
+        const userDocRef = doc(db, "users", user.uid);
 
-      const userDoc = await getDoc(userDocRef);
+        const userDoc = await getDoc(userDocRef);
 
-      const userData = userDoc.data();
+        const userData = userDoc.data();
 
-      setRole(userData.role);
+        setRole(userData.role);
 
-      console.log(role);
+        console.log(role);
+      }
     }
+
+    getRole();
   }, [user]);
 
   return (
