@@ -4,8 +4,10 @@ import DropDownItems from "../components/settings/DropDownItems";
 import LogoutBtn from "../components/auth/LogoutBtn";
 import { auth } from "../../firebase-config";
 
+import PatientContext from "../../config/PatientContext";
+
 export default function Settings({ navigation }) {
-  const { habits } = useContext(HabitsContext);
+  const { patients } = useContext(PatientContext);
 
   // Show a settings interface for user
   return (
@@ -19,7 +21,7 @@ export default function Settings({ navigation }) {
         <View>
           <DropDownItems
             listName="My Habits"
-            list={habits}
+            list={[]}
             navigation={navigation}
           />
         </View>

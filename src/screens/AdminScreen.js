@@ -13,12 +13,16 @@ export default function AdminScreen() {
 
   const [role, setRole] = useState("");
 
-  useEffect(async () => {
-    const userDoc = await getDoc(userDocRef);
+  useEffect(() => {
+    async function getRole() {
+      const userDoc = await getDoc(userDocRef);
 
-    const userData = userDoc.data();
+      const userData = userDoc.data();
 
-    setRole(userData.role);
+      setRole(userData.role);
+    }
+
+    getRole();
   }, []);
 
   return (

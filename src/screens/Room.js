@@ -16,9 +16,9 @@ export default function Room({ patientId, navigation }) {
   const { patients, setPatients } = useContext(PatientContext);
 
   // get this specific patient from context
-  let patient = patients.filter((patient) => patient.id === patientId);
+  let patient = patients.filter((patient) => patient.id === patientId)[0];
 
-  console.log(patient);
+  console.log(patient.id);
 
   return (
     <View>
