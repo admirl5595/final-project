@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     margin: theme.spacing.s,
     justifyContent: "space-between",
-    marginVertical: theme.spacing.xl,
+    marginVertical: theme.spacing.l,
     alignItems: "center",
   },
 

@@ -1,8 +1,7 @@
 import React, { useEffect, useContext } from "react";
-import { View, Text, Button } from "react-native";
+import { ScrollView, Text, Button } from "react-native";
 
-import { db } from "../../firebase-config";
-
+import PrimaryButton from "../res/common/PrimaryButton";
 import RoomInfo from "../components/room/room-info/RoomInfo";
 import PatientVitals from "../components/room/patient-vitals/PatientVitals";
 import PatientContext from "../../config/PatientContext";
@@ -22,8 +21,12 @@ export default function Room({ patientId, navigation }) {
 
   // console.log(patient.id);
 
+  const handlePress = () => {
+    console.log("hello");
+  };
+
   return (
-    <View style={{ backgroundColor: theme.colors.background, flex: 1 }}>
+    <ScrollView style={{ backgroundColor: theme.colors.background, flex: 1 }}>
       <RoomInfo roomNr="ABC123" name="John Doe" date={new Date()} />
       <PatientVitals
         breathRate={50}
@@ -32,8 +35,8 @@ export default function Room({ patientId, navigation }) {
         o2Level={50}
         systolicBP={50}
       />
-      <Button title="View Observations" />
-      <Button title="Insert Observation" />
-    </View>
+      <PrimaryButton onPress={handlePress} title="View Observations" />
+      <PrimaryButton title="Insert Observation" />
+    </ScrollView>
   );
 }

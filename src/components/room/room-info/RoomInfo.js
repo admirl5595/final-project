@@ -17,7 +17,7 @@ export default function RoomInfo({ roomNr, name, date }) {
   const timeString =
     (date.getHours() < 10 ? "0" + date.getHours() : date.getHours()) +
     ":" +
-    date.getMinutes();
+    (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes());
 
   return (
     <View style={styles.container}>
