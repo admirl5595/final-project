@@ -39,7 +39,7 @@ const App = () => {
   const [patients, setPatients] = useState([]);
 
   useEffect(() => {
-    setupSnapshot(setPatients);
+    // setupSnapshot(setPatients);
   }, []);
 
   // conditional rendering of screens
