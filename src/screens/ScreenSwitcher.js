@@ -13,6 +13,7 @@ import HomeScreen from "./HomeScreen";
 import Settings from "./Settings";
 import AdminScreen from "./AdminScreen";
 import Room from "./Room";
+import Monitor from "./Monitor";
 
 import LoginScreen from "./auth/LoginScreen";
 import RegisterScreen from "./auth/RegisterScreen";
