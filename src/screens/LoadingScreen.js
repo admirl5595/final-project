@@ -1,14 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 
-import { primaryColor } from "../res/theme/styles";
-
 export default class LoadingScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.header}>Loading</Text>
-        <ActivityIndicator color={primaryColor} size="large" />
+        <ActivityIndicator size="large" />
       </View>
     );
   }

@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
-import { primaryColor } from "../../res/theme/styles";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../firebase-config";
 
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 10,
-    backgroundColor: primaryColor,
+    backgroundColor: "white",
     borderColor: "grey",
   },
   text: {
