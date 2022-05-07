@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import Monitor from "./src/screens/Monitor";
 
 import { db } from "./firebase-config";
 import { LogBox } from "react-native";
@@ -86,7 +87,7 @@ async function setupSnapshot(setPatients) {
         // TODO: pop and push new vital to context
         // note: we have all the data points so might as well slice again
 
-        patient.breathRate = patient.breathRate.slice(-50);
+        patient.breathRate = patient.breathRate.slice(-30);
         patient.diastolicBP = patient.diastolicBP.slice(-50);
         patient.heartRate = patient.heartRate.slice(-50);
         patient.o2Level = patient.o2Level.slice(-50);

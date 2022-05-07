@@ -7,8 +7,8 @@ const palette = {
 export const theme = {
     colors: {
         background: palette.blue_green,
-        primary_font: palette.black,
-        secondary_font: palette.white,
+        primary_fontColor: palette.black,
+        secondary_fontColor: palette.white,
         
       },
 
