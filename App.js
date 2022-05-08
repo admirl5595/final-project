@@ -45,7 +45,7 @@ const App = () => {
   // conditional rendering of screens
   return (
     <PatientContext.Provider value={{ patients, setPatients }}>
-      <ScreenSwitcher />
+      <Monitor />
     </PatientContext.Provider>
   );
 };
