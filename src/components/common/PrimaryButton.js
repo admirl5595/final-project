@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { theme } from "../theme";
+import { theme } from "../../res/theme";
 
 // title: text displayed inside button
 // onPress: function triggered when pressing the button

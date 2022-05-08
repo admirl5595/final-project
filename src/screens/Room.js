@@ -3,7 +3,7 @@ import { ScrollView, Text, Button, View } from "react-native";
 
 import LoadingScreen from "./LoadingScreen";
 
-import PrimaryButton from "../res/common/PrimaryButton";
+import PrimaryButton from "../components/common/PrimaryButton";
 import RoomInfo from "../components/room/room-info/RoomInfo";
 import PatientVitals from "../components/room/patient-vitals/PatientVitals";
 import PatientContext from "../../config/PatientContext";
