@@ -8,18 +8,11 @@ export default function Monitor() {
   const { patients } = useContext(PatientContext);
   let aPatient = { breathRate: null };
 
-  if (true) {
+
     return (
-      <View>
-        <Text>Monitor</Text>
+      <View style={styles.container}>
+        <Text style={styles.header}>Monitor</Text>
         <Chart patientId={"000011111"} vitalsAry={aPatient.breathRate} />
       </View>
     );
-  } else {
-    return (
-      <View style={styles.container}>
-        <Text>Loading..</Text>
-      </View>
-    );
-  }
 }

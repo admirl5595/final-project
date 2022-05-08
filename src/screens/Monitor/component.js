@@ -2,18 +2,19 @@ import { View, Text, StyleSheet, Dimensions } from "react-native";
 import React, { useState, useEffect, useContext } from "react";
 import PatientContext from "../../../config/PatientContext";
 import styles from "./styles";
+import { theme } from "../../res/theme";
 
 import { db } from "../../../firebase-config";
 import { doc, getDoc } from "firebase/firestore";
 
-import {
-  LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart,
-} from "react-native-chart-kit";
+import { LineChart } from "react-native-chart-kit";
+
+/* 
+  TODO
+- Gjøre det slik at den funker for hvert vitalia
+- Endre på design av grafen
+- Gjøre det slik at den kan roteres
+*/
 
 export default function Chart({ patientId, vitalsAry }) {
   const labels = {
@@ -23,7 +24,7 @@ export default function Chart({ patientId, vitalsAry }) {
   const { patients } = useContext(PatientContext);
 
   const [vitalsList, setVitalsList] = useState([0, 0, 0, 0, 0, 0, 0]);
-  const [timeList, setTimeList] = useState(null);
+  const [timeList, setTimeList] = useState([0, 0, 0, 0, 0, 0]);
 
   useEffect(async () => {
     getPatient();
@@ -33,23 +34,34 @@ export default function Chart({ patientId, vitalsAry }) {
     const querySnapshot = await getDoc(doc(db, "patients", "01019901111"));
     let aPatient = querySnapshot.data();
 
-    vitalsAry = aPatient.breathRate.slice(-5);
+    vitalsAry = aPatient.breathRate.slice(-13);
     let vitalValues = vitalsAry.map((vital) => vital.value);
-    let vitalTime = vitalsAry.map((vital) => vital.time);
+    let time = vitalsAry.map((t) =>
+      new Date(t.time.seconds * 1000).toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      })
+    );
+
+    for (let i = 0; i < time.length; i++) {
+      if (i % 4 != 0) {
+        time[i] = "";
+      }
+    }
+
     console.log("\n **************PATIENT************* \n");
     console.log(vitalValues);
-    console.log(vitalTime);
+    console.log(time);
 
     setVitalsList(vitalValues);
-    setTimeList(vitalTime);
+    setTimeList(time);
   }
 
   const data = {
-    labels: vitalsList,
+    labels: timeList,
     datasets: [
       {
         data: vitalsList,
-        color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
         strokeWidth: 2, // optional
       },
     ],
@@ -57,25 +69,26 @@ export default function Chart({ patientId, vitalsAry }) {
   };
 
   const chartConfig = {
-    backgroundGradientFrom: "#1E2923",
-    backgroundGradientFromOpacity: 0,
-    backgroundGradientTo: "#08130D",
-    backgroundGradientToOpacity: 0.5,
-    color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-    strokeWidth: 2, // optional, default 3
-    barPercentage: 0.5,
+    backgroundGradientFrom: theme.colors.secondary_fontColor,
+    backgroundGradientFromOpacity: 1,
+    backgroundGradientTo: theme.colors.secondary_fontColor,
+    backgroundGradientToOpacity: 1,
+    color: (opacity = 1) => `rgba(150,150,150, ${opacity})`, // optional // TODO endre på fargen på denne. Gjøre den mer grå
+    decimalPlaces: 0, // optional, defaults to 2dp
+    strokeWidth: 4, // Tykkelsen på linesene
     useShadowColorFromDataset: false, // optional
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Grade Chart</Text>
       <LineChart
         data={data}
         width={Dimensions.get("window").width - 20} // from react-native
         height={220}
         yAxisSuffix="" /// QST? BPM
+        yAxisInterval="4"
         chartConfig={chartConfig}
+        hidePointsAtIndex="[]"
       />
     </View>
   );

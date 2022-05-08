@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native'
-import React from 'react'
+import { StyleSheet } from "react-native";
+import { theme } from "../../res/theme";
 
 const styles = StyleSheet.create({
   container: {
@@ -7,17 +7,14 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     alignContent: "center",
-    marginTop: 30
+    backgroundColor: theme.colors.background,
   },
-  text: {
-    margin: 20,
-    fontSize: 30,
+  header: {
+    margin: theme.spacing.xl,
+    ...theme.textVariants.header,
   },
-  iconRow: {
-    height: 43,
-    flexDirection: "row",
-    marginTop: 20,
-    alignItems: "center",
+  chartBox: {
+    margin: theme.spacing.l,
   },
 });
 

@@ -16,7 +16,7 @@ export const theme = {
         s: 8,
         m: 16,
         l: 24,
-        xl: 40,
+        xl: 46,
     },  
 
     textVariants: {
