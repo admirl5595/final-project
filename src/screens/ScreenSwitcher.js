@@ -35,12 +35,12 @@ const ScreenSwitcher = () => {
 
   const EmployeeScreens = (
     <>
-      <Stack.Screen options={options} name="Room" component={Room} />
       <Stack.Screen
         options={options}
         name="HomeScreen"
         component={HomeScreen}
       />
+      <Stack.Screen options={options} name="Room" component={Room} />
       <Stack.Screen name="Settings" component={Settings} />
     </>
   );

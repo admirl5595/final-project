@@ -18,6 +18,7 @@ import {
 
 import * as Notifications from "expo-notifications";
 import PatientContext from "./config/PatientContext";
+import RoomContext from "./config/RoomContext";
 
 import { addIcons } from "./src/res/icons/fontAwsome";
 
@@ -37,6 +38,7 @@ const App = () => {
   addIcons();
 
   const [patients, setPatients] = useState([]);
+  const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
     setupSnapshot(setPatients);
@@ -44,9 +46,11 @@ const App = () => {
 
   // conditional rendering of screens
   return (
-    <PatientContext.Provider value={{ patients, setPatients }}>
-      <Monitor />
-    </PatientContext.Provider>
+    <RoomContext.Provider value={{ rooms, setRooms }}>
+      <PatientContext.Provider value={{ patients, setPatients }}>
+        <ScreenSwitcher />
+      </PatientContext.Provider>
+    </RoomContext.Provider>
   );
 };
 
