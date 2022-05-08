@@ -14,8 +14,6 @@ export default function ViewObservations(patientId) {
 
     let patient = patients.filter(p => { p.id == patientId })
 
-    patient = getObservations(); 
-
     console.log("Patient: ", patient)
     const observations = { ...patient.observation }
 
