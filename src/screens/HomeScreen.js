@@ -40,31 +40,26 @@ export default function HomeScreen() {
   }, []);
 
   useEffect(async () => {
-    getRooms(setRooms)
+    getRooms(setRooms);
   }, []);
 
-  const renderRoom = ({ item }) => (
-    <Item room={item.roomNr} />
-  );
+  const renderRoom = ({ item }) => <Item room={item.roomNr} />;
 
   const Item = ({ roomNr }) => (
     <View style={styles.item}>
       <Text style={styles.room}>{roomNr}</Text>
     </View>
   );
-  
 
   return (
-    <View style={{ backgroundColor: "#95E9CE", flex: 1}}>
+    <View style={{ backgroundColor: "#95E9CE", flex: 1 }}>
       <Text>EMPLOYEE SCREEN: {role}</Text>
-      <Text>Room: {rooms.map(room => room.roomNr)}</Text>
-      <Text>Patient: {rooms.map(room => room.name)}</Text>
-      {console.log(rooms.map(room => (room.roomNr)))}
-      
+      <Text>Room: {rooms.map((room) => room.roomNr)}</Text>
+      <Text>Patient: {rooms.map((room) => room.name)}</Text>
+      {console.log(rooms.map((room) => room.roomNr))}
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -72,7 +67,7 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   item: {
-    backgroundColor: '#f9c2ff',
+    backgroundColor: "#f9c2ff",
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,

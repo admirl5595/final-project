@@ -12,6 +12,8 @@ import LoadingScreen from "./LoadingScreen";
 import HomeScreen from "./HomeScreen";
 import Settings from "./Settings";
 import AdminScreen from "./AdminScreen";
+import Room from "./Room";
+import Monitor from "./Monitor";
 
 import LoginScreen from "./auth/LoginScreen";
 import RegisterScreen from "./auth/RegisterScreen";
@@ -33,6 +35,7 @@ const ScreenSwitcher = () => {
 
   const EmployeeScreens = (
     <>
+      <Stack.Screen options={options} name="Room" component={Room} />
       <Stack.Screen
         options={options}
         name="HomeScreen"
@@ -65,22 +68,26 @@ const ScreenSwitcher = () => {
 
   const [role, setRole] = useState("");
 
-  useEffect(async () => {
-    if (user) {
-      // get signed in user
-      const user = auth.currentUser;
+  useEffect(() => {
+    async function getRole() {
+      if (user) {
+        // get signed in user
+        const user = auth.currentUser;
 
-      // reference to user document
-      const userDocRef = doc(db, "users", user.uid);
+        // reference to user document
+        const userDocRef = doc(db, "users", user.uid);
 
-      const userDoc = await getDoc(userDocRef);
+        const userDoc = await getDoc(userDocRef);
 
-      const userData = userDoc.data();
+        const userData = userDoc.data();
 
-      setRole(userData.role);
+        setRole(userData.role);
 
-      console.log(role);
+        console.log(role);
+      }
     }
+
+    getRole();
   }, [user]);
 
   return (
