@@ -3,6 +3,8 @@ import React from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../firebase-config";
 
+import { theme } from "../../res/theme";
+
 export default function LogoutBtn() {
   return (
     <View>
@@ -29,12 +31,13 @@ export default function LogoutBtn() {
 const styles = StyleSheet.create({
   logoutBtn: {
     width: "30%",
-    borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
     padding: 10,
-    backgroundColor: "white",
-    borderColor: "grey",
+    borderWidth: 4,
+    borderColor: "white",
+    alignSelf: "center",
+    marginBottom: 100,
   },
   text: {
     fontSize: 20,
