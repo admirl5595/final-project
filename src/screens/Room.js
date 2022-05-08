@@ -1,5 +1,7 @@
 import React, { useEffect, useContext } from "react";
-import { ScrollView, Text, Button } from "react-native";
+import { ScrollView, Text, Button, View } from "react-native";
+
+import LoadingScreen from "./LoadingScreen";
 
 import PrimaryButton from "../res/common/PrimaryButton";
 import RoomInfo from "../components/room/room-info/RoomInfo";
@@ -8,18 +10,44 @@ import PatientContext from "../../config/PatientContext";
 
 import { theme } from "../res/theme";
 
-export default function Room({ patientId, navigation }) {
+export default function Room({ patientId, navigation, room }) {
   // do a query towards patient
 
   patientId = "19436161845";
 
+  room = {
+    name: "john doe",
+    patientId: patientId,
+    roomNr: "005",
+    sensorId: "d210f680-cd44-11ec-b608-ed5550607a70",
+  };
+
   // get all patients from global context
   const { patients, setPatients } = useContext(PatientContext);
+
+  console.log("rerender...");
 
   // get this specific patient from context
   let patient = patients.filter((patient) => patient.id === patientId)[0];
 
-  // console.log(patient.id);
+  // show loading screen if patient hasn't been fetched yet
+  if (!patient) {
+    return <LoadingScreen />;
+  }
+
+  console.log(patient.breathRate[patient.breathRate.length - 1].value);
+
+  const breathRatePreview =
+    patient.breathRate[patient.breathRate.length - 1].value;
+  const diastolicBPPreview =
+    patient.diastolicBP[patient.diastolicBP.length - 1].value;
+  const heartRatePreview =
+    patient.heartRate[patient.heartRate.length - 1].value;
+  const o2LevelPreview = patient.o2Level[patient.o2Level.length - 1].value;
+  const systolicBPPreview =
+    patient.systolicBP[patient.systolicBP.length - 1].value;
+
+  console.log("value in room: " + systolicBPPreview);
 
   const handlePress = () => {
     console.log("hello");
@@ -27,13 +55,14 @@ export default function Room({ patientId, navigation }) {
 
   return (
     <ScrollView style={{ backgroundColor: theme.colors.background, flex: 1 }}>
-      <RoomInfo roomNr="ABC123" name="John Doe" date={new Date()} />
+      <RoomInfo roomNr={room.roomNr} name={room.name} date={new Date()} />
       <PatientVitals
-        breathRate={50}
-        diastolicBP={50}
-        heartRate={50}
-        o2Level={50}
-        systolicBP={50}
+        breathRate={breathRatePreview}
+        diastolicBP={diastolicBPPreview}
+        heartRate={heartRatePreview}
+        o2Level={o2LevelPreview}
+        systolicBP={systolicBPPreview}
+        patient={patient}
       />
       <PrimaryButton onPress={handlePress} title="View Observations" />
       <PrimaryButton title="Insert Observation" />

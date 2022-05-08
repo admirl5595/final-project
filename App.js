@@ -66,8 +66,7 @@ async function setupSnapshot(setPatients) {
 
       // add id to patient object
       patient = { id, ...patient };
-
-      // console.log("change type: " + change.type);
+      console.log("change type: " + change.type);
 
       // add patient to state
       if (change.type === "added") {
@@ -80,8 +79,6 @@ async function setupSnapshot(setPatients) {
         patient.heartRate = patient.heartRate.slice(-50);
         patient.o2Level = patient.o2Level.slice(-50);
         patient.systolicBP = patient.systolicBP.slice(-50);
-
-        // console.log(patient.breathRate.length);
 
         // add new patient to global context
         setPatients((prevPatients) => [...prevPatients, patient]);
@@ -97,8 +94,22 @@ async function setupSnapshot(setPatients) {
         patient.o2Level = patient.o2Level.slice(-50);
         patient.systolicBP = patient.systolicBP.slice(-50);
 
+        console.log(
+          "value in app: " +
+            patient.systolicBP[patient.systolicBP.length - 1].value
+        );
+
         // add new patient to global context
-        setPatients((prevPatients) => [...prevPatients, patient]);
+        setPatients((prevPatients) => {
+          // remove outdated patient object
+          let newPatients = prevPatients.filter(
+            (oldPatient) => oldPatient.id !== patient.id
+          );
+          // replace with updated patient object
+          newPatients.push(patient);
+
+          return newPatients;
+        });
 
         // check for abnormalities and trigger notification
 
