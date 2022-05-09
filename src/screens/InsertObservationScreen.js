@@ -11,22 +11,16 @@ import PatientContext from "../../config/PatientContext";
 import { postObservation } from "../services/crud-operations";
 import { auth } from "../../firebase-config";
 
+import { useRoute } from "@react-navigation/native";
+
 // TODO: Denne skal brukes når contexten er laget
 // let { patients, setPatients } = useContext(PatientContext);
 
-export default function InsertObservationScreen(patient) {
+export default function InsertObservationScreen() {
   const user = auth.currentUser;
 
-  patient = {
-    id: "01019905055",
-    heartRate: null,
-    breathRate: null,
-    o2Level: null,
-    systolicBP: null,
-    diastolicBP: null,
-    timeOfAdmission: null,
-    observations: [null],
-  };
+  const route = useRoute();
+  const patient = route.params.patient;
 
   const [newobservationdesc, setNewObservationDesc] = useState("");
 
