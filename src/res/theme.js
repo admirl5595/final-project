@@ -40,6 +40,7 @@ export const theme = {
       borderWidth: 3,
       borderColor: palette.white,
     },
+  },
 
 
   textVariants: {
