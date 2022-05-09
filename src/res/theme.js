@@ -4,6 +4,13 @@ const palette = {
   black: "#000000",
 };
 
+const spacing = {
+  s: 8,
+  m: 16,
+  l: 24,
+  xl: 48,
+};
+
 export const theme = {
   colors: {
     background: palette.blue_green,
@@ -12,10 +19,27 @@ export const theme = {
   },
 
   spacing: {
-    s: 8,
-    m: 16,
-    l: 24,
-    xl: 46,
+    ...spacing,
+  },
+
+  boxSize: {
+    s: {},
+    m: {},
+    l: {
+      width: "80%",
+      padding: spacing.m,
+    },
+  },
+
+  boxType: {
+    filled: {
+      backgroundColor: palette.white,
+    },
+    unfilled: {
+      backgroundColor: palette.blue_green,
+      borderWidth: 3,
+      borderColor: palette.white,
+    },
   },
 
   textVariants: {

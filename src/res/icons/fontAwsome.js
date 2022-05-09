@@ -30,6 +30,10 @@ import {
   faMaskVentilator,
   faChartLine,
   faUserDoctor,
+  faUsers,
+  faHospital,
+  faHouse,
+  faBedPulse,
 } from "@fortawesome/free-solid-svg-icons";
 
 export function addIcons() {
@@ -63,6 +67,11 @@ export function addIcons() {
     faLungs,
     faMaskVentilator,
     faChartLine,
-    faUserDoctor
+    faUserDoctor,
+    faUsers,
+    faChartLine,
+    faHospital,
+    faHouse,
+    faBedPulse
   );
 }

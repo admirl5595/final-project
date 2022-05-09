@@ -14,7 +14,7 @@ export default function ViewObservations() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.header}>Observations</Text>
+      <Text style={styles.header}>Observations: {patient.name}</Text>
       <FontAwesomeIcon
         icon="user-doctor"
         size={150}

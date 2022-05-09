@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     margin: theme.spacing.xl,
     ...theme.textVariants.bigHeader,
     color: theme.colors.secondary_fontColor,
+    textAlign: "center",
   },
   chartBox: {
     margin: theme.spacing.l,
