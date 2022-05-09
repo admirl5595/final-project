@@ -5,7 +5,13 @@ import styles from "./VitalItemStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { useNavigation } from "@react-navigation/native";
 
-export default function VitalItem({ title, value, icon, patientId }) {
+export default function VitalItem({
+  title,
+  value,
+  icon,
+  patientId,
+  vitalTypes,
+}) {
   const navigation = useNavigation();
 
   return (
@@ -18,7 +24,10 @@ export default function VitalItem({ title, value, icon, patientId }) {
         <Text style={styles.text}>{value}</Text>
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate("Monitor", { patientId: patientId })
+            navigation.navigate("Monitor", {
+              patientId: patientId,
+              vitalTypes: vitalTypes,
+            })
           }
         >
           <FontAwesomeIcon size={40} icon="chart-line" color={"red"} />
