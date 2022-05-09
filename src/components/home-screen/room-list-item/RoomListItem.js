@@ -12,7 +12,9 @@ export default function RoomListItem({ item }) {
 
   // TODO: fix error: you might have mismatching versions of React and the renderer
   return (
-    <TouchableOpacity onPress={() => navigation.navigate("Room")}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate("Room", { room: item })}
+    >
       <View style={styles.container}>
         <Text style={styles.text}>Room {item.roomNr}</Text>
         <Text style={styles.text}>{item.name}</Text>

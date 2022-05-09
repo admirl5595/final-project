@@ -8,6 +8,8 @@ import { db } from "../../../firebase-config";
 import { doc, getDoc } from "firebase/firestore";
 
 import { LineChart } from "react-native-chart-kit";
+import { useRoute } from "@react-navigation/native";
+import { async } from "@firebase/util";
 
 /* 
   TODO
@@ -16,22 +18,29 @@ import { LineChart } from "react-native-chart-kit";
 - Gjøre det slik at den kan roteres
 */
 
-export default function Chart({ patientId, vitalsAry }) {
+export default function Chart({ vitalsAry }) {
   const labels = {
     heartRate: "BPM",
   };
+  const route = useRoute();
+  const patientId = route.params.patientId;
+  console.log(patientId);
 
   const { patients } = useContext(PatientContext);
 
   const [vitalsList, setVitalsList] = useState([0, 0, 0, 0, 0, 0, 0]);
   const [timeList, setTimeList] = useState([0, 0, 0, 0, 0, 0]);
 
-  useEffect(async () => {
-    getPatient();
+  useEffect(() => {
+    async function GetPatient() {
+      await getPatient();
+    }
+
+    GetPatient();
   }, []);
 
   async function getPatient() {
-    const querySnapshot = await getDoc(doc(db, "patients", "01019901111"));
+    const querySnapshot = await getDoc(doc(db, "patients", patientId));
     let aPatient = querySnapshot.data();
 
     vitalsAry = aPatient.breathRate.slice(-13);
