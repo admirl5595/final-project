@@ -62,7 +62,7 @@ export default function Room({ patientId, navigation, room }) {
         heartRate={heartRatePreview}
         o2Level={o2LevelPreview}
         systolicBP={systolicBPPreview}
-        patient={patient}
+        patientId={patientId}
       />
       <PrimaryButton onPress={handlePress} title="View Observations" />
       <PrimaryButton title="Insert Observation" />
