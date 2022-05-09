@@ -7,25 +7,19 @@ import PrimaryButton from "../components/common/PrimaryButton";
 import RoomInfo from "../components/room/room-info/RoomInfo";
 import PatientVitals from "../components/room/patient-vitals/PatientVitals";
 import PatientContext from "../../config/PatientContext";
-
+import { useRoute } from "@react-navigation/native";
 import { theme } from "../res/theme";
 
-export default function Room({ patientId, navigation, room }) {
+export default function Room({ patientId }) {
   // do a query towards patient
 
-  patientId = "19436161845";
+  const route = useRoute();
+  const room = route.params.room;
 
-  room = {
-    name: "john doe",
-    patientId: patientId,
-    roomNr: "005",
-    sensorId: "d210f680-cd44-11ec-b608-ed5550607a70",
-  };
+  patientId = room.patientId;
 
   // get all patients from global context
-  const { patients, setPatients } = useContext(PatientContext);
-
-  console.log("rerender...");
+  const { patients } = useContext(PatientContext);
 
   // get this specific patient from context
   let patient = patients.filter((patient) => patient.id === patientId)[0];
