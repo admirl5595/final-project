@@ -10,7 +10,7 @@ import PatientContext from "../../config/PatientContext";
 
 import { theme } from "../res/theme";
 
-export default function Room({ patientId, navigation, room }) {
+export default function Room({ patientId, room }) {
   // do a query towards patient
 
   patientId = "19436161845";
