@@ -42,17 +42,17 @@ export const theme = {
     },
   },
 
-
   textVariants: {
     header: {
-      fontFamily: "Arial Black",
       fontSize: 20,
       fontWeight: "bold",
     },
-
     body: {
-      fontFamily: "Arial Black",
       fontSize: 16,
+    },
+    bigHeader: {
+      fontSize: 40,
+      fontWeight: "bold",
     },
   },
 };

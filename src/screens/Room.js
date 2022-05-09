@@ -7,11 +7,13 @@ import PrimaryButton from "../components/common/PrimaryButton";
 import RoomInfo from "../components/room/room-info/RoomInfo";
 import PatientVitals from "../components/room/patient-vitals/PatientVitals";
 import PatientContext from "../../config/PatientContext";
-import { useRoute } from "@react-navigation/native";
+import { useRoute, useNavigation } from "@react-navigation/native";
 import { theme } from "../res/theme";
 
 export default function Room({ patientId }) {
   // do a query towards patient
+
+  const navigation = useNavigation();
 
   const route = useRoute();
   const room = route.params.room;
@@ -58,8 +60,18 @@ export default function Room({ patientId }) {
         systolicBP={systolicBPPreview}
         patientId={patientId}
       />
-      <PrimaryButton onPress={handlePress} title="View Observations" />
-      <PrimaryButton title="Insert Observation" />
+      <PrimaryButton
+        onPress={() =>
+          navigation.navigate("ViewObservations", { patient: patient })
+        }
+        title="View Observations"
+      />
+      <PrimaryButton
+        onPress={() =>
+          navigation.navigate("InsertObservation", { patient: patient })
+        }
+        title="Insert Observation"
+      />
     </ScrollView>
   );
 }

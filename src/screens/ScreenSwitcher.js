@@ -14,6 +14,8 @@ import Settings from "./Settings";
 import AdminScreen from "./AdminScreen";
 import Room from "./Room";
 import Monitor from "./Monitor";
+import ViewObservations from "./ViewObservation/Index";
+import InsertObservationScreen from "./InsertObservationScreen";
 
 import LoginScreen from "./auth/LoginScreen";
 import RegisterScreen from "./auth/RegisterScreen";
@@ -41,6 +43,16 @@ const ScreenSwitcher = () => {
         component={HomeScreen}
       />
       <Stack.Screen options={options} name="Room" component={Room} />
+      <Stack.Screen
+        options={options}
+        name="ViewObservations"
+        component={ViewObservations}
+      />
+      <Stack.Screen
+        options={options}
+        name="InsertObservation"
+        component={InsertObservationScreen}
+      />
       <Stack.Screen options={options} name="Monitor" component={Monitor} />
       <Stack.Screen name="Settings" component={Settings} />
     </>
