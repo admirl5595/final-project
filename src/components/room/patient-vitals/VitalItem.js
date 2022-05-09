@@ -4,7 +4,7 @@ import styles from "./VitalItemStyle";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-export default function VitalItem({ title, value, icon }) {
+export default function VitalItem({ title, value, icon, patientId }) {
   return (
     <View style={styles.container}>
       <View style={styles.iconText}>
