@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import Monitor from "./src/screens/Monitor";
 
 import { db } from "./firebase-config";
 import { LogBox } from "react-native";

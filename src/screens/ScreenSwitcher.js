@@ -41,6 +41,7 @@ const ScreenSwitcher = () => {
         component={HomeScreen}
       />
       <Stack.Screen options={options} name="Room" component={Room} />
+      <Stack.Screen options={options} name="Monitor" component={Monitor} />
       <Stack.Screen name="Settings" component={Settings} />
     </>
   );
