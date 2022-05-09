@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   },
   header: {
     margin: theme.spacing.xl,
-    ...theme.textVariants.header,
+    ...theme.textVariants.bigHeader,
     color: theme.colors.secondary_fontColor,
   },
   chartBox: {

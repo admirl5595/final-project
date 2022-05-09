@@ -23,9 +23,12 @@ export const theme = {
       fontSize: 20,
       fontWeight: "bold",
     },
-
     body: {
       fontSize: 16,
+    },
+    bigHeader: {
+      fontSize: 40,
+      fontWeight: "bold",
     },
   },
 };
