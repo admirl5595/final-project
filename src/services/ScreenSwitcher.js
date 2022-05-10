@@ -50,7 +50,11 @@ const ScreenSwitcher = () => {
         name="InsertObservation"
         component={InsertObservationScreen}
       />
-      <Stack.Screen options={options} name="Monitor" component={Monitor} />
+      <Stack.Screen
+        name="Monitor"
+        component={Monitor}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="Settings" component={Settings} />
     </>
   );
