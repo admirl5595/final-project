@@ -22,6 +22,9 @@ export default function AddRoom() {
       return;
     }
 
+    // TODO:
+    // check if room already exists
+
     if (!sensorId) {
       Alert.alert("enter sensor id");
       return;

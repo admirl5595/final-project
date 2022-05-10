@@ -17,9 +17,9 @@ export default function AssignPatient({ ssn, setSsn, setPatient }) {
 
     const patientDocRef = doc(db, "patients", ssn);
 
-    const patient = await getDoc(patientDocRef);
+    let patient = await getDoc(patientDocRef);
 
-    console.log(patient.data().admitted);
+    console.log(patient.data());
 
     // check if patient doesn't exist
     if (!patient.exists()) {
@@ -27,8 +27,10 @@ export default function AssignPatient({ ssn, setSsn, setPatient }) {
       return;
     }
 
+    patient = patient.data();
+
     // check if patient already has a room
-    if (patient.admitted) {
+    if (patient.admitted === true) {
       Alert.alert("patient is already admitted to a room");
       return;
     }
