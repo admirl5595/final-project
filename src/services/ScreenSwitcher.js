@@ -13,7 +13,7 @@ import HomeScreen from "../screens/Home";
 import Settings from "../screens/Settings/";
 import Room from "../screens/Room";
 import Monitor from "../screens/Monitor";
-import ViewObservations from "../screens/ViewObservation";
+import ViewObservations from "../screens/ViewObservations";
 import InsertObservationScreen from "../screens/InsertObservation";
 import AdminHome from "../screens/AdminHome";
 
