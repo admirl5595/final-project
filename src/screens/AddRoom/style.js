@@ -6,9 +6,12 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.background,
     flex: 1,
+    padding: theme.spacing.s,
   },
   textInput: {
     backgroundColor: theme.colors.secondary_fontColor,
+    marginVertical: theme.spacing.s,
+    padding: theme.spacing.s,
   },
 });
 
