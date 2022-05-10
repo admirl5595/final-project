@@ -1,18 +1,10 @@
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import { View, Dimensions } from "react-native";
 import React, { useState, useEffect, useContext } from "react";
 import PatientContext from "src/services/PatientContext";
-import styles from "./styles";
 import { theme } from "src//res/theme";
 import FlashMessage, { showMessage } from "react-native-flash-message";
 
 import { LineChart } from "react-native-chart-kit";
-
-/* 
-  TODO
-- Gjøre det slik at den funker for hvert vitalia
-- Endre på design av grafen
-- Gjøre det slik at den kan roteres
-*/
 
 export default function Chart({ patientId, vType }) {
   const { patients } = useContext(PatientContext);
@@ -130,7 +122,7 @@ export default function Chart({ patientId, vType }) {
   };
 
   return (
-    <View style={styles.container}>
+    <View>
       <LineChart
         bezier
         data={{
