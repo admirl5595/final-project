@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { View, StyleSheet, ScrollView, Text } from "react-native";
-import DropDownItems from "../components/settings/DropDownItems";
-import LogoutBtn from "../components/auth/LogoutBtn";
-import { auth } from "../../firebase-config";
-
-import PatientContext from "../../config/PatientContext";
+import { View, ScrollView, Text } from "react-native";
+import DropDownItems from "./component";
+import LogoutBtn from "../../components/auth/LogoutBtn";
+import { auth } from "../../../firebase-config";
+import PatientContext from "../../services/PatientContext";
+import styles from "./styles";
 
 export default function Settings({ navigation }) {
   const { patients } = useContext(PatientContext);
@@ -32,26 +32,3 @@ export default function Settings({ navigation }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    margin: 10,
-  },
-  userCard: {
-    borderRadius: 10,
-    borderColor: "gray",
-    backgroundColor: "#fff",
-    padding: 10,
-    alignItems: "center",
-    elevation: 10,
-    margin: 10,
-  },
-  text: {
-    fontSize: 18,
-    marginVertical: 5,
-  },
-  centeredView: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

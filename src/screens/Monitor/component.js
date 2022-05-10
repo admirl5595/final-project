@@ -1,8 +1,8 @@
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import React, { useState, useEffect, useContext } from "react";
-import PatientContext from "../../../config/PatientContext";
+import PatientContext from "../../services/PatientContext";
 import styles from "./styles";
-import { theme } from "../../res/theme";
+import { theme } from "src//res/theme";
 
 import { db } from "../../../firebase-config";
 import { doc, getDoc } from "firebase/firestore";

@@ -16,12 +16,12 @@ import {
 } from "firebase/firestore";
 
 import * as Notifications from "expo-notifications";
-import PatientContext from "./config/PatientContext";
-import RoomContext from "./config/RoomContext";
+import PatientContext from "./src/services/PatientContext";
+import RoomContext from "./src/services/RoomContext";
 
 import { addIcons } from "./src/res/icons/fontAwsome";
 
-import ScreenSwitcher from "./src/screens/ScreenSwitcher";
+import ScreenSwitcher from "./src/services/ScreenSwitcher";
 
 import { useRoute } from "@react-navigation/native";
 

@@ -1,7 +1,6 @@
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 export default function DropDownItems(props) {
   const [isOpen, setOpen] = useState(false);
@@ -16,8 +15,8 @@ export default function DropDownItems(props) {
         <Image
           source={
             isOpen
-              ? require("../../res/images/up-arrow.png")
-              : require("../../res/images/down-arrow.png")
+              ? require("src/res/images/up-arrow.png")
+              : require("src/res/images/down-arrow.png")
           }
         />
       </TouchableOpacity>

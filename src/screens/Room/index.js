@@ -1,15 +1,13 @@
 import React, { useEffect, useContext } from "react";
 import { ScrollView, Text, Button, View } from "react-native";
 
-import LoadingScreen from "./LoadingScreen";
-
-import PrimaryButton from "../components/common/PrimaryButton";
-import RoomInfo from "../components/room/room-info/RoomInfo";
-import PatientVitals from "../components/room/patient-vitals/PatientVitals";
-import PatientContext from "../../config/PatientContext";
+import LoadingScreen from "../Loading/index";
+import PrimaryButton from "../../components/common/PrimaryButton";
+import RoomInfo from "./components/room-info/RoomInfo";
+import PatientVitals from "./components/patient-vitals/PatientVitals";
+import PatientContext from "../../services/PatientContext";
 import { useRoute, useNavigation } from "@react-navigation/native";
-import { theme } from "../res/theme";
-
+import { theme } from "src/res/theme";
 export default function Room({ patientId }) {
   // do a query towards patient
 
@@ -31,8 +29,6 @@ export default function Room({ patientId }) {
     return <LoadingScreen />;
   }
 
-  console.log(patient.breathRate[patient.breathRate.length - 1].value);
-
   const breathRatePreview =
     patient.breathRate[patient.breathRate.length - 1].value;
   const diastolicBPPreview =
@@ -42,12 +38,6 @@ export default function Room({ patientId }) {
   const o2LevelPreview = patient.o2Level[patient.o2Level.length - 1].value;
   const systolicBPPreview =
     patient.systolicBP[patient.systolicBP.length - 1].value;
-
-  console.log("value in room: " + systolicBPPreview);
-
-  const handlePress = () => {
-    console.log("hello");
-  };
 
   return (
     <ScrollView style={{ backgroundColor: theme.colors.background, flex: 1 }}>

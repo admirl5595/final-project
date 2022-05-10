@@ -8,14 +8,14 @@ import {
   Alert,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import { auth } from "../../.././firebase-config";
+import { auth } from "../../../../firebase-config";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { StatusBar } from "expo-status-bar";
 
-import { db } from "../../../firebase-config";
+import { db } from "../../../../firebase-config";
 import { doc, setDoc, updateDoc } from "firebase/firestore";
 
-import styles from "./AuthScreensStyle";
+import styles from "./styles";
 
 export default function RegisterScreen({ navigation }) {
   const [name, setName] = useState("");
@@ -46,8 +46,7 @@ export default function RegisterScreen({ navigation }) {
       return;
     }
 
-   await createUserWithEmailAndPassword(auth, email, password)
-
+    await createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         // get user information
         const user = auth.currentUser;
@@ -68,16 +67,15 @@ export default function RegisterScreen({ navigation }) {
 
     const user = auth.currentUser;
 
-   await updateProfile(user, { displayName: name })
-
+    await updateProfile(user, { displayName: name })
       .then(() => {
         // get user information
         const user = auth.currentUser;
 
-        // store username 
+        // store username
         const userName = {
           displayName: name,
-        }
+        };
 
         // create new document in users collection with user id as name
         updateDoc(doc(db, "users", user.uid), userName);
@@ -91,8 +89,7 @@ export default function RegisterScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <View style={styles.InputView}>
-      </View>
+      <View style={styles.InputView}></View>
       <View style={styles.InputView}>
         <TextInput
           style={styles.TextInput}
