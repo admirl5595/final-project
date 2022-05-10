@@ -4,14 +4,7 @@ import { Picker } from "@react-native-picker/picker";
 import styles from "./style";
 import PrimaryButton from "src/components/common/PrimaryButton";
 import { db } from "../../../firebase-config";
-import {
-  collection,
-  getDocs,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  doc,
-} from "firebase/firestore";
+import { setDoc, doc, getDoc } from "firebase/firestore";
 
 import { useNavigation } from "@react-navigation/native";
 
@@ -25,8 +18,6 @@ export default function AddPatient() {
   const [age, setAge] = useState();
   const [ssn, setSsn] = useState("");
 
-  const patientCollectionRef = collection(db, "patients");
-
   // verify data and add patient
   const addPatient = async () => {
     if (name.length < 1) {
@@ -37,6 +28,10 @@ export default function AddPatient() {
     if (!age) {
       Alert.alert("enter age");
       return;
+    }
+
+    if (ssn.length !== 9) {
+      Alert.alert("invalid ssn");
     }
 
     const newPatient = {
@@ -53,7 +48,17 @@ export default function AddPatient() {
       observations: [],
     };
 
-    await addDoc(patientCollectionRef, newPatient);
+    const patientDocRef = doc(db, "patients", ssn);
+
+    // check if patientDoc exists
+    const patient = await getDoc(patientDocRef);
+
+    if (patient.exists()) {
+      Alert.alert("patient already exists");
+      return;
+    }
+
+    await setDoc(patientDocRef, newPatient);
     navigation.navigate("Patients");
   };
 
@@ -66,10 +71,12 @@ export default function AddPatient() {
         style={styles.textInput}
       />
       <TextInput
+        keyboardType="numeric"
         onChangeText={setSsn}
         value={ssn}
         placeholder="social security number"
         style={styles.textInput}
+        maxLength={9}
       />
       <Picker
         style={styles.textInput}
