@@ -1,15 +1,11 @@
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import React, { useState, useEffect, useContext } from "react";
-import PatientContext from "../../services/PatientContext";
+import PatientContext from "src/services/PatientContext";
 import styles from "./styles";
 import { theme } from "src//res/theme";
-
-import { db } from "../../../firebase-config";
-import { doc, getDoc } from "firebase/firestore";
+import FlashMessage, { showMessage } from "react-native-flash-message";
 
 import { LineChart } from "react-native-chart-kit";
-import { useRoute } from "@react-navigation/native";
-import { async } from "@firebase/util";
 
 /* 
   TODO
@@ -21,49 +17,40 @@ import { async } from "@firebase/util";
 export default function Chart({ patientId, vitalType }) {
   const { patients } = useContext(PatientContext);
 
-  const [vitalsList, setVitalsList] = useState([0, 0, 0, 0, 0, 0, 0]);
-  const [timeList, setTimeList] = useState([0, 0, 0, 0, 0, 0]);
+  const [vitalsList, setVitalsList] = useState([
+    [2, 4],
+    [1, 5],
+  ]);
+  const [timeList, setTimeList] = useState([0]);
+  const dataPoints = 22; // QST? Burde denne ut i en egen fil?
+  let patient = null;
 
   useEffect(() => {
-    let patient = null;
+    let patient = patients.filter((p) => p.id == patientId)[0];
     let vitalsAry = null;
 
     switch (vitalType) {
       case "HR":
-        patient = patients.filter((p) => {
-          p.id == patientId;
-        });
-        vitalsAry = patient.map((a) => a.heartRate).slice(-13);
-        console.log("HR: ", vitalsAry);
+        vitalsAry = patient.heartRate.slice(-dataPoints);
         setStates(vitalsAry);
         break;
 
       case "BPM":
-        patient = patients.filter((p) => {
-          p.id == patientId;
-        });
-        vitalsAry = patient.map((a) => a.breathRate).slice(-13);
-        console.log("BPM: ", vitalsAry);
+        vitalsAry = patient.breathRate.slice(-dataPoints);
         setStates(vitalsAry);
         break;
 
       case "spO2":
-        patient = patients.filter((p) => {
-          p.id == patientId;
-        });
-        vitalsAry = patient.map((a) => a.o2Level).slice(-13);
-        console.log("BPM: ", vitalsAry);
+        vitalsAry = patient.o2Level.slice(-dataPoints);
         setStates(vitalsAry);
         break;
 
       // TODO Sjekke om man kan ha 2D-array
       case "BP":
-        patient = patients.filter((p) => {
-          p.id == patientId;
-        });
-        vitalsAry = patient.map((a) => a.breathRate).slice(-13);
-        console.log("BPM: ", vitalsAry);
-        setStates(vitalsAry);
+        let sys = patient.systolicBP.slice(-dataPoints);
+        let dia = patient.diastolicBP.slice(-dataPoints);
+
+        setStates([sys, dia]);
         break;
 
       default:
@@ -86,10 +73,6 @@ export default function Chart({ patientId, vitalType }) {
         time[i] = "";
       }
     }
-
-    console.log("\n **************PATIENT************* \n");
-    console.log(vitalValues);
-    console.log(time);
 
     setVitalsList(vitalValues);
     setTimeList(time);
@@ -126,8 +109,16 @@ export default function Chart({ patientId, vitalType }) {
         yAxisSuffix="" /// QST? BPM
         yAxisInterval="4"
         chartConfig={chartConfig}
-        hidePointsAtIndex="[]"
+        fromZero="true"
+        onDataPointClick={({ value, getColor }) =>
+          showMessage({
+            message: `${value + " " + vitalType}`,
+            description: " ",
+            backgroundColor: getColor(0.9),
+          })
+        }
       />
+      <FlashMessage duration={1000} />
     </View>
   );
 }

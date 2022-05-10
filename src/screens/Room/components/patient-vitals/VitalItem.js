@@ -20,6 +20,7 @@ export default function VitalItem({ title, value, icon, patientId }) {
             navigation.navigate("Monitor", {
               patientId: patientId,
               vitalType: title,
+              icon: icon,
             })
           }
         >
