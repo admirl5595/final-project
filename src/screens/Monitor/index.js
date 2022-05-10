@@ -13,8 +13,6 @@ export default function Monitor() {
   const vitalType = route.params.vitalType;
   const patientId = route.params.patientId;
 
-  console.log(patientId);
-
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Monitor</Text>
