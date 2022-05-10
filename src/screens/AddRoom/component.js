@@ -27,6 +27,7 @@ export default function AssignPatient({ ssn, setSsn, setPatient }) {
       return;
     }
 
+    let patientId = patient.id;
     patient = patient.data();
 
     // check if patient already has a room
@@ -35,8 +36,8 @@ export default function AssignPatient({ ssn, setSsn, setPatient }) {
       return;
     }
 
-    setPatientPreview({ ...patient.data(), id: patient.id });
-    setPatient({ ...patient.data(), id: patient.id });
+    setPatientPreview({ ...patient, id: patientId });
+    setPatient({ ...patient, id: patient.id });
   };
 
   console.log(ssn);
