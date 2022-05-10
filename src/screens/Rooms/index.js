@@ -48,7 +48,12 @@ export default function Rooms() {
     <View style={styles.container}>
       <FlatList
         data={rooms}
-        renderItem={({ item }) => <RoomListItem item={item} />}
+        renderItem={({ item }) => (
+          <RoomListItem
+            item={item}
+            goTo={role === "admin" ? "EditRoom" : null}
+          />
+        )}
       />
       {role === "admin" ? (
         <PrimaryButton
