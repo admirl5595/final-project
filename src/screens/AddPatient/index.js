@@ -1,22 +1,42 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Alert } from "react-native";
+import { View, Text, TextInput, Alert, Button } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import styles from "./style";
 import PrimaryButton from "src/components/common/PrimaryButton";
 import { db } from "../../../firebase-config";
 import { setDoc, doc, getDoc } from "firebase/firestore";
+import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 
 import { useNavigation } from "@react-navigation/native";
+import { theme } from "src/res/theme";
 
 // note: new patients are not admitted to a room by default
 
 export default function AddPatient() {
   const navigation = useNavigation();
 
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate;
+    setDob(currentDate);
+  };
+
   const [gender, setGender] = useState("male");
   const [name, setName] = useState("");
-  const [age, setAge] = useState();
+  const [dob, setDob] = useState(new Date());
   const [ssn, setSsn] = useState("");
+
+  const showMode = (currentMode) => {
+    DateTimePickerAndroid.open({
+      value: dob,
+      onChange,
+      mode: currentMode,
+      is24Hour: true,
+    });
+  };
+
+  const showDatepicker = () => {
+    showMode("date");
+  };
 
   // verify data and add patient
   const addPatient = async () => {
@@ -25,18 +45,14 @@ export default function AddPatient() {
       return;
     }
 
-    if (!age) {
-      Alert.alert("enter age");
-      return;
-    }
-
     if (ssn.length !== 9) {
       Alert.alert("invalid ssn");
+      return;
     }
 
     const newPatient = {
       name: name,
-      age: age,
+      dob: dob,
       gender: gender,
       admitted: false, // false by default
       ssn: ssn,
@@ -81,19 +97,17 @@ export default function AddPatient() {
       <Picker
         style={styles.textInput}
         selectedValue={gender}
-        onValueChange={(itemValue, itemIndex) => setGender(itemValue)}
+        onValueChange={(itemValue) => setGender(itemValue)}
       >
         <Picker.Item label="Male" value="Male" />
         <Picker.Item label="Female" value="Female" />
       </Picker>
-      <TextInput
-        keyboardType="numeric"
-        onChangeText={setAge}
-        value={age}
-        placeholder="age"
-        style={styles.textInput}
-        maxLength={3}
-      />
+
+      <Text style={theme.textVariants.body}>Date of birth</Text>
+      <Text style={styles.textInput}>{dob.toDateString()}</Text>
+
+      <Button title="set DOB" onPress={showDatepicker} />
+
       <PrimaryButton onPress={addPatient} title="Register patient" />
     </View>
   );
