@@ -18,15 +18,16 @@ import { doc, getDoc } from "firebase/firestore";
 
 import { getRooms } from "../services/crud-operations";
 import RoomContext from "../../config/RoomContext";
-import ListItem from "../components/home-screen/room-list-item/RoomListItem";
+import RoomListItem from "../components/home-screen/room-list-item/RoomListItem";
 import { theme } from "../res/theme";
 
 import LogoutBtn from "../components/auth/LogoutBtn";
+import { useNavigation } from "@react-navigation/native";
 
 export default function HomeScreen() {
   // get signed in user
   const user = auth.currentUser;
-
+  const navigation = useNavigation();
   // reference to user document
   const userDocRef = doc(db, "users", user.uid);
 
@@ -56,7 +57,10 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <FlatList data={rooms} renderItem={ListItem} />
+      <FlatList
+        data={rooms}
+        renderItem={({ item }) => <RoomListItem item={item} />}
+      />
       <LogoutBtn />
     </View>
   );

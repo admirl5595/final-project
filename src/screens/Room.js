@@ -7,25 +7,21 @@ import PrimaryButton from "../components/common/PrimaryButton";
 import RoomInfo from "../components/room/room-info/RoomInfo";
 import PatientVitals from "../components/room/patient-vitals/PatientVitals";
 import PatientContext from "../../config/PatientContext";
-
+import { useRoute, useNavigation } from "@react-navigation/native";
 import { theme } from "../res/theme";
 
-export default function Room({ patientId, navigation, room }) {
+export default function Room({ patientId }) {
   // do a query towards patient
 
-  patientId = "19436161845";
+  const navigation = useNavigation();
 
-  room = {
-    name: "john doe",
-    patientId: patientId,
-    roomNr: "005",
-    sensorId: "d210f680-cd44-11ec-b608-ed5550607a70",
-  };
+  const route = useRoute();
+  const room = route.params.room;
+
+  patientId = room.patientId;
 
   // get all patients from global context
-  const { patients, setPatients } = useContext(PatientContext);
-
-  console.log("rerender...");
+  const { patients } = useContext(PatientContext);
 
   // get this specific patient from context
   let patient = patients.filter((patient) => patient.id === patientId)[0];
@@ -64,8 +60,18 @@ export default function Room({ patientId, navigation, room }) {
         systolicBP={systolicBPPreview}
         patientId={patientId}
       />
-      <PrimaryButton onPress={handlePress} title="View Observations" />
-      <PrimaryButton title="Insert Observation" />
+      <PrimaryButton
+        onPress={() =>
+          navigation.navigate("ViewObservations", { patient: patient })
+        }
+        title="View Observations"
+      />
+      <PrimaryButton
+        onPress={() =>
+          navigation.navigate("InsertObservation", { patient: patient })
+        }
+        title="Insert Observation"
+      />
     </ScrollView>
   );
 }

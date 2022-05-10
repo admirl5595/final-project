@@ -8,6 +8,8 @@ import { db } from "../../../firebase-config";
 import { doc, getDoc } from "firebase/firestore";
 
 import { LineChart } from "react-native-chart-kit";
+import { useRoute } from "@react-navigation/native";
+import { async } from "@firebase/util";
 
 /* 
   TODO
