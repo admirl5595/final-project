@@ -13,7 +13,7 @@ import LogoutBtn from "src/components/auth/LogoutBtn";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
 
-export default function HomeScreen() {
+export default function Rooms() {
   // get signed in user
   const user = auth.currentUser;
   const navigation = useNavigation();
