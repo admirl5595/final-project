@@ -9,11 +9,11 @@ import { getRooms } from "src/services/crud-operations";
 import RoomContext from "src/services/RoomContext";
 import RoomListItem from "./components/RoomListItem";
 
-import LogoutBtn from "src/components/auth/LogoutBtn";
+import PrimaryButton from "src/components/common/PrimaryButton";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
 
-export default function HomeScreen() {
+export default function Rooms() {
   // get signed in user
   const user = auth.currentUser;
   const navigation = useNavigation();
@@ -48,9 +48,25 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <FlatList
         data={rooms}
-        renderItem={({ item }) => <RoomListItem item={item} />}
+        renderItem={({ item }) => (
+          <RoomListItem
+            item={item}
+            goTo={role === "admin" ? "EditRoom" : null}
+          />
+        )}
       />
-      <LogoutBtn />
+      {role === "admin" ? (
+        <>
+          <PrimaryButton
+            onPress={() => navigation.navigate("AddRoom")}
+            title="Add room"
+          />
+          <PrimaryButton
+            onPress={() => navigation.navigate("AdminHome")}
+            title="Admin Home"
+          />
+        </>
+      ) : null}
     </View>
   );
 }

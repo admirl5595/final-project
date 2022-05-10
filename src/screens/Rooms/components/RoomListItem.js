@@ -5,14 +5,17 @@ import { useNavigation } from "@react-navigation/native";
 
 // item:
 // room {date, name, patientId, roomNr, sensorId}
-export default function RoomListItem({ item }) {
+export default function RoomListItem({ item, goTo }) {
   // reference to user document
 
   const navigation = useNavigation();
 
+  console.log(goTo);
+
   // TODO: fix error: you might have mismatching versions of React and the renderer
   return (
     <TouchableOpacity
+      onLongPress={goTo ? () => navigation.navigate(goTo) : () => {}}
       onPress={() => navigation.navigate("Room", { room: item })}
     >
       <View style={styles.container}>

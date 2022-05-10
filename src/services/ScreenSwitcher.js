@@ -9,7 +9,7 @@ import { TouchableOpacity } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import LoadingScreen from "../screens/Loading";
-import HomeScreen from "../screens/Home";
+import Rooms from "../screens/Rooms";
 import Settings from "../screens/Settings/";
 import Room from "../screens/Room";
 import Monitor from "../screens/Monitor";
@@ -37,11 +37,7 @@ const ScreenSwitcher = () => {
 
   const EmployeeScreens = (
     <>
-      <Stack.Screen
-        options={options}
-        name="HomeScreen"
-        component={HomeScreen}
-      />
+      <Stack.Screen options={options} name="Rooms" component={Rooms} />
       <Stack.Screen options={options} name="Room" component={Room} />
       <Stack.Screen
         options={options}
@@ -58,10 +54,11 @@ const ScreenSwitcher = () => {
     </>
   );
 
+  // admin has access to additional screens
   const AdminScreens = (
     <>
       <Stack.Screen options={options} name="AdminHome" component={AdminHome} />
-      <Stack.Screen name="Settings" component={Settings} />
+      {EmployeeScreens}
     </>
   );
 

@@ -3,14 +3,29 @@ import React, { useState, useEffect, useContext } from "react";
 import styles from "./styles";
 import Button from "./component";
 
-export default function AdminHome() {
+// TODO:
+// rename Home screen to Rooms (fix imports)
+// add conditional rendering of Add room and edit room buttons (if role==admin)
+
+export default function AdminHome({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Admin</Text>
-      <Button icon="users" title="Employees" onPress={""} />
-      <Button icon="hospital" title="Manage Rooms" onPress={""} />
-      <Button icon="bed-pulse" title="Patient" onPress={""} />
-      <Button icon="house" title="Home" onPress={""} />
+      <Button
+        icon="users"
+        title="Employees"
+        onPress={() => navigation.navigate("Employees")}
+      />
+      <Button
+        icon="hospital"
+        title="Rooms"
+        onPress={() => navigation.navigate("Rooms")}
+      />
+      <Button
+        icon="bed-pulse"
+        title="Patients"
+        onPress={() => navigation.navigate("Patients")}
+      />
     </View>
   );
 }
