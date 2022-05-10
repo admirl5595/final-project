@@ -1,17 +1,10 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import styles from "./VitalItemStyle";
-
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { useNavigation } from "@react-navigation/native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-export default function VitalItem({
-  title,
-  value,
-  icon,
-  patientId,
-  vitalTypes,
-}) {
+export default function VitalItem({ title, value, icon, patientId }) {
   const navigation = useNavigation();
 
   return (
@@ -26,7 +19,7 @@ export default function VitalItem({
           onPress={() =>
             navigation.navigate("Monitor", {
               patientId: patientId,
-              vitalTypes: vitalTypes,
+              vitalType: title,
             })
           }
         >

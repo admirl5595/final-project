@@ -10,15 +10,13 @@ export default function Monitor() {
   let aPatient = { breathRate: null };
 
   const route = useRoute();
-
-  // contains the attributes we want to show in graph (eg: ["systolicBP", "diastolicBP"])
-  // fetch and pass to chart
-  const vitalTypes = route.params.vitalTypes;
+  const vitalType = route.params.vitalType;
+  const patientId = route.params.patientId;
 
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Monitor</Text>
-      <Chart patientId={"000011111"} vitalsAry={aPatient.breathRate} />
+      <Chart patientId={patientId} vitalType={vitalType} />
     </View>
   );
 }
