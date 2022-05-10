@@ -56,10 +56,16 @@ export default function Rooms() {
         )}
       />
       {role === "admin" ? (
-        <PrimaryButton
-          onPress={() => navigation.navigate("AddRoom")}
-          title="Add room"
-        />
+        <>
+          <PrimaryButton
+            onPress={() => navigation.navigate("AddRoom")}
+            title="Add room"
+          />
+          <PrimaryButton
+            onPress={() => navigation.navigate("AdminHome")}
+            title="Admin Home"
+          />
+        </>
       ) : null}
     </View>
   );
