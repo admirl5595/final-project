@@ -25,7 +25,7 @@ export default function Monitor() {
         style={styles.icon}
       />
 
-      <Chart patientId={patientId} vitalType={vitalType} />
+      <Chart patientId={patientId} vType={vitalType} />
     </View>
   );
 }

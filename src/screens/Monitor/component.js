@@ -14,22 +14,25 @@ import { LineChart } from "react-native-chart-kit";
 - Gjøre det slik at den kan roteres
 */
 
-export default function Chart({ patientId, vitalType }) {
+export default function Chart({ patientId, vType }) {
   const { patients } = useContext(PatientContext);
 
-  const [vitalsList, setVitalsList] = useState([
-    [2, 4],
-    [1, 5],
+  const [dataset, setDataset] = useState([
+    {
+      data: [0],
+      strokeWidth: 2, // optional
+    },
   ]);
   const [timeList, setTimeList] = useState([0]);
+  const [vitalType, setVitalType] = useState([vType]);
+
   const dataPoints = 22; // QST? Burde denne ut i en egen fil?
-  let patient = null;
 
   useEffect(() => {
     let patient = patients.filter((p) => p.id == patientId)[0];
     let vitalsAry = null;
 
-    switch (vitalType) {
+    switch (vType) {
       case "HR":
         vitalsAry = patient.heartRate.slice(-dataPoints);
         setStates(vitalsAry);
@@ -45,12 +48,42 @@ export default function Chart({ patientId, vitalType }) {
         setStates(vitalsAry);
         break;
 
-      // TODO Sjekke om man kan ha 2D-array
       case "BP":
+        setVitalType(["Systolic", "Diastolic"]);
         let sys = patient.systolicBP.slice(-dataPoints);
         let dia = patient.diastolicBP.slice(-dataPoints);
 
-        setStates([sys, dia]);
+        let time = sys.map((t) =>
+          new Date(t.time.seconds * 1000).toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+        );
+
+        for (let i = 0; i < time.length; i++) {
+          if (i % 4 != 0) {
+            time[i] = "";
+          }
+        }
+
+        sys = sys.map((vital) => vital.value);
+        dia = dia.map((vital) => vital.value);
+
+        let ds = [
+          {
+            data: sys,
+            strokeWidth: 2,
+            color: (opacity = 1) => `rgba(255,0,0,${opacity})`, // optional
+          },
+          {
+            data: dia,
+            strokeWidth: 2,
+            color: (opacity = 1) => `rgba(0,0,102, ${opacity})`, // optional
+          },
+        ];
+
+        setDataset(ds);
+        setTimeList(time);
         break;
 
       default:
@@ -59,7 +92,7 @@ export default function Chart({ patientId, vitalType }) {
     }
   }, [patients]);
 
-  async function setStates(vitalsAry) {
+  function setStates(vitalsAry) {
     let vitalValues = vitalsAry.map((vital) => vital.value);
     let time = vitalsAry.map((t) =>
       new Date(t.time.seconds * 1000).toLocaleTimeString([], {
@@ -74,20 +107,16 @@ export default function Chart({ patientId, vitalType }) {
       }
     }
 
-    setVitalsList(vitalValues);
-    setTimeList(time);
-  }
-
-  const data = {
-    labels: timeList,
-    datasets: [
+    let ds = [
       {
-        data: vitalsList,
+        data: vitalValues,
         strokeWidth: 2, // optional
       },
-    ],
-    legend: [vitalType], // Type of vital
-  };
+    ];
+
+    setDataset(ds);
+    setTimeList(time);
+  }
 
   const chartConfig = {
     backgroundGradientFrom: theme.colors.secondary_fontColor,
@@ -103,7 +132,12 @@ export default function Chart({ patientId, vitalType }) {
   return (
     <View style={styles.container}>
       <LineChart
-        data={data}
+        bezier
+        data={{
+          labels: timeList,
+          datasets: dataset,
+          legend: vitalType, // Type of vital
+        }}
         width={Dimensions.get("window").width - 20} // from react-native
         height={220}
         yAxisSuffix="" /// QST? BPM
@@ -112,7 +146,7 @@ export default function Chart({ patientId, vitalType }) {
         fromZero="true"
         onDataPointClick={({ value, getColor }) =>
           showMessage({
-            message: `${value + " " + vitalType}`,
+            message: `${value + " " + vType}`,
             description: " ",
             backgroundColor: getColor(0.9),
           })
