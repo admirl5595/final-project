@@ -16,25 +16,61 @@ import { LineChart } from "react-native-chart-kit";
 - Gjøre det slik at den kan roteres
 */
 
-export default function Chart({ patientId, vitalsAry }) {
-  const labels = {
-    heartRate: "BPM",
-  };
-
+export default function Chart({ patientId, vitalType }) {
   const { patients } = useContext(PatientContext);
 
   const [vitalsList, setVitalsList] = useState([0, 0, 0, 0, 0, 0, 0]);
   const [timeList, setTimeList] = useState([0, 0, 0, 0, 0, 0]);
 
-  useEffect(async () => {
-    getPatient();
-  }, []);
+  useEffect(() => {
+    let patient = null;
+    let vitalsAry = null;
 
-  async function getPatient() {
-    const querySnapshot = await getDoc(doc(db, "patients", "01019901111"));
-    let aPatient = querySnapshot.data();
+    switch (vitalType) {
+      case "HR":
+        patient = patients.filter((p) => {
+          p.id == patientId;
+        });
+        vitalsAry = patient.map((a) => a.heartRate).slice(-13);
+        console.log("HR: ", vitalsAry);
+        setStates(vitalsAry);
+        break;
 
-    vitalsAry = aPatient.breathRate.slice(-13);
+      case "BPM":
+        patient = patients.filter((p) => {
+          p.id == patientId;
+        });
+        vitalsAry = patient.map((a) => a.breathRate).slice(-13);
+        console.log("BPM: ", vitalsAry);
+        setStates(vitalsAry);
+        break;
+
+      case "spO2":
+        patient = patients.filter((p) => {
+          p.id == patientId;
+        });
+        vitalsAry = patient.map((a) => a.o2Level).slice(-13);
+        console.log("BPM: ", vitalsAry);
+        setStates(vitalsAry);
+        break;
+
+      // TODO Sjekke om man kan ha 2D-array
+      case "BP":
+        patient = patients.filter((p) => {
+          p.id == patientId;
+        });
+        vitalsAry = patient.map((a) => a.breathRate).slice(-13);
+        console.log("BPM: ", vitalsAry);
+        setStates(vitalsAry);
+        break;
+
+      default:
+        console.log("Switch went default");
+        break;
+    }
+  }, [patients]);
+
+  async function setStates(vitalsAry) {
     let vitalValues = vitalsAry.map((vital) => vital.value);
     let time = vitalsAry.map((t) =>
       new Date(t.time.seconds * 1000).toLocaleTimeString([], {
@@ -65,7 +101,7 @@ export default function Chart({ patientId, vitalsAry }) {
         strokeWidth: 2, // optional
       },
     ],
-    legend: [labels.heartRate], // Type of vital
+    legend: [vitalType], // Type of vital
   };
 
   const chartConfig = {
