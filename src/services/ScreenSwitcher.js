@@ -54,10 +54,11 @@ const ScreenSwitcher = () => {
     </>
   );
 
+  // admin has access to additional screens
   const AdminScreens = (
     <>
       <Stack.Screen options={options} name="AdminHome" component={AdminHome} />
-      <Stack.Screen name="Settings" component={Settings} />
+      {EmployeeScreens}
     </>
   );
 

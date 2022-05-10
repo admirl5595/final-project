@@ -9,7 +9,7 @@ import { getRooms } from "src/services/crud-operations";
 import RoomContext from "src/services/RoomContext";
 import RoomListItem from "./components/RoomListItem";
 
-import LogoutBtn from "src/components/auth/LogoutBtn";
+import PrimaryButton from "src/components/common/PrimaryButton";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
 
@@ -50,7 +50,12 @@ export default function Rooms() {
         data={rooms}
         renderItem={({ item }) => <RoomListItem item={item} />}
       />
-      <LogoutBtn />
+      {role === "admin" ? (
+        <PrimaryButton
+          onPress={() => navigation.navigate("AddRoom")}
+          title="Add room"
+        />
+      ) : null}
     </View>
   );
 }
