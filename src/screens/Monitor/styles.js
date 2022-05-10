@@ -10,10 +10,14 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   header: {
-    margin: theme.spacing.xl,
+    marginTop: theme.spacing.xl,
     ...theme.textVariants.header,
   },
-  chartBox: {
+  headerRotated: {
+    margin: theme.spacing.m,
+    ...theme.textVariants.header,
+  },
+  icon: {
     margin: theme.spacing.l,
   },
 });
