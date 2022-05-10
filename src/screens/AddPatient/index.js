@@ -23,6 +23,7 @@ export default function AddPatient() {
   const [gender, setGender] = useState("male");
   const [name, setName] = useState("");
   const [age, setAge] = useState();
+  const [ssn, setSsn] = useState("");
 
   const patientCollectionRef = collection(db, "patients");
 
@@ -43,6 +44,13 @@ export default function AddPatient() {
       age: age,
       gender: gender,
       admitted: false, // false by default
+      ssn: ssn,
+      breathRate: [],
+      diastolicBP: [],
+      systolicBP: [],
+      heartRate: [],
+      o2Level: [],
+      observations: [],
     };
 
     await addDoc(patientCollectionRef, newPatient);
@@ -55,6 +63,12 @@ export default function AddPatient() {
         onChangeText={setName}
         value={name}
         placeholder="name"
+        style={styles.textInput}
+      />
+      <TextInput
+        onChangeText={setSsn}
+        value={ssn}
+        placeholder="social security number"
         style={styles.textInput}
       />
       <Picker
