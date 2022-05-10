@@ -5,9 +5,15 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.background,
     flex: 1,
+    padding: theme.spacing.s,
   },
   textHeader: {
     ...theme.textVariants.bigHeader,
+  },
+  textInput: {
+    backgroundColor: "#fff",
+    padding: theme.spacing.s,
+    marginVertical: theme.spacing.s,
   },
 });
 
