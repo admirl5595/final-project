@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { theme } from "../../../res/theme";
+import { theme } from "src/res/theme";
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",

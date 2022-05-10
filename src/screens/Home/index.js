@@ -1,28 +1,17 @@
 import React, { useEffect, useState, useContext } from "react";
 
-import {
-  View,
-  Button,
-  FlatList,
-  ActivityIndicator,
-  Image,
-  Text,
-  Alert,
-  Item,
-  StyleSheet,
-  StatusBar,
-} from "react-native";
+import { View, Button, FlatList } from "react-native";
 
-import { db, auth } from "../../firebase-config";
+import { db, auth } from "../../../firebase-config";
 import { doc, getDoc } from "firebase/firestore";
 
-import { getRooms } from "../services/crud-operations";
-import RoomContext from "../../config/RoomContext";
-import RoomListItem from "../components/home-screen/room-list-item/RoomListItem";
-import { theme } from "../res/theme";
+import { getRooms } from "src/services/crud-operations";
+import RoomContext from "src/services/RoomContext";
+import RoomListItem from "./components/RoomListItem";
 
-import LogoutBtn from "../components/auth/LogoutBtn";
+import LogoutBtn from "src/components/auth/LogoutBtn";
 import { useNavigation } from "@react-navigation/native";
+import styles from "./styles";
 
 export default function HomeScreen() {
   // get signed in user
@@ -65,10 +54,3 @@ export default function HomeScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: theme.colors.background,
-    flex: 1,
-  },
-});

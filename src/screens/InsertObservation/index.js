@@ -1,20 +1,15 @@
 import {
   View,
   Text,
-  ScrollView,
-  Button,
-  DataTable,
   TextInput,
-  StyleSheet,
 } from "react-native";
 import React, { useState, useEffect, useContext } from "react";
-import PatientContext from "../../config/PatientContext";
-import { postObservation } from "../services/crud-operations";
-import { auth } from "../../firebase-config";
-import PrimaryButton from "../components/common/PrimaryButton";
+import { postObservation } from "../../services/crud-operations";
+import { auth } from "../../../firebase-config";
+import PrimaryButton from "../../components/common/PrimaryButton";
 
-import { theme } from "../res/theme";
 import { useRoute, useNavigation } from "@react-navigation/native";
+import styles from "./styles";
 
 // TODO: Denne skal brukes når contexten er laget
 // let { patients, setPatients } = useContext(PatientContext);
@@ -57,22 +52,3 @@ export default function InsertObservationScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: theme.colors.background,
-    flex: 1,
-    padding: theme.spacing.m,
-    paddingTop: "30%",
-  },
-  input: {
-    backgroundColor: theme.colors.secondary_fontColor,
-    padding: theme.spacing.s,
-    marginBottom: theme.spacing.l,
-  },
-  textHeader: {
-    ...theme.textVariants.header,
-    textAlign: "center",
-    marginVertical: theme.spacing.xl,
-  },
-});

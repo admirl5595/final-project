@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-import styles from "./RoomInfoStyle";
-import { theme } from "../../../res/theme";
+import styles from "./styles";
+import { theme } from "src/res/theme";
 
 export default function RoomInfo({ roomNr, name, date }) {
   const yyyy = date.getFullYear();

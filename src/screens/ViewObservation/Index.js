@@ -5,7 +5,7 @@ import Observation from "./component";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { useRoute } from "@react-navigation/native";
-import { theme } from "../../res/theme";
+import { theme } from "src/res/theme";
 
 export default function ViewObservations() {
   const route = useRoute();
@@ -21,7 +21,7 @@ export default function ViewObservations() {
         color={theme.colors.secondary_fontColor}
       />
       {observations.length != 0 ? (
-        observations.map((o) => <Observation key={o.date} observation={o} />)
+        observations.map((o) => <Observation key={o.time} observation={o} />)
       ) : (
         <Text>No observations!</Text>
       )}

@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
-import { theme } from "../../res/theme";
+import { theme } from "src/res/theme";
 
 export default function Observation({ observation }) {
   let date = new Date(observation.time);

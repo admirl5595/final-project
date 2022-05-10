@@ -8,17 +8,17 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { TouchableOpacity } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-import LoadingScreen from "./LoadingScreen";
-import HomeScreen from "./HomeScreen";
-import Settings from "./Settings";
-import AdminScreen from "./AdminScreen";
-import Room from "./Room";
-import Monitor from "./Monitor";
-import ViewObservations from "./ViewObservation/Index";
-import InsertObservationScreen from "./InsertObservationScreen";
+import LoadingScreen from "../screens/Loading";
+import HomeScreen from "../screens/Home";
+import Settings from "../screens/Settings/";
+import Room from "../screens/Room";
+import Monitor from "../screens/Monitor";
+import ViewObservations from "../screens/ViewObservation";
+import InsertObservationScreen from "../screens/InsertObservation";
+import AdminHome from "../screens/AdminHome";
 
-import LoginScreen from "./auth/LoginScreen";
-import RegisterScreen from "./auth/RegisterScreen";
+import LoginScreen from "../screens/Auth/Login";
+import RegisterScreen from "../screens/Auth/Register";
 
 import { auth, db } from "../../firebase-config";
 import { doc, getDoc } from "firebase/firestore";
@@ -60,11 +60,7 @@ const ScreenSwitcher = () => {
 
   const AdminScreens = (
     <>
-      <Stack.Screen
-        options={options}
-        name="AdminScreen"
-        component={AdminScreen}
-      />
+      <Stack.Screen options={options} name="AdminHome" component={AdminHome} />
       <Stack.Screen name="Settings" component={Settings} />
     </>
   );
