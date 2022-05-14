@@ -23,11 +23,14 @@ export const theme = {
   },
 
   boxSize: {
-    s: {},
+    s: {
+      width: "30%",
+      padding: spacing.l,
+    },
     m: {},
     l: {
       width: "80%",
-      padding: spacing.m,
+      padding: spacing.l,
     },
   },
 
