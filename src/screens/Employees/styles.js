@@ -3,20 +3,14 @@ import { theme } from "src/res/theme";
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: theme.colors.background,
     flex: 1,
-    justifyContent: "flex-start",
     alignItems: "center",
     alignContent: "center",
-    backgroundColor: theme.colors.background,
   },
-  largeBox: {
+  btn: {
     ...theme.boxSize.l,
-    ...theme.boxType.unfilled,
-    margin: theme.spacing.m,
-  },
-  smallBox: {
-    ...theme.boxSize.s,
-    ...theme.boxType.unfilled,
+    ...theme.boxType.filled,
     margin: theme.spacing.m,
   },
 });

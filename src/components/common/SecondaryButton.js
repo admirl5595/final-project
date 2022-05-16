@@ -9,8 +9,6 @@ export default function RoomListItem({
   onPress,
   leftText,
   rightText,
-  style,
-  fontColor,
 }) {
   return (
     <TouchableOpacity onPress={onPress} style={styles.btn}>
