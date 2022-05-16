@@ -31,7 +31,6 @@ export default function ManageRooms() {
         data={rooms}
         renderItem={({ item }) => <RoomListItem item={item} />}
       />
-
       <>
         <PrimaryButton
           onPress={() => navigation.navigate("AddRoom")}

@@ -12,14 +12,19 @@ export default function AdminHome({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.header}>Admin</Text>
       <Button
+        icon="hospital"
+        title="Home"
+        onPress={() => navigation.navigate("Home")}
+      />
+      <Button
         icon="users"
         title="Employees"
         onPress={() => navigation.navigate("Employees")}
       />
       <Button
         icon="hospital"
-        title="Rooms"
-        onPress={() => navigation.navigate("Rooms")}
+        title="Manage Rooms"
+        onPress={() => navigation.navigate("ManageRooms")}
       />
       <Button
         icon="bed-pulse"
