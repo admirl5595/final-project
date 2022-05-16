@@ -7,9 +7,17 @@ import { theme } from "src/res/theme";
 import styles from "./styles";
 import { getEmployees } from "../../services/crud-operations";
 import { useNavigation, useIsFocused } from "@react-navigation/native";
+import { auth } from "../../../firebase-config";
 
 export default function Employees() {
   const [employees, setEmployees] = useState([]);
+
+  const currentUser = auth.currentUser;
+  const userId = currentUser.uid;
+
+  let filteredEmployees = [...employees].filter(
+    (employee) => employee.id !== userId
+  );
 
   // Navigation hooks
   const navigation = useNavigation();
@@ -26,7 +34,7 @@ export default function Employees() {
     <View style={styles.container}>
       <Header title={"Employees"} />
       <FlatList
-        data={employees}
+        data={filteredEmployees}
         renderItem={({ item }) => (
           <SecondaryButton
             onPress={() => {

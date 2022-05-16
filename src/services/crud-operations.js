@@ -33,7 +33,10 @@ export async function postObservation(newobservationInfo, pId) {
 
 export async function getEmployees(setEmployees) {
   const querySnapshot = await getDocs(collection(db, "users"));
-  const employees = querySnapshot.docs.map((doc) => doc.data());
+  const employees = querySnapshot.docs.map((doc) => ({
+    ...doc.data(),
+    id: doc.id,
+  }));
 
   setEmployees(employees);
 }
