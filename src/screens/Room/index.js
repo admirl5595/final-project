@@ -36,8 +36,7 @@ export default function Room({ patientId }) {
   const heartRatePreview =
     patient.heartRate[patient.heartRate.length - 1].value;
   const o2LevelPreview = patient.o2Level[patient.o2Level.length - 1].value;
-  const systolicBPPreview =
-    patient.systolicBP[patient.systolicBP.length - 1].value;
+  const systolicBPPreview = patient.systolicBP[patient.systolicBP.length - 1];
 
   return (
     <ScrollView style={{ backgroundColor: theme.colors.background, flex: 1 }}>
