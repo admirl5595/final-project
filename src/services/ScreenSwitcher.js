@@ -16,9 +16,12 @@ import Monitor from "../screens/Monitor";
 import ViewObservations from "../screens/ViewObservations";
 import InsertObservationScreen from "../screens/InsertObservation";
 import AdminHome from "../screens/AdminHome";
-import AddRoom from "src/screens/AddRoom";
+import AddRoom from "../screens/AddRoom";
 import Patients from "../screens/Patients";
 import AddPatient from "../screens/AddPatient";
+import Employees from "../screens/Employees";
+import RegisterEmployee from "../screens/RegisterEmployee";
+import EditEmployee from "../screens/EditEmployee";
 import ManageRooms from "../screens/ManageRooms";
 import EditRoom from "../screens/EditRoom";
 
@@ -67,12 +70,22 @@ const ScreenSwitcher = () => {
   const AdminScreens = (
     <>
       <Stack.Screen options={options} name="AdminHome" component={AdminHome} />
+      <Stack.Screen options={options} name="Employees" component={Employees} />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="RegisterEmployee"
+        component={RegisterEmployee}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="EditEmployee"
+        component={EditEmployee}
+      />
       <Stack.Screen
         options={options}
         name="ManageRooms"
         component={ManageRooms}
       />
-
       <Stack.Screen options={options} name="EditRoom" component={EditRoom} />
       <Stack.Screen options={options} name="AddRoom" component={AddRoom} />
       <Stack.Screen options={options} name="Patients" component={Patients} />
@@ -111,8 +124,6 @@ const ScreenSwitcher = () => {
         const userData = userDoc.data();
 
         setRole(userData.role);
-
-        console.log(role);
       }
     }
 

@@ -5,18 +5,21 @@ import SecondaryButton from "src/components/common/SecondaryButton";
 import { theme } from "src/res/theme";
 import styles from "./styles";
 import { getEmployees } from "../../services/crud-operations";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
 
 export default function Employees() {
   const [employees, setEmployees] = useState([]);
+
+  // Navigation hooks
   const navigation = useNavigation();
+  const isFocused = useIsFocused();
 
   useEffect(() => {
     async function GetEmployees() {
       await getEmployees(setEmployees);
     }
     GetEmployees();
-  }, []);
+  }, [isFocused]);
 
   return (
     <View style={styles.container}>
@@ -24,9 +27,12 @@ export default function Employees() {
         data={employees}
         renderItem={({ item }) => (
           <SecondaryButton
-            onPress={""}
+            onPress={() => {
+              navigation.navigate("EditEmployee", { employee: item });
+            }}
             leftText={item.displayName}
             rightText={item.role}
+            key={item.employeeNumber}
           />
         )}
       />
