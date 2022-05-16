@@ -39,6 +39,7 @@ const ScreenSwitcher = () => {
   const Stack = createNativeStackNavigator();
 
   const options = ({ navigation }) => ({
+    title: "Hospital XYZ",
     headerRight: () => (
       <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
         <FontAwesomeIcon size={20} icon={"gear"} color={"rgba(0,0,0,0.5)"} />
@@ -65,7 +66,11 @@ const ScreenSwitcher = () => {
         component={Monitor}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen
+        options={{ title: "Hospital XYZ" }}
+        name="Settings"
+        component={Settings}
+      />
     </>
   );
 
@@ -108,8 +113,16 @@ const ScreenSwitcher = () => {
 
   const AuthScreens = (
     <>
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="Register" component={RegisterScreen} />
+      <Stack.Screen
+        options={{ title: "Hospital XYZ" }}
+        name="Login"
+        component={LoginScreen}
+      />
+      <Stack.Screen
+        options={{ title: "Hospital XYZ" }}
+        name="Register"
+        component={RegisterScreen}
+      />
     </>
   );
 
