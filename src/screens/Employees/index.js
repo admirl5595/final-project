@@ -20,12 +20,11 @@ export default function Employees() {
 
   return (
     <View style={styles.container}>
-      {/* TODO: Fjerne style props, slik at btn er fast */}
       <FlatList
         data={employees}
         renderItem={({ item }) => (
           <SecondaryButton
-            onPress={""}
+            onPress={() => navigation.navigate("EditEmployee", { employee: item })}
             leftText={item.displayName}
             rightText={item.role}
           />
