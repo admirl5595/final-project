@@ -9,7 +9,7 @@ import { TouchableOpacity } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import LoadingScreen from "../screens/Loading";
-import Rooms from "../screens/Rooms";
+import Home from "../screens/Home";
 import Settings from "../screens/Settings/";
 import Room from "../screens/Room";
 import Monitor from "../screens/Monitor";
@@ -22,6 +22,8 @@ import AddPatient from "../screens/AddPatient";
 import Employees from "../screens/Employees";
 import RegisterEmployee from "../screens/RegisterEmployee";
 import EditEmployee from "../screens/EditEmployee";
+import ManageRooms from "../screens/ManageRooms";
+
 
 import LoginScreen from "../screens/Auth/Login";
 import RegisterScreen from "../screens/Auth/Register";
@@ -43,7 +45,7 @@ const ScreenSwitcher = () => {
 
   const EmployeeScreens = (
     <>
-      <Stack.Screen options={options} name="Rooms" component={Rooms} />
+      <Stack.Screen options={options} name="Home" component={Home} />
       <Stack.Screen options={options} name="Room" component={Room} />
       <Stack.Screen
         options={options}
@@ -68,11 +70,10 @@ const ScreenSwitcher = () => {
   const AdminScreens = (
     <>
       <Stack.Screen options={options} name="AdminHome" component={AdminHome} />
-      <Stack.Screen options={options} name="Employees" component={Employees} />
       <Stack.Screen
         options={options}
-        name="RegisterEmployee"
-        component={RegisterEmployee}
+        name="ManageRooms"
+        component={ManageRooms}
       />
       <Stack.Screen
         options={options}

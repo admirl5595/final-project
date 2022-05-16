@@ -5,13 +5,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.background,
     flex: 1,
-    alignItems: "center",
-    alignContent: "center",
-  },
-  btn: {
-    ...theme.boxSize.l,
-    ...theme.boxType.filled,
-    margin: theme.spacing.m,
   },
 });
 
