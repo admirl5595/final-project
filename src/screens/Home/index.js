@@ -7,7 +7,6 @@ import { doc, getDoc } from "firebase/firestore";
 
 import { getRooms } from "src/services/crud-operations";
 import RoomContext from "src/services/RoomContext";
-import RoomListItem from "./components/RoomListItem";
 
 import PrimaryButton from "src/components/common/PrimaryButton";
 import Header from "src/components/common/Header";
