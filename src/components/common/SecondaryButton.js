@@ -13,14 +13,10 @@ export default function RoomListItem({
   fontColor,
 }) {
   return (
-    <TouchableOpacity onPress={onPress} style={style}>
+    <TouchableOpacity onPress={onPress} style={styles.btn}>
       <View style={styles.container}>
-        <Text style={styles.leftText} fontColor={fontColor}>
-          {leftText}
-        </Text>
-        <Text style={styles.rightText} fontColor={fontColor}>
-          {rightText}
-        </Text>
+        <Text style={styles.leftText}>{leftText}</Text>
+        <Text style={styles.rightText}>{rightText}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -34,9 +30,16 @@ const styles = StyleSheet.create({
   leftText: {
     textAlign: "left",
     ...theme.textVariants.header,
+    color: theme.primary_fontColor,
   },
   rightText: {
     textAlign: "right",
     ...theme.textVariants.header,
+    color: theme.primary_fontColor,
+  },
+  btn: {
+    ...theme.boxSize.l,
+    ...theme.boxType.filled,
+    margin: theme.spacing.m,
   },
 });

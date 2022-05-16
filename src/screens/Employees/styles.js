@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
     flex: 1,
     alignItems: "center",
-    alignContent: "center",
+    alignContent: "center", 
   },
   btn: {
     ...theme.boxSize.l,

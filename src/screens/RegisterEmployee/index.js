@@ -54,7 +54,6 @@ export default function RegisterEmployee() {
         const data = result.data;
         console.log(data);
 
-        // TODO: Navigere brukeren til den som akk ble lagt til?
         navigation.navigate("Employees");
       })
       .catch((message) => Alert.alert(message));
@@ -132,35 +131,3 @@ export default function RegisterEmployee() {
     </>
   );
 }
-
-const handleRegister = async () => {
-  console.log("registering");
-  // if (password !== passwordConfirm) {
-  //   Alert.alert("Failed to confirm password");
-  //   return;
-  // }
-
-  console.log("name :", name);
-  console.log("email :", email);
-  console.log("role :", role);
-  console.log("employeeNumber :", employeeNumber);
-  console.log("password :", password);
-
-  auth
-    .createUser({
-      uid: employeeNumber,
-      email: email,
-      emailVerified: true,
-      password: password,
-      displayName: name,
-      disabled: false,
-      role: role,
-    })
-    .then((userRecord) => {
-      // See the UserRecord reference doc for the contents of userRecord.
-      Alert.alert("Successfully created new user:", userRecord.uid);
-    })
-    .catch((error) => {
-      Alert.alert("Error creating new user:", error);
-    });
-};
