@@ -14,28 +14,9 @@ import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
 
 export default function ManageRooms() {
-  // get signed in user
-  const user = auth.currentUser;
   const navigation = useNavigation();
   // reference to user document
-  const userDocRef = doc(db, "users", user.uid);
-
-  const [role, setRole] = useState("");
-
   const { rooms, setRooms } = useContext(RoomContext);
-
-  console.log(rooms);
-
-  useEffect(() => {
-    async function SetRole() {
-      const userDoc = await getDoc(userDocRef);
-
-      const userData = userDoc.data();
-
-      setRole(userData.role);
-    }
-    SetRole();
-  }, []);
 
   useEffect(() => {
     async function GetRooms() {
@@ -48,25 +29,19 @@ export default function ManageRooms() {
     <View style={styles.container}>
       <FlatList
         data={rooms}
-        renderItem={({ item }) => (
-          <RoomListItem
-            item={item}
-            goTo={role === "admin" ? "EditRoom" : null}
-          />
-        )}
+        renderItem={({ item }) => <RoomListItem item={item} />}
       />
-      {role === "admin" ? (
-        <>
-          <PrimaryButton
-            onPress={() => navigation.navigate("AddRoom")}
-            title="Add room"
-          />
-          <PrimaryButton
-            onPress={() => navigation.navigate("AdminHome")}
-            title="Admin Home"
-          />
-        </>
-      ) : null}
+
+      <>
+        <PrimaryButton
+          onPress={() => navigation.navigate("AddRoom")}
+          title="Add room"
+        />
+        <PrimaryButton
+          onPress={() => navigation.navigate("AdminHome")}
+          title="Admin Home"
+        />
+      </>
     </View>
   );
 }
