@@ -3,10 +3,14 @@ import React, { useEffect, useState } from "react";
 import PrimaryButton from "src/components/common/PrimaryButton";
 import SecondaryButton from "src/components/common/SecondaryButton";
 import Header from "src/components/common/Header";
+import HeaderAndIcon from "src/components/common/HeaderAndIcon";
+import ListAttributes from "src/components/common/ListAttributes";
+
 import { theme } from "src/res/theme";
 import styles from "./styles";
 import { getEmployees } from "../../services/crud-operations";
 import { useNavigation, useIsFocused } from "@react-navigation/native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 export default function Employees() {
   const [employees, setEmployees] = useState([]);
@@ -24,7 +28,16 @@ export default function Employees() {
 
   return (
     <View style={styles.container}>
-      <Header title={"Employees"} />
+      <HeaderAndIcon
+        title={"Employees"}
+        icon={"users"}
+        iconColor={null}
+      />
+      <ListAttributes
+        leftText={"Name"}
+        rightText={"Role"} 
+        />
+
       <FlatList
         data={employees}
         renderItem={({ item }) => (
