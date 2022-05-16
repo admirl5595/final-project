@@ -36,9 +36,11 @@ export default function EditRoom() {
   const { setRooms } = useContext(RoomContext);
 
   // get this specific patient from context
-  let prevPatient = patients.filter(
+  let PrevPatient = patients.filter(
     (patient) => patient.id === room.patientId
   )[0];
+
+  const [prevPatient, setPrevPatient] = useState(PrevPatient);
 
   const editRoom = async () => {
     // TODO:
@@ -72,17 +74,45 @@ export default function EditRoom() {
     };
     await updateDoc(patientDocRef, updatedFields);
 
-    // set previous patient as unadmitted (if new patient is null or was replaced)
-    updatedFields = { admitted: false };
+    if (prevPatient) {
+      // set previous patient as unadmitted (if new patient is null or was replaced)
+      updatedFields = { admitted: false };
 
-    const prevPatientDocRef = doc(db, "patients", prevPatient.id);
+      const prevPatientDocRef = doc(db, "patients", prevPatient.id);
 
-    await updateDoc(prevPatientDocRef, updatedFields);
+      await updateDoc(prevPatientDocRef, updatedFields);
+    }
 
     // update room context
     getRooms(setRooms);
 
     navigation.navigate("ManageRooms");
+  };
+
+  const removePatient = async () => {
+    // updated fields
+    const updatedRoom = {
+      name: "",
+      patientId: "",
+    };
+
+    const roomsCollectionRef = doc(db, "rooms", room.id);
+
+    await updateDoc(roomsCollectionRef, updatedRoom);
+
+    // set patient as admitted to room
+    const patientDocRef = doc(db, "patients", prevPatient.id);
+
+    let updatedFields = {
+      admitted: false,
+    };
+    await updateDoc(patientDocRef, updatedFields);
+
+    setPrevPatient(null);
+
+    getRooms(setRooms);
+
+    console.log("removed");
   };
 
   return (
@@ -94,8 +124,15 @@ export default function EditRoom() {
         style={styles.textInput}
         placeholder="Sensor ID"
       />
-      <Text>Previous patient</Text>
-      <PatientItem patient={prevPatient} />
+
+      {prevPatient ? (
+        <>
+          <Text>Previous patient</Text>
+          <PatientItem patient={prevPatient} />
+
+          <PrimaryButton onPress={removePatient} title="Remove patient" />
+        </>
+      ) : null}
 
       <AssignPatient
         setPatient={setPatient}

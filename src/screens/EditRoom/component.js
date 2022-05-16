@@ -16,11 +16,14 @@ export default function AssignPatient({
 
   const findPatient = async () => {
     // check if ssn equals current patient ssn
-    if (ssn === prevPatient.id) {
-      Alert.alert("Patient is already assigned to this room");
-      setPatient(null);
-      setPatientPreview(null);
-      return;
+
+    if (prevPatient) {
+      if (ssn === prevPatient.id) {
+        Alert.alert("Patient is already assigned to this room");
+        setPatient(null);
+        setPatientPreview(null);
+        return;
+      }
     }
 
     if (!ssn) {
@@ -63,7 +66,10 @@ export default function AssignPatient({
         style={styles.textInput}
         maxLength={11}
       />
-      <PrimaryButton onPress={findPatient} title="Replace patient" />
+      <PrimaryButton
+        onPress={findPatient}
+        title={prevPatient ? "Replace patient" : "Assign patient"}
+      />
     </View>
   );
 }
