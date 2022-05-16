@@ -47,7 +47,7 @@ export default function Room({ patientId }) {
       patient.diastolicBP[patient.diastolicBP.length - 1].value;
     heartRatePreview = patient.heartRate[patient.heartRate.length - 1].value;
     o2LevelPreview = patient.o2Level[patient.o2Level.length - 1].value;
-    systolicBPPreview = patient.systolicBP[patient.systolicBP.length - 1];
+    systolicBPPreview = patient.systolicBP[patient.systolicBP.length - 1].value;
   }
 
   return (
