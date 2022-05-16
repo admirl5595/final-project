@@ -42,7 +42,7 @@ export default function AssignPatient({
     patient = patient.data();
 
     // check if patient already has a room
-    if (patient.admitted === false) {
+    if (patient.admitted === true) {
       Alert.alert("patient is already admitted to a room");
       return;
     }

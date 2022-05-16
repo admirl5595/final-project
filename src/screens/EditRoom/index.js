@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, Alert } from "react-native";
 import styles from "./style";
 import AssignPatient from "./component";
 import { collection, doc, updateDoc, getDoc } from "firebase/firestore";
@@ -7,8 +7,10 @@ import { db } from "../../../firebase-config";
 import { useNavigation } from "@react-navigation/native";
 import PatientItem from "../Patients/component";
 import PatientContext from "src/services/PatientContext";
+import RoomContext from "src/services/RoomContext";
 
 import PrimaryButton from "src/components/common/PrimaryButton";
+import { getRooms } from "../../services/crud-operations";
 
 import { useRoute } from "@react-navigation/native";
 import Header from "src/components/common/Header";
@@ -33,6 +35,7 @@ export default function EditRoom() {
 
   // get all patients from global context
   const { patients } = useContext(PatientContext);
+  const { setRooms } = useContext(RoomContext);
 
   // get this specific patient from context
   let prevPatient = patients.filter(
@@ -66,12 +69,22 @@ export default function EditRoom() {
     // set patient as admitted to room
     const patientDocRef = doc(db, "patients", patient.ssn);
 
-    const updatedFields = {
+    let updatedFields = {
       admitted: true,
     };
     await updateDoc(patientDocRef, updatedFields);
 
-    navigation.navigate("Rooms");
+    // set previous patient as unadmitted
+    updatedFields = { admitted: false };
+
+    const prevPatientDocRef = doc(db, "patients", prevPatient.id);
+
+    await updateDoc(prevPatientDocRef, updatedFields);
+
+    // update room context
+    getRooms(setRooms);
+
+    navigation.navigate("ManageRooms");
   };
 
   return (
@@ -92,7 +105,7 @@ export default function EditRoom() {
         ssn={ssn}
         setSsn={setSsn}
       />
-      <PrimaryButton onPress={editRoom} title="Add room and assign patient" />
+      <PrimaryButton onPress={editRoom} title="Edit room and replace patient" />
     </View>
   );
 }
