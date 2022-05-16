@@ -23,8 +23,6 @@ import { addIcons } from "./src/res/icons/fontAwsome";
 
 import ScreenSwitcher from "./src/services/ScreenSwitcher";
 
-import { useRoute } from "@react-navigation/native";
-
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
@@ -68,7 +66,7 @@ async function setupSnapshot(setPatients) {
       let patient = change.doc.data();
 
       // add id to patient object
-      patient = { id, ...patient };
+      patient = { id: id, ...patient };
       console.log("change type: " + change.type);
 
       // add patient to state
@@ -97,10 +95,7 @@ async function setupSnapshot(setPatients) {
         patient.o2Level = patient.o2Level.slice(-50);
         patient.systolicBP = patient.systolicBP.slice(-50);
 
-        console.log(
-          "value in app: " +
-            patient.systolicBP[patient.systolicBP.length - 1].value
-        );
+        console.log(patient);
 
         // add new patient to global context
         setPatients((prevPatients) => {

@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { theme } from "src/res/theme";
+import { useNavigation } from "@react-navigation/native";
 
 // TODO:
 // navigate to patient screen on press
@@ -8,11 +9,17 @@ import { theme } from "src/res/theme";
 export default function PatientItem({ patient }) {
   if (!patient) return null;
 
+  const navigation = useNavigation();
+
   return (
-    <View style={styles.container}>
-      <Text>name: {patient.name}</Text>
-      <Text>gender: {patient.gender}</Text>
-    </View>
+    <TouchableOpacity
+      onPress={() => navigation.navigate("EditPatient", { patient: patient })}
+    >
+      <View style={styles.container}>
+        <Text>name: {patient.name}</Text>
+        <Text>gender: {patient.gender}</Text>
+      </View>
+    </TouchableOpacity>
   );
 }
 
