@@ -19,9 +19,8 @@ import AdminHome from "../screens/AdminHome";
 import AddRoom from "src/screens/AddRoom";
 import Patients from "../screens/Patients";
 import AddPatient from "../screens/AddPatient";
-import Employees from "../screens/Employees";
-import RegisterEmployee from "../screens/RegisterEmployee";
 import ComponentsTest from "../screens/ComponentsTest";
+
 
 import LoginScreen from "../screens/Auth/Login";
 import RegisterScreen from "../screens/Auth/Register";
@@ -43,6 +42,11 @@ const ScreenSwitcher = () => {
 
   const EmployeeScreens = (
     <>
+      <Stack.Screen
+        options={options}
+        name="ComponentsTest"
+        component={ComponentsTest}
+      />
       <Stack.Screen options={options} name="Rooms" component={Rooms} />
       <Stack.Screen options={options} name="Room" component={Room} />
       <Stack.Screen
@@ -68,12 +72,6 @@ const ScreenSwitcher = () => {
   const AdminScreens = (
     <>
       <Stack.Screen options={options} name="AdminHome" component={AdminHome} />
-      <Stack.Screen options={options} name="Employees" component={Employees} />
-      <Stack.Screen
-        options={options}
-        name="RegisterEmployee"
-        component={RegisterEmployee}
-      />
       <Stack.Screen options={options} name="AddRoom" component={AddRoom} />
       <Stack.Screen options={options} name="Patients" component={Patients} />
       <Stack.Screen
