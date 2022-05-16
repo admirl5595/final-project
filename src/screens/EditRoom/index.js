@@ -68,14 +68,14 @@ export default function EditRoom() {
         admitted: true,
       };
       await updateDoc(patientDocRef, updatedFields);
+
+      // set previous patient as unadmitted (if new patient is null or was replaced)
+      updatedFields = { admitted: false };
+
+      const prevPatientDocRef = doc(db, "patients", prevPatient.id);
+
+      await updateDoc(prevPatientDocRef, updatedFields);
     }
-
-    // set previous patient as unadmitted (if new patient is null or was replaced)
-    updatedFields = { admitted: false };
-
-    const prevPatientDocRef = doc(db, "patients", prevPatient.id);
-
-    await updateDoc(prevPatientDocRef, updatedFields);
 
     // update room context
     getRooms(setRooms);

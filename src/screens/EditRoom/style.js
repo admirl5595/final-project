@@ -6,8 +6,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.background,
     flex: 1,
-    alignItems: "center",
-    alignContent: "center",
     padding: theme.spacing.s,
   },
   textInput: {
