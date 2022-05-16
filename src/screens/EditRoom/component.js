@@ -18,6 +18,8 @@ export default function AssignPatient({
     // check if ssn equals current patient ssn
     if (ssn === prevPatient.id) {
       Alert.alert("Patient is already assigned to this room");
+      setPatient(null);
+      setPatientPreview(null);
       return;
     }
 
