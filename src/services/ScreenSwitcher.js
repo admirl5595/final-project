@@ -20,6 +20,7 @@ import AddRoom from "src/screens/AddRoom";
 import Patients from "../screens/Patients";
 import AddPatient from "../screens/AddPatient";
 import ManageRooms from "../screens/ManageRooms";
+import EditRoom from "../screens/EditRoom";
 
 import LoginScreen from "../screens/Auth/Login";
 import RegisterScreen from "../screens/Auth/Register";
@@ -71,6 +72,8 @@ const ScreenSwitcher = () => {
         name="ManageRooms"
         component={ManageRooms}
       />
+
+      <Stack.Screen options={options} name="EditRoom" component={EditRoom} />
       <Stack.Screen options={options} name="AddRoom" component={AddRoom} />
       <Stack.Screen options={options} name="Patients" component={Patients} />
       <Stack.Screen
