@@ -9,7 +9,7 @@ import { TouchableOpacity } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import LoadingScreen from "../screens/Loading";
-import Rooms from "../screens/Rooms";
+import Home from "../screens/Home";
 import Settings from "../screens/Settings/";
 import Room from "../screens/Room";
 import Monitor from "../screens/Monitor";
@@ -19,6 +19,7 @@ import AdminHome from "../screens/AdminHome";
 import AddRoom from "src/screens/AddRoom";
 import Patients from "../screens/Patients";
 import AddPatient from "../screens/AddPatient";
+import ManageRooms from "../screens/ManageRooms";
 
 import LoginScreen from "../screens/Auth/Login";
 import RegisterScreen from "../screens/Auth/Register";
@@ -40,7 +41,7 @@ const ScreenSwitcher = () => {
 
   const EmployeeScreens = (
     <>
-      <Stack.Screen options={options} name="Rooms" component={Rooms} />
+      <Stack.Screen options={options} name="Home" component={Home} />
       <Stack.Screen options={options} name="Room" component={Room} />
       <Stack.Screen
         options={options}
@@ -65,6 +66,11 @@ const ScreenSwitcher = () => {
   const AdminScreens = (
     <>
       <Stack.Screen options={options} name="AdminHome" component={AdminHome} />
+      <Stack.Screen
+        options={options}
+        name="ManageRooms"
+        component={ManageRooms}
+      />
       <Stack.Screen options={options} name="AddRoom" component={AddRoom} />
       <Stack.Screen options={options} name="Patients" component={Patients} />
       <Stack.Screen

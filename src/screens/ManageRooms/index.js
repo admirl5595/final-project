@@ -13,7 +13,7 @@ import PrimaryButton from "src/components/common/PrimaryButton";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
 
-export default function Rooms() {
+export default function ManageRooms() {
   // get signed in user
   const user = auth.currentUser;
   const navigation = useNavigation();
