@@ -13,7 +13,10 @@ import { db } from "../../firebase-config";
 export async function getRooms(setRooms) {
   // get user's habits collection (users/userId/habits)
   const querySnapshot = await getDocs(collection(db, "rooms"));
-  const rooms = querySnapshot.docs.map((doc) => doc.data());
+  const rooms = querySnapshot.docs.map((doc) => ({
+    ...doc.data(),
+    id: doc.id,
+  }));
 
   setRooms(rooms);
 }

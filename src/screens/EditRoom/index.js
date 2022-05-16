@@ -26,6 +26,8 @@ export default function EditRoom() {
   const [ssn, setSsn] = useState(room.patientId);
   const [patient, setPatient] = useState(null);
 
+  console.log(room);
+
   const navigation = useNavigation();
 
   const addRoom = async () => {
