@@ -1,5 +1,6 @@
 import {
   addDoc,
+  setDoc,
   getDocs,
   deleteDoc,
   doc,
@@ -25,4 +26,17 @@ export async function postObservation(newobservationInfo, pId) {
   await updateDoc(querySnapshot, {
     observations: arrayUnion(newobservationInfo),
   });
+}
+
+export async function getEmployees(setEmployees) {
+  const querySnapshot = await getDocs(collection(db, "users"));
+  const employees = querySnapshot.docs.map((doc) => doc.data());
+
+  setEmployees(employees);
+}
+
+export async function updateEmployee(employee) {
+  console.log(employee);
+  const docRef = doc(db, "users", employee.employeeNumber);
+  const res = await setDoc(docRef, employee);
 }

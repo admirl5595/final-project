@@ -24,7 +24,6 @@ import RegisterEmployee from "../screens/RegisterEmployee";
 import EditEmployee from "../screens/EditEmployee";
 import ManageRooms from "../screens/ManageRooms";
 
-
 import LoginScreen from "../screens/Auth/Login";
 import RegisterScreen from "../screens/Auth/Register";
 
@@ -70,16 +69,23 @@ const ScreenSwitcher = () => {
   const AdminScreens = (
     <>
       <Stack.Screen options={options} name="AdminHome" component={AdminHome} />
+      <Stack.Screen options={options} name="Employees" component={Employees} />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="RegisterEmployee"
+        component={RegisterEmployee}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="EditEmployee"
+        component={EditEmployee}
+      />
       <Stack.Screen
         options={options}
         name="ManageRooms"
         component={ManageRooms}
       />
-      <Stack.Screen
-        options={options}
-        name="EditEmployee"
-        component={EditEmployee}
-      />
+
       <Stack.Screen options={options} name="AddRoom" component={AddRoom} />
       <Stack.Screen options={options} name="Patients" component={Patients} />
       <Stack.Screen
@@ -117,8 +123,6 @@ const ScreenSwitcher = () => {
         const userData = userDoc.data();
 
         setRole(userData.role);
-
-        console.log(role);
       }
     }
 

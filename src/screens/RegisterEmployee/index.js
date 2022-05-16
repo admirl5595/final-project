@@ -45,15 +45,8 @@ export default function RegisterEmployee() {
       employeeNumber: employeeNumber,
     };
 
-    console.log(data);
-
     registerEmployee(data)
-      .then((result) => {
-        // read result of the cloud function
-        console.log(result);
-        const data = result.data;
-        console.log(data);
-
+      .then(() => {
         navigation.navigate("Employees");
       })
       .catch((message) => Alert.alert(message));
