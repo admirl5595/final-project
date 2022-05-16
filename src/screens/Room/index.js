@@ -36,11 +36,11 @@ export default function Room({ patientId }) {
   let systolicBPPreview;
 
   if (
-    patient.breathRate &&
-    patient.diastolicBP &&
-    patient.heartRate &&
-    patient.o2Level &&
-    patient.systolicBP
+    patient.breathRate.length !== 0 &&
+    patient.diastolicBP.length !== 0 &&
+    patient.heartRate.length !== 0 &&
+    patient.o2Level.length !== 0 &&
+    patient.systolicBP.length !== 0
   ) {
     breathRatePreview = patient.breathRate[patient.breathRate.length - 1].value;
     diastolicBPPreview =
