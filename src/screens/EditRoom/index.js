@@ -16,9 +16,7 @@ import { useRoute } from "@react-navigation/native";
 import Header from "src/components/common/Header";
 
 // TODO:
-// can replace patient (can be empty)
-// set previous patient as not admitted and new as admitted
-// can only use unadmitted patients
+// can remove patient
 
 export default function EditRoom() {
   const route = useRoute();
@@ -50,11 +48,6 @@ export default function EditRoom() {
       return;
     }
 
-    if (!patient) {
-      Alert.alert("Assign a patient to this room");
-      return;
-    }
-
     // updated fields
     const updatedRoom = {
       name: patient.name,
@@ -66,15 +59,18 @@ export default function EditRoom() {
 
     await updateDoc(roomsCollectionRef, updatedRoom);
 
-    // set patient as admitted to room
-    const patientDocRef = doc(db, "patients", patient.ssn);
+    // if new patient was assigned, set admitted to true
+    if (patient) {
+      // set patient as admitted to room
+      const patientDocRef = doc(db, "patients", patient.ssn);
 
-    let updatedFields = {
-      admitted: true,
-    };
-    await updateDoc(patientDocRef, updatedFields);
+      let updatedFields = {
+        admitted: true,
+      };
+      await updateDoc(patientDocRef, updatedFields);
+    }
 
-    // set previous patient as unadmitted
+    // set previous patient as unadmitted (if new patient is null or was replaced)
     updatedFields = { admitted: false };
 
     const prevPatientDocRef = doc(db, "patients", prevPatient.id);
@@ -105,7 +101,7 @@ export default function EditRoom() {
         ssn={ssn}
         setSsn={setSsn}
       />
-      <PrimaryButton onPress={editRoom} title="Edit room and replace patient" />
+      <PrimaryButton onPress={editRoom} title="Edit room" />
     </View>
   );
 }
