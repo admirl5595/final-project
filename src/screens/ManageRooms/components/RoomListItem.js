@@ -4,7 +4,7 @@ import styles from "./RoomListItemStyle";
 import { useNavigation } from "@react-navigation/native";
 
 // item:
-// room {date, name, patientId, roomNr, sensorId}
+// room {date, name, patientId, roomNr }
 export default function RoomListItem({ item }) {
   // reference to user document
 
