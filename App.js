@@ -106,8 +106,6 @@ async function setupSnapshot(setPatients) {
           // replace with updated patient object
           newPatients.push(patient);
 
-          console.log(newPatients);
-
           return newPatients;
         });
 
