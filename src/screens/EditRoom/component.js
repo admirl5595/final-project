@@ -6,10 +6,21 @@ import PrimaryButton from "src/components/common/PrimaryButton";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase-config";
 
-export default function AssignPatient({ ssn, setSsn, setPatient }) {
+export default function AssignPatient({
+  ssn,
+  setSsn,
+  setPatient,
+  prevPatient,
+}) {
   const [patientPreview, setPatientPreview] = useState(null);
 
   const findPatient = async () => {
+    // check if ssn equals current patient ssn
+    if (ssn === prevPatient.id) {
+      Alert.alert("Patient is already assigned to this room");
+      return;
+    }
+
     if (!ssn) {
       Alert.alert("enter a social security number");
       return;
@@ -39,10 +50,6 @@ export default function AssignPatient({ ssn, setSsn, setPatient }) {
     setPatientPreview({ ...patient, ssn: patientId });
     setPatient({ ...patient, ssn: patientId });
   };
-
-  useEffect(() => {
-    findPatient();
-  }, []);
 
   return (
     <View>

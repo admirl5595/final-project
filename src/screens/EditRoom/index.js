@@ -35,7 +35,9 @@ export default function EditRoom() {
   const { patients } = useContext(PatientContext);
 
   // get this specific patient from context
-  let prevPatient = patients.filter((patient) => patient.id === ssn)[0];
+  let prevPatient = patients.filter(
+    (patient) => patient.id === room.patientId
+  )[0];
 
   const editRoom = async () => {
     // TODO:
@@ -84,7 +86,12 @@ export default function EditRoom() {
       <Text>Previous patient</Text>
       <PatientItem patient={prevPatient} />
 
-      <AssignPatient setPatient={setPatient} ssn={ssn} setSsn={setSsn} />
+      <AssignPatient
+        setPatient={setPatient}
+        prevPatient={prevPatient}
+        ssn={ssn}
+        setSsn={setSsn}
+      />
       <PrimaryButton onPress={editRoom} title="Add room and assign patient" />
     </View>
   );
