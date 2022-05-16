@@ -26,6 +26,10 @@ export default function Home() {
 
   console.log(rooms);
 
+  let roomsCopy = [...rooms];
+
+  let occupiedRooms = roomsCopy.filter((room) => room.name.length !== 0);
+
   useEffect(() => {
     async function GetRooms() {
       await getRooms(setRooms);
@@ -38,7 +42,7 @@ export default function Home() {
       <Header title={"Home"} />
       <ListAttributes leftText={"RoomNr"} rightText={"Patient Name"} />
       <FlatList
-        data={rooms}
+        data={occupiedRooms}
         renderItem={({ item }) => (
           <SecondaryButton
             onPress={() => navigation.navigate("Room", { room: item })}
