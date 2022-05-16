@@ -20,27 +20,18 @@ export default function Employees() {
 
   return (
     <View style={styles.container}>
-
       {/* TODO: Fjerne style props, slik at btn er fast */}
-      {/* <FlatList
+      <FlatList
         data={employees}
-        renderItem={({ employee }) => (
+        renderItem={({ item }) => (
           <SecondaryButton
             onPress={""}
-            leftText={employee.displayName}
-            rightText={employee.role}
-            style={styles.btn}
-            fontColor={theme.colors.secondary_fontColor}
+            leftText={item.displayName}
+            rightText={item.role}
           />
         )}
-      /> */}
-      <SecondaryButton
-        onPress={""}
-        leftText={"john"}
-        rightText={"Nurse"}
-        style={styles.btn}
-        fontColor={theme.colors.secondary_fontColor}
       />
+
       <PrimaryButton
         title={"Register"}
         onPress={() => {
