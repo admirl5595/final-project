@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, Text, TextInput } from "react-native";
 import styles from "./style";
 import AssignPatient from "./component";
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase-config";
 import { useNavigation } from "@react-navigation/native";
+import { getRooms } from "../../services/crud-operations";
+import RoomContext from "src/services/RoomContext";
 
 import PrimaryButton from "src/components/common/PrimaryButton";
 
@@ -13,6 +15,8 @@ export default function AddRoom() {
   const [sensorId, setSensorId] = useState("");
   const [ssn, setSsn] = useState("");
   const [patient, setPatient] = useState(null);
+
+  const { setRooms } = useContext(RoomContext);
 
   const navigation = useNavigation();
 
@@ -56,7 +60,9 @@ export default function AddRoom() {
     };
     await updateDoc(patientDocRef, updatedFields);
 
-    navigation.navigate("Rooms");
+    getRooms(setRooms);
+
+    navigation.navigate("ManageRooms");
   };
 
   return (
