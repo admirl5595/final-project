@@ -5,11 +5,7 @@ import { theme } from "src/res/theme";
 // leftText: text displayed on the left side of button
 // rightText: text displayed on the right side of button
 // onPress: function triggered when pressing the button
-export default function RoomListItem({
-  onPress,
-  leftText,
-  rightText,
-}) {
+export default function SecondaryButton({ onPress, leftText, rightText }) {
   return (
     <TouchableOpacity onPress={onPress} style={styles.btn}>
       <View style={styles.container}>
