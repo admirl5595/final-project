@@ -24,7 +24,7 @@ export default function Employees() {
         data={employees}
         renderItem={({ item }) => (
           <SecondaryButton
-            onPress={""}
+            onPress={() => navigation.navigate("EditEmployee", { employee: item })}
             leftText={item.displayName}
             rightText={item.role}
           />

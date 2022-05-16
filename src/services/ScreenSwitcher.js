@@ -16,10 +16,14 @@ import Monitor from "../screens/Monitor";
 import ViewObservations from "../screens/ViewObservations";
 import InsertObservationScreen from "../screens/InsertObservation";
 import AdminHome from "../screens/AdminHome";
-import AddRoom from "src/screens/AddRoom";
+import AddRoom from "../screens/AddRoom";
 import Patients from "../screens/Patients";
 import AddPatient from "../screens/AddPatient";
+import Employees from "../screens/Employees";
+import RegisterEmployee from "../screens/RegisterEmployee";
+import EditEmployee from "../screens/EditEmployee";
 import ManageRooms from "../screens/ManageRooms";
+
 
 import LoginScreen from "../screens/Auth/Login";
 import RegisterScreen from "../screens/Auth/Register";
@@ -70,6 +74,11 @@ const ScreenSwitcher = () => {
         options={options}
         name="ManageRooms"
         component={ManageRooms}
+      />
+      <Stack.Screen
+        options={options}
+        name="EditEmployee"
+        component={EditEmployee}
       />
       <Stack.Screen options={options} name="AddRoom" component={AddRoom} />
       <Stack.Screen options={options} name="Patients" component={Patients} />
