@@ -20,5 +20,6 @@ const styles = StyleSheet.create({
   container: {
     padding: theme.spacing.s,
     backgroundColor: theme.colors.secondary_fontColor,
+    marginVertical: theme.spacing.s,
   },
 });
