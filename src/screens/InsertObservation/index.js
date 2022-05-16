@@ -1,4 +1,8 @@
-import { View, Text, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+} from "react-native";
 import React, { useState, useEffect, useContext } from "react";
 import { postObservation } from "../../services/crud-operations";
 import { auth } from "../../../firebase-config";

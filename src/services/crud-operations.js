@@ -26,3 +26,20 @@ export async function postObservation(newobservationInfo, pId) {
     observations: arrayUnion(newobservationInfo),
   });
 }
+
+export async function getEmployees(setEmployees) {
+  const querySnapshot = await getDocs(collection(db, "users"));
+  const employees = querySnapshot.docs.map((doc) => doc.data());
+
+  console.log(employees);
+
+  setEmployees(employees);
+}
+
+export async function postEmployee(employee) {
+  (await addDoc(collection(db, "patients"), employee)).then()
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
+}
