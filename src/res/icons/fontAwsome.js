@@ -34,6 +34,7 @@ import {
   faHospital,
   faHouse,
   faBedPulse,
+  faHospitalUser,
 } from "@fortawesome/free-solid-svg-icons";
 
 export function addIcons() {
@@ -72,6 +73,7 @@ export function addIcons() {
     faChartLine,
     faHospital,
     faHouse,
-    faBedPulse
+    faBedPulse,
+    faHospitalUser,
   );
 }
