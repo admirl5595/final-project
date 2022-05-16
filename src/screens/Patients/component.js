@@ -6,6 +6,8 @@ import { theme } from "src/res/theme";
 // navigate to patient screen on press
 
 export default function PatientItem({ patient }) {
+  if (!patient) return null;
+
   return (
     <View style={styles.container}>
       <Text>name: {patient.name}</Text>

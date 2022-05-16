@@ -22,6 +22,8 @@ export default function AssignPatient({ ssn, setSsn, setPatient }) {
     // check if patient doesn't exist
     if (!patient.exists()) {
       Alert.alert("patient doesn't exist");
+      setPatient(null);
+      setPatientPreview(null);
       return;
     }
 
@@ -34,8 +36,8 @@ export default function AssignPatient({ ssn, setSsn, setPatient }) {
       return;
     }
 
-    setPatientPreview({ ...patient, id: patientId });
-    setPatient({ ...patient, id: patient.id });
+    setPatientPreview({ ...patient, ssn: patientId });
+    setPatient({ ...patient, ssn: patientId });
   };
 
   useEffect(() => {
@@ -50,7 +52,7 @@ export default function AssignPatient({ ssn, setSsn, setPatient }) {
         onChangeText={setSsn}
         placeholder="enter ssn"
         style={styles.textInput}
-        maxLength={9}
+        maxLength={11}
       />
       <PrimaryButton onPress={findPatient} title="Replace patient" />
     </View>

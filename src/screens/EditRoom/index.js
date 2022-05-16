@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, Text, TextInput } from "react-native";
 import styles from "./style";
 import AssignPatient from "./component";
-import { collection, doc, updateDoc } from "firebase/firestore";
+import { collection, doc, updateDoc, getDoc } from "firebase/firestore";
 import { db } from "../../../firebase-config";
 import { useNavigation } from "@react-navigation/native";
+import PatientItem from "../Patients/component";
+import PatientContext from "src/services/PatientContext";
 
 import PrimaryButton from "src/components/common/PrimaryButton";
 
@@ -13,15 +15,14 @@ import Header from "src/components/common/Header";
 
 // TODO:
 // can replace patient (can be empty)
-// set previous patient as not admitted
-// User room number as header (permanent attribute)
-// change name
+// set previous patient as not admitted and new as admitted
+// can only use unadmitted patients
 
 export default function EditRoom() {
   const route = useRoute();
   const room = route.params.room;
 
-  const [roomNr, setRoomNr] = useState(room.roomNr);
+  const roomNr = room.roomNr;
   const [sensorId, setSensorId] = useState(room.sensorId);
   const [ssn, setSsn] = useState(room.patientId);
   const [patient, setPatient] = useState(null);
@@ -30,14 +31,14 @@ export default function EditRoom() {
 
   const navigation = useNavigation();
 
-  const addRoom = async () => {
-    if (!roomNr) {
-      Alert.alert("Enter a room number");
-      return;
-    }
+  // get all patients from global context
+  const { patients } = useContext(PatientContext);
 
+  // get this specific patient from context
+  let prevPatient = patients.filter((patient) => patient.id === ssn)[0];
+
+  const editRoom = async () => {
     // TODO:
-    // check if room already exists
 
     if (!sensorId) {
       Alert.alert("enter sensor id");
@@ -49,6 +50,7 @@ export default function EditRoom() {
       return;
     }
 
+    // updated fields
     const updatedRoom = {
       name: patient.name,
       patientId: patient.ssn,
@@ -79,8 +81,11 @@ export default function EditRoom() {
         style={styles.textInput}
         placeholder="Sensor ID"
       />
+      <Text>Previous patient</Text>
+      <PatientItem patient={prevPatient} />
+
       <AssignPatient setPatient={setPatient} ssn={ssn} setSsn={setSsn} />
-      <PrimaryButton onPress={addRoom} title="Add room and assign patient" />
+      <PrimaryButton onPress={editRoom} title="Add room and assign patient" />
     </View>
   );
 }
