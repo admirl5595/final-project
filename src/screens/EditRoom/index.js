@@ -23,7 +23,6 @@ export default function EditRoom() {
   const room = route.params.room;
 
   const roomNr = room.roomNr;
-  const [sensorId, setSensorId] = useState(room.sensorId);
   const [ssn, setSsn] = useState(room.patientId);
   const [patient, setPatient] = useState(null);
 
@@ -50,16 +49,10 @@ export default function EditRoom() {
       return;
     }
 
-    if (!sensorId) {
-      Alert.alert("Enter sensor id");
-      return;
-    }
-
     // updated fields
     const updatedRoom = {
       name: patient.name,
       patientId: patient.ssn,
-      sensorId: sensorId,
     };
 
     const roomsCollectionRef = doc(db, "rooms", room.id);
@@ -118,12 +111,6 @@ export default function EditRoom() {
   return (
     <View style={styles.container}>
       <Header title={"Room: " + roomNr} />
-      <TextInput
-        value={sensorId}
-        onChangeText={setSensorId}
-        style={styles.textInput}
-        placeholder="Sensor ID"
-      />
 
       {prevPatient ? (
         <>
