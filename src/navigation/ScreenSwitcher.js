@@ -29,7 +29,6 @@ import ManageRooms from "../screens/ManageRooms";
 import EditRoom from "../screens/EditRoom";
 
 import LoginScreen from "../screens/Auth/Login";
-import RegisterScreen from "../screens/Auth/Register";
 
 import { auth, db } from "../../firebase-config";
 import { doc, getDoc } from "firebase/firestore";
@@ -109,7 +108,6 @@ const ScreenSwitcher = () => {
   const AuthScreens = (
     <>
       <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="Register" component={RegisterScreen} />
     </>
   );
 
