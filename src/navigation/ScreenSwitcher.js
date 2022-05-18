@@ -141,7 +141,11 @@ const ScreenSwitcher = () => {
       <Stack.Navigator>
         {user ? (
           role === "admin" ? (
-            AdminScreens
+            <Stack.Screen
+              name="Root"
+              component={Root}
+              options={{ headerShown: false }}
+            />
           ) : (
             EmployeeScreens
           )

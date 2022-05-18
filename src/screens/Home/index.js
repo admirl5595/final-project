@@ -35,6 +35,8 @@ export default function Home() {
   }
 
   useEffect(() => {
+    console.log("rooms");
+
     async function GetRooms() {
       await getRooms(setRooms);
     }
@@ -43,7 +45,6 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <Header title={"Home"} />
       <ListAttributes leftText={"RoomNr"} rightText={"Patient Name"} />
       <FlatList
         data={occupiedRooms}

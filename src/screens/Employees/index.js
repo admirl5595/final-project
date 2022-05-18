@@ -38,16 +38,6 @@ export default function Employees() {
 
   return (
     <View style={styles.container}>
-      <HeaderAndIcon
-        title={"Employees"}
-        icon={"users"}
-        iconColor={null}
-      />
-      <ListAttributes
-        leftText={"Name"}
-        rightText={"Role"} 
-        />
-
       <FlatList
         data={filteredEmployees}
         renderItem={({ item }) => (

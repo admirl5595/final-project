@@ -1,9 +1,6 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 
 import { View, Button, FlatList } from "react-native";
-
-import { db, auth } from "../../../firebase-config";
-import { doc, getDoc } from "firebase/firestore";
 
 import { getRooms } from "src/services/crud-operations";
 import RoomContext from "src/services/RoomContext";
