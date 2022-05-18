@@ -11,10 +11,7 @@ export default function LogoutBtn() {
       <TouchableOpacity
         onPress={() =>
           signOut(auth)
-            .then(() => {
-              // Sign-out successful
-              setHabits(null); // clear context
-            })
+            .then(() => {})
             .catch((error) => {
               // An error happened
               console.log(error);
