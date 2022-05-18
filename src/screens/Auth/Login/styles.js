@@ -1,14 +1,14 @@
 import { StyleSheet } from "react-native";
-import { borderColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
+import { theme } from "src/res/theme";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: theme.colors.background,
     alignItems: "center",
     justifyContent: "center",
   },
-  InputView: {
+  inputView: {
     backgroundColor: "rgba(138,241,219,0.6)",
     borderRadius: 30,
     width: "70%",
@@ -55,6 +55,10 @@ const styles = StyleSheet.create({
     height: 200,
     margin: 20,
     borderRadius: 50,
+  },
+  text: {
+    ...theme.textVariants.body,
+    fontWeight: "bold",
   },
 });
 

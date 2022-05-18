@@ -2,6 +2,8 @@ import { View, TextInput, ScrollView, Alert } from "react-native";
 import React, { useEffect, useState } from "react";
 import PrimaryButton from "src/components/common/PrimaryButton";
 import SecondaryButton from "src/components/common/SecondaryButton";
+import TextInputStyled from "src/components/common/TextInputStyled";
+import HeaderAndIcon from "src/components/common/HeaderAndIcon";
 import { theme } from "src/res/theme";
 import styles from "./styles";
 import SelectDropdown from "react-native-select-dropdown";
@@ -9,6 +11,7 @@ import { db, auth } from "../../../firebase-config";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import Header from "src/components/common/Header";
 import { useNavigation } from "@react-navigation/native";
+import LoadingOverlay from "src/components/common/LoadingOverlay";
 
 export default function RegisterEmployee() {
   // Callable cloud-function
@@ -24,6 +27,7 @@ export default function RegisterEmployee() {
   const [role, setRole] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   // Roles that can be choosed from the select dropdown
   const roles = ["nurse", "doctor", "admin"];
@@ -45,58 +49,58 @@ export default function RegisterEmployee() {
       employeeNumber: employeeNumber,
     };
 
+    setIsLoading(true);
+
     registerEmployee(data)
       .then(() => {
         navigation.navigate("Employees");
       })
-      .catch((message) => Alert.alert(message));
+      .catch((message) => {
+        setIsLoading(false);
+        Alert.alert(message);
+      });
   };
 
   return (
     <>
       <View style={styles.container}>
-        <Header title={"Register Employee"} />
+        <HeaderAndIcon
+          title={"Register employee"}
+          icon={"hospital-user"}
+          iconColor={null}
+        />
         <ScrollView>
-          <View style={styles.largeBox}>
-            <TextInput
-              placeholder="Employee Id"
-              placeholderTextColor="#003f5c"
-              onChangeText={(id) => setEmployeeNumber(id)}
-            />
-          </View>
-          <View style={styles.largeBox}>
-            <TextInput
-              placeholder="Full Name"
-              placeholderTextColor="#003f5c"
-              onChangeText={(name) => setName(name)}
-            />
-          </View>
-          <View style={styles.largeBox}>
-            <TextInput
-              placeholder="Email"
-              placeholderTextColor="#003f5c"
-              onChangeText={(email) => setEmail(email)}
-            />
-          </View>
 
-          <View style={styles.largeBox}>
-            <TextInput
+          <TextInputStyled
+            placeholder={"Employee Id"}
+            onChangeText={(id) => setEmployeeNumber(id)}
+            secureTextEntry={false}
+          />
+          <TextInputStyled
+            placeholder={"Full Name"}
+            onChangeText={(name) => setName(name)}
+            secureTextEntry={false}
+          />
+            <TextInputStyled
+              placeholder="Email"
+              onChangeText={(email) => setEmail(email)}
+              secureTextEntry={false}
+            />
+            <TextInputStyled
               placeholder="Password"
               placeholderTextColor="#003f5c"
               secureTextEntry={true}
               onChangeText={(password) => setPassword(password)}
             />
-          </View>
-          <View style={styles.largeBox}>
-            <TextInput
+        
+            <TextInputStyled
               placeholder="Confirm password"
-              placeholderTextColor="#003f5c"
               secureTextEntry={true}
               onChangeText={(passwordConfirm) =>
                 setPasswordConfirm(passwordConfirm)
               }
             />
-          </View>
+        
 
           {/* https://www.npmjs.com/package/react-native-select-dropdown#onFocus */}
           <SelectDropdown
@@ -120,6 +124,7 @@ export default function RegisterEmployee() {
 
         <PrimaryButton title={"Cancel"} onPress={() => navigation.goBack()} />
         <PrimaryButton title={"Add Employee"} onPress={handleRegister} />
+        {isLoading ? <LoadingOverlay title="Registering employee..." /> : null}
       </View>
     </>
   );

@@ -17,8 +17,11 @@ import ViewObservations from "../screens/ViewObservations";
 import InsertObservationScreen from "../screens/InsertObservation";
 import AdminHome from "../screens/AdminHome";
 import AddRoom from "../screens/AddRoom";
+
 import Patients from "../screens/Patients";
 import AddPatient from "../screens/AddPatient";
+import EditPatient from "../screens/EditPatient";
+
 import Employees from "../screens/Employees";
 import RegisterEmployee from "../screens/RegisterEmployee";
 import EditEmployee from "../screens/EditEmployee";
@@ -26,7 +29,6 @@ import ManageRooms from "../screens/ManageRooms";
 import EditRoom from "../screens/EditRoom";
 
 import LoginScreen from "../screens/Auth/Login";
-import RegisterScreen from "../screens/Auth/Register";
 
 import { auth, db } from "../../firebase-config";
 import { doc, getDoc } from "firebase/firestore";
@@ -94,6 +96,11 @@ const ScreenSwitcher = () => {
         name="AddPatient"
         component={AddPatient}
       />
+      <Stack.Screen
+        options={options}
+        name="EditPatient"
+        component={EditPatient}
+      />
       {EmployeeScreens}
     </>
   );
@@ -101,7 +108,6 @@ const ScreenSwitcher = () => {
   const AuthScreens = (
     <>
       <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="Register" component={RegisterScreen} />
     </>
   );
 

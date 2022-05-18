@@ -12,7 +12,6 @@ import PrimaryButton from "src/components/common/PrimaryButton";
 
 export default function AddRoom() {
   const [roomNr, setRoomNr] = useState("");
-  const [sensorId, setSensorId] = useState("");
   const [ssn, setSsn] = useState("");
   const [patient, setPatient] = useState(null);
 
@@ -29,11 +28,6 @@ export default function AddRoom() {
     // TODO:
     // check if room already exists
 
-    if (!sensorId) {
-      Alert.alert("enter sensor id");
-      return;
-    }
-
     if (!patient) {
       Alert.alert("Assign a patient to this room");
       return;
@@ -43,7 +37,6 @@ export default function AddRoom() {
       name: patient.name,
       patientId: patient.ssn,
       roomNr: roomNr,
-      sensorId: sensorId,
     };
 
     const roomsCollectionRef = collection(db, "rooms");
@@ -73,12 +66,6 @@ export default function AddRoom() {
         style={styles.textInput}
         placeholder="Room Number"
         maxLength={10}
-      />
-      <TextInput
-        value={sensorId}
-        onChangeText={setSensorId}
-        style={styles.textInput}
-        placeholder="Sensor ID"
       />
       <AssignPatient setPatient={setPatient} ssn={ssn} setSsn={setSsn} />
       <PrimaryButton onPress={addRoom} title="Add room and assign patient" />

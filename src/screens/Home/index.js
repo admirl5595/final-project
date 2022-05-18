@@ -24,6 +24,16 @@ export default function Home() {
 
   const { rooms, setRooms } = useContext(RoomContext);
 
+  let occupiedRooms = null;
+  // check if rooms exist
+  if (rooms) {
+    console.log(rooms);
+
+    let roomsCopy = [...rooms];
+
+    occupiedRooms = roomsCopy.filter((room) => room.name.length !== 0);
+  }
+
   useEffect(() => {
     console.log("rooms");
 
@@ -37,7 +47,7 @@ export default function Home() {
     <View style={styles.container}>
       <ListAttributes leftText={"RoomNr"} rightText={"Patient Name"} />
       <FlatList
-        data={rooms}
+        data={occupiedRooms}
         renderItem={({ item }) => (
           <SecondaryButton
             onPress={() => navigation.navigate("Room", { room: item })}

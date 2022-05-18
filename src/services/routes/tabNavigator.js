@@ -26,19 +26,19 @@ const AdminDrawerNavigator = () => {
             let iconName;
 
             switch (route.name) {
-              case "Home":
+              case "Home ":
                 iconName = "home";
                 break;
 
-              case "Employees":
+              case "Employees ":
                 iconName = "users";
                 break;
 
-              case "Patients":
+              case "Patients ":
                 iconName = "bed-pulse";
                 break;
 
-              case "Rooms":
+              case "Rooms ":
                 iconName = "hospital";
                 break;
               default:
@@ -55,10 +55,10 @@ const AdminDrawerNavigator = () => {
         })}
       >
         {/* <Tab.Screen name="Admin Home" component={AdminHomeStack} /> */}
-        <Tab.Screen name="Home" component={UserStack} />
-        <Tab.Screen name="Employees" component={EmployeeStack} />
-        <Tab.Screen name="Patients" component={PatientStack} />
-        <Tab.Screen name="Rooms" component={RoomStack} />
+        <Tab.Screen name="Home " component={UserStack} />
+        <Tab.Screen name="Employees " component={EmployeeStack} />
+        <Tab.Screen name="Patients " component={PatientStack} />
+        <Tab.Screen name="Rooms " component={RoomStack} />
       </Tab.Navigator>
     </NavigationContainer>
   );

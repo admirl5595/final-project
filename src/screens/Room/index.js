@@ -29,6 +29,27 @@ export default function Room({ patientId }) {
     return <LoadingScreen />;
   }
 
+  let breathRatePreview;
+  let diastolicBPPreview;
+  let heartRatePreview;
+  let o2LevelPreview;
+  let systolicBPPreview;
+
+  if (
+    patient.breathRate.length !== 0 &&
+    patient.diastolicBP.length !== 0 &&
+    patient.heartRate.length !== 0 &&
+    patient.o2Level.length !== 0 &&
+    patient.systolicBP.length !== 0
+  ) {
+    breathRatePreview = patient.breathRate[patient.breathRate.length - 1].value;
+    diastolicBPPreview =
+      patient.diastolicBP[patient.diastolicBP.length - 1].value;
+    heartRatePreview = patient.heartRate[patient.heartRate.length - 1].value;
+    o2LevelPreview = patient.o2Level[patient.o2Level.length - 1].value;
+    systolicBPPreview = patient.systolicBP[patient.systolicBP.length - 1].value;
+  }
+
   return (
     <ScrollView
       style={{ backgroundColor: theme.colors.background, flex: 1 }}
