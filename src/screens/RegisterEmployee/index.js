@@ -11,6 +11,7 @@ import { db, auth } from "../../../firebase-config";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import Header from "src/components/common/Header";
 import { useNavigation } from "@react-navigation/native";
+import LoadingOverlay from "src/components/common/LoadingOverlay";
 
 export default function RegisterEmployee() {
   // Callable cloud-function
@@ -26,6 +27,7 @@ export default function RegisterEmployee() {
   const [role, setRole] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   // Roles that can be choosed from the select dropdown
   const roles = ["nurse", "doctor", "admin"];
@@ -47,11 +49,16 @@ export default function RegisterEmployee() {
       employeeNumber: employeeNumber,
     };
 
+    setIsLoading(true);
+
     registerEmployee(data)
       .then(() => {
         navigation.navigate("Employees");
       })
-      .catch((message) => Alert.alert(message));
+      .catch((message) => {
+        setIsLoading(false);
+        Alert.alert(message);
+      });
   };
 
   return (
@@ -117,6 +124,7 @@ export default function RegisterEmployee() {
 
         <PrimaryButton title={"Cancel"} onPress={() => navigation.goBack()} />
         <PrimaryButton title={"Add Employee"} onPress={handleRegister} />
+        {isLoading ? <LoadingOverlay title="Registering employee..." /> : null}
       </View>
     </>
   );

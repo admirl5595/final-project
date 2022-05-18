@@ -7,6 +7,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 export default function VitalItem({ title, value, icon, patientId }) {
   const navigation = useNavigation();
 
+  let unit;
+
+  if (title === "spO2") unit = "%";
+  if (title === "BP") unit = "mmHg";
+  if (title === "HR") unit = "bpm";
+  if (title === "BPM") unit = "bpm";
+
   let hasValues = true;
 
   // prevent navigation to Monitor if there aren't any value
@@ -20,7 +27,7 @@ export default function VitalItem({ title, value, icon, patientId }) {
         <Text style={styles.text}>{title}</Text>
       </View>
       <View style={styles.iconText}>
-        <Text style={styles.text}>{value}</Text>
+        <Text style={styles.text}>{value + unit}</Text>
 
         {hasValues ? (
           <TouchableOpacity
