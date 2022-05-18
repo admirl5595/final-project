@@ -21,7 +21,7 @@ import RoomContext from "./src/services/RoomContext";
 
 import { addIcons } from "./src/res/icons/fontAwsome";
 
-import ScreenSwitcher from "./src/services/ScreenSwitcher";
+import ScreenSwitcher from "./src/navigation/ScreenSwitcher";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
