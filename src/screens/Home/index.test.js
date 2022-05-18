@@ -18,6 +18,6 @@ jest.mock("@react-navigation/native", () => {
 describe("<Home />", () => {
   it("has 1 child", () => {
     const tree = renderer.create(<Home />).toJSON();
-    expect(1 + 1).toBe(2);
+    expect(tree.children.length).toBe(3);
   });
 });
