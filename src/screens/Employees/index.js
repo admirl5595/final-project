@@ -24,7 +24,6 @@ export default function Employees() {
 
   return (
     <View style={styles.container}>
-      <Header title={"Employees"} />
       <FlatList
         data={employees}
         renderItem={({ item }) => (

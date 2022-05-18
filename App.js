@@ -1,3 +1,4 @@
+import "react-native-gesture-handler";
 import React, { useState, useContext, useEffect } from "react";
 
 import { db } from "./firebase-config";
@@ -22,6 +23,7 @@ import RoomContext from "./src/services/RoomContext";
 import { addIcons } from "./src/res/icons/fontAwsome";
 
 import ScreenSwitcher from "./src/services/ScreenSwitcher";
+import RootDrawerNavigator from "./src/services/routes/tabNavigator";
 
 import { useRoute } from "@react-navigation/native";
 
@@ -47,7 +49,7 @@ const App = () => {
   return (
     <RoomContext.Provider value={{ rooms, setRooms }}>
       <PatientContext.Provider value={{ patients, setPatients }}>
-        <ScreenSwitcher />
+        <RootDrawerNavigator />
       </PatientContext.Provider>
     </RoomContext.Provider>
   );

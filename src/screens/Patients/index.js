@@ -31,7 +31,6 @@ export default function Patients({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textHeader}>Patients screen</Text>
       {patient ? <PatientItem patient={patient} /> : null}
       <TextInput
         value={ssn}

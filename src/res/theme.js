@@ -1,7 +1,8 @@
 const palette = {
-  blue_green: "#95E9CE",
   white: "#FFFFFF",
   black: "#000000",
+  blueGreen: "#95E9CE",
+  darkBlueGreen: "#95E9DF",
 };
 
 const spacing = {
@@ -13,9 +14,10 @@ const spacing = {
 
 export const theme = {
   colors: {
-    background: palette.blue_green,
+    background: palette.blueGreen,
     primary_fontColor: palette.black,
     secondary_fontColor: palette.white,
+    topNavBar: palette.darkBlueGreen,
   },
 
   spacing: {
@@ -39,7 +41,7 @@ export const theme = {
       backgroundColor: palette.white,
     },
     unfilled: {
-      backgroundColor: palette.blue_green,
+      backgroundColor: palette.blueGreen,
       borderWidth: 3,
       borderColor: palette.white,
     },

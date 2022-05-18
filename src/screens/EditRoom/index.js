@@ -27,8 +27,6 @@ export default function EditRoom() {
   const [ssn, setSsn] = useState(room.patientId);
   const [patient, setPatient] = useState(null);
 
-  console.log(room);
-
   const navigation = useNavigation();
 
   // get all patients from global context
@@ -43,8 +41,6 @@ export default function EditRoom() {
   const [prevPatient, setPrevPatient] = useState(PrevPatient);
 
   const editRoom = async () => {
-    // TODO:
-
     if (!patient) {
       Alert.alert("Assign new or delete previous patient");
       return;
@@ -96,6 +92,7 @@ export default function EditRoom() {
       patientId: "",
     };
 
+    // TODO: Drag out to crud-operations
     const roomsCollectionRef = doc(db, "rooms", room.id);
 
     await updateDoc(roomsCollectionRef, updatedRoom);
