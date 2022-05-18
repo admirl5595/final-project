@@ -11,8 +11,11 @@ import { auth } from "../../../../firebase-config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { StatusBar } from "expo-status-bar";
 import styles from "../Login/styles";
+import PrimaryButton from "src/components/common/PrimaryButton";
+import TextInputStyled from "src/components/common/TextInputStyled";
+import HeaderAndIcon from "src/components/common/HeaderAndIcon";
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -47,33 +50,31 @@ export default function LoginScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <View style={styles.InputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Email"
-          placeholderTextColor="#003f5c"
-          onChangeText={(email) => setEmail(email)}
-        />
-      </View>
-      <View style={styles.InputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Password"
-          placeholderTextColor="#003f5c"
-          secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
-        />
+
+      <View style={{ marginVertical: 20 }}>
+        <HeaderAndIcon title="Login" icon="hospital-user" />
       </View>
 
-      <TouchableOpacity onPress={handleLogin} style={styles.loginBtn}>
-        <Text>Login</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.btn}
-        onPress={() => navigation.navigate("Register")}
-      >
-        <Text style={styles.btnText}>Register</Text>
-      </TouchableOpacity>
+      <View style={styles.inputView}>
+        <TextInputStyled
+          placeholder="Email"
+          onChangeText={(email) => setEmail(email)}
+          value={email}
+        />
+      </View>
+      <View style={styles.inputView}>
+        <TextInputStyled
+          placeholder="Password"
+          onChangeText={(password) => setPassword(password)}
+          value={password}
+          secureTextEntry={true}
+        />
+      </View>
+      <Text style={styles.text}>Don't have a user? Contact an admin</Text>
+
+      <View style={{ marginVertical: 20 }}>
+        <PrimaryButton title="Login" onPress={handleLogin} />
+      </View>
     </View>
   );
 }
