@@ -29,16 +29,43 @@ jest.mock("../../../firebase-config", () => {
   };
 });
 
-describe("sumbits observation", () => {
-  it("input field changes", () => {
-    const { getByPlaceholderText, getByText, getAllByText } = render(
-      <InsertObservationScreen />
-    );
+it("input field exists", () => {
+  const { getByPlaceholderText } = render(<InsertObservationScreen />);
 
-    const input = getByPlaceholderText("Description");
+  const input = getByPlaceholderText("Description");
 
-    fireEvent.changeText(input, "Hello");
+  expect(input).toBeTruthy();
+});
 
-    expect(input.value).toBe("Hello");
-  });
+it("header exists", () => {
+  const { getByText } = render(<InsertObservationScreen />);
+
+  // make regular expression
+  const exp = /Insert observation/;
+
+  // check for substring in header
+  const header = getByText(exp);
+
+  // check if header with given text exists
+  expect(header).toBeTruthy();
+});
+
+it("submit button exists", () => {
+  const { getByText } = render(<InsertObservationScreen />);
+
+  const button = getByText("submit");
+
+  expect(button.props.children).toBe("submit");
+});
+
+it("input field changes", () => {
+  const { getByPlaceholderText, getByText, getAllByText } = render(
+    <InsertObservationScreen />
+  );
+
+  const input = getByPlaceholderText("Description");
+
+  fireEvent.changeText(input, "John Doe\nreport: he is terribly ill");
+
+  expect(input.props.value).toBe("John Doe\nreport: he is terribly ill");
 });
