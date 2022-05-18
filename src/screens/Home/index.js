@@ -24,11 +24,15 @@ export default function Home() {
 
   const { rooms, setRooms } = useContext(RoomContext);
 
-  console.log(rooms);
+  let occupiedRooms = null;
+  // check if rooms exist
+  if (rooms) {
+    console.log(rooms);
 
-  let roomsCopy = [...rooms];
+    let roomsCopy = [...rooms];
 
-  let occupiedRooms = roomsCopy.filter((room) => room.name.length !== 0);
+    occupiedRooms = roomsCopy.filter((room) => room.name.length !== 0);
+  }
 
   useEffect(() => {
     async function GetRooms() {
