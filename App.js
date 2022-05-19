@@ -1,20 +1,13 @@
 import "react-native-gesture-handler";
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import notificationSetup from "./src/services/notifications/notifications-setup";
 
 import { db } from "./firebase-config";
 import { LogBox } from "react-native";
 // prevent annoying yellow warning
 LogBox.ignoreLogs(["Setting a timer"]);
 
-import {
-  collection,
-  query,
-  where,
-  onSnapshot,
-  doc,
-  documentId,
-  getDocs,
-} from "firebase/firestore";
+import { collection, query, where, onSnapshot } from "firebase/firestore";
 
 import * as Notifications from "expo-notifications";
 import PatientContext from "./src/services/PatientContext";
@@ -39,8 +32,14 @@ const App = () => {
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
+    // setup listening for realtime changes in firestore database
     setupSnapshot(setPatients);
+    // setup notifications
+    notificationSetup(notificationListener, responseListener);
   }, []);
+
+  const notificationListener = useRef();
+  const responseListener = useRef();
 
   // conditional rendering of screens
   return (
