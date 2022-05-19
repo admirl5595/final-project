@@ -111,7 +111,6 @@ export default function EditRoom() {
 
       {prevPatient ? (
         <>
-          <Text>Previous patient</Text>
           <PatientItem patient={prevPatient} />
 
           <PrimaryButton onPress={removePatient} title="Remove patient" />
@@ -124,7 +123,7 @@ export default function EditRoom() {
         ssn={ssn}
         setSsn={setSsn}
       />
-      <PrimaryButton onPress={editRoom} title="Edit room" />
+      <PrimaryButton onPress={editRoom} title="Assign patient" />
     </View>
   );
 }
