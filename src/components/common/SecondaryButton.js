@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     justifyContent: "space-between",
+
   },
   leftText: {
     textAlign: "left",
@@ -32,8 +33,9 @@ const styles = StyleSheet.create({
     color: theme.primary_fontColor,
   },
   btn: {
-    ...theme.boxSize.l,
+    ...theme.boxSize.m,
     ...theme.boxType.filled,
+    ...theme.shadowVariants.shadowList,
     margin: theme.spacing.m,
   },
 });
