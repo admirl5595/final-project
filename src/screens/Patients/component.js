@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { theme } from "src/res/theme";
 import { useNavigation } from "@react-navigation/native";
 
+
 // TODO:
 // navigate to patient screen on press
 
@@ -25,8 +26,9 @@ export default function PatientItem({ patient }) {
 
 const styles = StyleSheet.create({
   container: {
-    padding: theme.spacing.s,
+    padding: theme.spacing.m,
     backgroundColor: theme.colors.secondary_fontColor,
-    marginVertical: theme.spacing.s,
+    marginVertical: theme.spacing.m,
+    margin: theme.spacing.s,
   },
 });
