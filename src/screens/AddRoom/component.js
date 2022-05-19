@@ -57,7 +57,7 @@ export default function AssignPatient({ ssn, setSsn, setPatient }) {
       <TextInputStyled
         value={ssn}
         onChangeText={setSsn}
-        placeholder="enter ssn"
+        placeholder="Social security number"
         style={styles.textInput}
         maxLength={9}
       />

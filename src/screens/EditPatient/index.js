@@ -86,7 +86,7 @@ export default function EditPatient() {
         maxLength={9}
       />
       <Picker
-        style={styles.picker}
+        style={styles.textInput}
         selectedValue={gender}
         onValueChange={(itemValue) => setGender(itemValue)}
       >
@@ -94,10 +94,9 @@ export default function EditPatient() {
         <Picker.Item label="Female" value="Female" />
       </Picker>
 
-      <Text style={theme.textVariants.body}>Date of birth</Text>
       <Text style={styles.textInput}>{dob.toDateString()}</Text>
 
-      <Button title="set DOB" onPress={showDatepicker} />
+      <PrimaryButton title="set DOB" onPress={showDatepicker} />
 
       <PrimaryButton onPress={editPatient} title="Edit patient" />
     </View>
