@@ -13,6 +13,13 @@ import * as Notifications from "expo-notifications";
 import PatientContext from "./src/services/PatientContext";
 import RoomContext from "./src/services/RoomContext";
 import triggerAbnormalVitalNotifcation from "src/services/notifications/notifications";
+import {
+  checkBreathRate,
+  checkHeartRate,
+  checko2Level,
+  checkSystolicBP,
+  checkDiastolicBP,
+} from "src/services/check-vitals";
 
 import { addIcons } from "./src/res/icons/fontAwsome";
 
@@ -109,21 +116,15 @@ async function setupSnapshot(setPatients) {
 
         const lastBreathRate =
           patient.breathRate[patient.breathRate.length - 1].value;
-
         const lastHeartRate =
           patient.heartRate[patient.heartRate.length - 1].value;
-
         const lasto2Level = patient.o2Level[patient.o2Level.length - 1].value;
-
+        const lastSystolicBP =
+          patient.systolicBP[patient.systolicBP.length - 1].value;
         const lastDiastolicBP =
           patient.diastolicBP[patient.diastolicBP.length - 1].value;
 
-        const lastSystolicBP =
-          patient.systolicBP[patient.systolicBP.length - 1].value;
-
-        // check abnormal breath rate
-        // above 25 or below 12
-        if (lastBreathRate < 12 || lastBreathRate > 25) {
+        if (checkBreathRate(lastBreathRate)) {
           triggerAbnormalVitalNotifcation(
             patient,
             lastBreathRate,
@@ -131,24 +132,15 @@ async function setupSnapshot(setPatients) {
           );
         }
 
-        // check abnormal heart rate
-        // above 130 or below 60
-
-        if (lastHeartRate < 60 || lastHeartRate > 130) {
+        if (checkHeartRate(lastHeartRate)) {
           triggerAbnormalVitalNotifcation(patient, lastHeartRate, "heart rate");
         }
 
-        // check o2Level
-        // below 90%
-
-        if (lasto2Level < 90) {
+        if (checko2Level(lasto2Level)) {
           triggerAbnormalVitalNotifcation(patient, lasto2Level, "oxygen level");
         }
 
-        // check systolicBP
-        // above 120 mmHg or below 90 mmHg
-
-        if (lastSystolicBP < 90 || lastSystolicBP > 120) {
+        if (checkSystolicBP(lastSystolicBP)) {
           triggerAbnormalVitalNotifcation(
             patient,
             lastSystolicBP,
@@ -156,10 +148,7 @@ async function setupSnapshot(setPatients) {
           );
         }
 
-        // check diastolicBP
-        // above 80 mmHg or below 60 mmHg
-
-        if (lastDiastolicBP < 60 || lastDiastolicBP > 80) {
+        if (checkDiastolicBP(lastDiastolicBP)) {
           triggerAbnormalVitalNotifcation(
             patient,
             lastDiastolicBP,
