@@ -4,6 +4,7 @@ import { auth, db } from "../../../firebase-config";
 import { doc, getDoc } from "firebase/firestore";
 
 import { useAuthState } from "react-firebase-hooks/auth";
+import { StatusBar } from "expo-status-bar";
 
 import { NavigationContainer } from "@react-navigation/native";
 import AdminTabNavigator from "./adminTabNavigator";
@@ -45,6 +46,7 @@ export default function RootNavigator() {
   // TODO: Flytte tannhjulet ut hit
   return (
     <NavigationContainer>
+      <StatusBar />
       {user ? (
         role === "admin" ? (
           <AdminTabNavigator />

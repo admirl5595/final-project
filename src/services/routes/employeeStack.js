@@ -39,7 +39,7 @@ const EmployeeStack = () => {
         name="EditEmployee"
         component={EditEmployee}
       />
-      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen options={stackStyle} name="Settings" component={Settings} />
     </Stack.Navigator>
   );
 };

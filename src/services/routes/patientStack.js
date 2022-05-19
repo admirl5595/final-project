@@ -39,7 +39,7 @@ const PatientStack = () => {
         name="EditPatient"
         component={EditPatient}
       />
-      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen options={stackStyle} name="Settings" component={Settings} />
     </Stack.Navigator>
   );
 };
