@@ -66,3 +66,14 @@ describe("check contents", () => {
     expect(btn).toBeTruthy();
   });
 });
+
+it("has secure password input", () => {
+  const { getByPlaceholderText, getByText, getAllByText } = render(
+    <LoginScreen />
+  );
+
+  const passwordInput = getByPlaceholderText("Password");
+
+  // check that secureTextEntry prop is set to true
+  expect(passwordInput.props.secureTextEntry).toBeTruthy();
+});
