@@ -93,10 +93,10 @@ export const theme = {
         height: 2,
       },
       shadowOpacity: 0.25,
-      shadowRadius: 2.84,
+      shadowRadius: 4.84,
   
       elevation: 3,
     }
   }
-
+  
 };
