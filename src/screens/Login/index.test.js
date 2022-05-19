@@ -6,6 +6,7 @@ import { render, fireEvent } from "@testing-library/react-native";
 
 // import component to be tested
 import LoginScreen from "./index";
+import PrimaryButton from "src/components/common/PrimaryButton";
 
 // mock hooks from react native navigation
 jest.mock("@react-navigation/native", () => {
@@ -52,5 +53,16 @@ describe("check contents", () => {
     const passwordInput = getByPlaceholderText("Password");
 
     expect(passwordInput).toBeTruthy();
+  });
+
+  it("has login button", () => {
+    const testIdName = "loginBtn";
+
+    const { getByTestId } = render(<LoginScreen />);
+
+    // get login button using id
+    const btn = getByTestId(testIdName);
+
+    expect(btn).toBeTruthy();
   });
 });

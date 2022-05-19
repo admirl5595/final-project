@@ -5,9 +5,9 @@ import { theme } from "src/res/theme";
 // title: text displayed inside button
 // onPress: function triggered when pressing the button
 
-export default function PrimaryButton({ onPress, title }) {
+export default function PrimaryButton({ onPress, title, testID }) {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity testID={testID} onPress={onPress}>
       <View style={styles.container}>
         <Text style={styles.text}>{title}</Text>
       </View>
