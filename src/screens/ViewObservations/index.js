@@ -19,7 +19,7 @@ export default function ViewObservations() {
         title={"Observations for: " + patient.name}
       />
       {observations.length !== 0 ? (
-        <FlatList
+        <FlatList style={styles.chartBox}
           data={observations}
           renderItem={({ item }) => <Observation observation={item} />}
         />
