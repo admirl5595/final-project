@@ -45,10 +45,6 @@ export default function ManageRooms() {
           onPress={() => navigation.navigate("AddRoom")}
           title="Add room"
         />
-        <PrimaryButton
-          onPress={() => navigation.navigate("AdminHome")}
-          title="Admin Home"
-        />
       </>
     </View>
   );

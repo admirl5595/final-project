@@ -56,7 +56,7 @@ export default function AddRoom() {
 
     getRooms(setRooms);
 
-    navigation.navigate("ManageRooms");
+    navigation.navigate("Rooms");
   };
 
   return (
@@ -68,7 +68,12 @@ export default function AddRoom() {
         placeholder="Room Number"
         maxLength={10}
       />
-      <AssignPatient style={styles.textInput} setPatient={setPatient} ssn={ssn} setSsn={setSsn} />
+      <AssignPatient
+        style={styles.textInput}
+        setPatient={setPatient}
+        ssn={ssn}
+        setSsn={setSsn}
+      />
       <PrimaryButton onPress={addRoom} title="Add room and assign patient" />
     </View>
   );
