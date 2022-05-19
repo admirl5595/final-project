@@ -1,24 +1,25 @@
 import "react-native-gesture-handler";
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import notificationSetup from "./src/services/notifications/notifications-setup";
 
 import { db } from "./firebase-config";
 import { LogBox } from "react-native";
 // prevent annoying yellow warning
 LogBox.ignoreLogs(["Setting a timer"]);
 
-import {
-  collection,
-  query,
-  where,
-  onSnapshot,
-  doc,
-  documentId,
-  getDocs,
-} from "firebase/firestore";
+import { collection, query, where, onSnapshot } from "firebase/firestore";
 
 import * as Notifications from "expo-notifications";
 import PatientContext from "./src/services/PatientContext";
 import RoomContext from "./src/services/RoomContext";
+import triggerAbnormalVitalNotifcation from "src/services/notifications/notifications";
+import {
+  checkBreathRate,
+  checkHeartRate,
+  checko2Level,
+  checkSystolicBP,
+  checkDiastolicBP,
+} from "src/services/check-vitals";
 
 import { addIcons } from "./src/res/icons/fontAwsome";
 
@@ -39,8 +40,14 @@ const App = () => {
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
+    // setup listening for realtime changes in firestore database
     setupSnapshot(setPatients);
+    // setup notifications
+    notificationSetup(notificationListener, responseListener);
   }, []);
+
+  const notificationListener = useRef();
+  const responseListener = useRef();
 
   // conditional rendering of screens
   return (
@@ -107,7 +114,47 @@ async function setupSnapshot(setPatients) {
 
         // check for abnormalities and trigger notification
 
-        // later...
+        const lastBreathRate =
+          patient.breathRate[patient.breathRate.length - 1].value;
+        const lastHeartRate =
+          patient.heartRate[patient.heartRate.length - 1].value;
+        const lasto2Level = patient.o2Level[patient.o2Level.length - 1].value;
+        const lastSystolicBP =
+          patient.systolicBP[patient.systolicBP.length - 1].value;
+        const lastDiastolicBP =
+          patient.diastolicBP[patient.diastolicBP.length - 1].value;
+
+        if (checkBreathRate(lastBreathRate)) {
+          triggerAbnormalVitalNotifcation(
+            patient,
+            lastBreathRate,
+            "breath rate"
+          );
+        }
+
+        if (checkHeartRate(lastHeartRate)) {
+          triggerAbnormalVitalNotifcation(patient, lastHeartRate, "heart rate");
+        }
+
+        if (checko2Level(lasto2Level)) {
+          triggerAbnormalVitalNotifcation(patient, lasto2Level, "oxygen level");
+        }
+
+        if (checkSystolicBP(lastSystolicBP)) {
+          triggerAbnormalVitalNotifcation(
+            patient,
+            lastSystolicBP,
+            "systolic blood pressure"
+          );
+        }
+
+        if (checkDiastolicBP(lastDiastolicBP)) {
+          triggerAbnormalVitalNotifcation(
+            patient,
+            lastDiastolicBP,
+            "diastolic blood pressure"
+          );
+        }
       }
       // redirect to rooms page
       if (change.type === "removed") {
