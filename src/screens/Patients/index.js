@@ -6,7 +6,10 @@ import PrimaryButton from "src/components/common/PrimaryButton";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase-config";
 import { async } from "@firebase/util";
+
 import SecondaryButton from "src/components/common/SecondaryButton";
+
+import TextInputStyled from "../../components/common/TextInputStyled";
 
 // TODO:
 // add search bar and return patient that matches ssn
@@ -41,10 +44,10 @@ export default function Patients({ navigation }) {
         />
       ) : null}
 
-      <TextInput
+      <TextInputStyled
         value={ssn}
         onChangeText={setSsn}
-        placeholder="enter ssn"
+        placeholder="Social security number"
         style={styles.textInput}
       />
       <PrimaryButton onPress={findPatient} title="Find patient" />

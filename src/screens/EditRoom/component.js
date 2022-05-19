@@ -4,6 +4,9 @@ import styles from "./style";
 import PrimaryButton from "src/components/common/PrimaryButton";
 
 import SecondaryButton from "src/components/common/SecondaryButton";
+
+import TextInputStyled from "src/components/common/TextInputStyled";
+
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase-config";
 
@@ -65,7 +68,7 @@ export default function AssignPatient({
           rightText={"gender: " + patientPreview.gender}
         />
       ) : null}
-      <TextInput
+      <TextInputStyled
         value={ssn}
         onChangeText={setSsn}
         placeholder="enter ssn"

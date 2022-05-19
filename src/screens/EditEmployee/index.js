@@ -4,12 +4,13 @@ import PrimaryButton from "src/components/common/PrimaryButton";
 import SecondaryButton from "src/components/common/SecondaryButton";
 import TextInputStyled from "src/components/common/TextInputStyled";
 import styles from "./styles";
-import SelectDropdown from "react-native-select-dropdown";
+import { theme } from "src/res/theme";
 import { db, auth } from "../../../firebase-config";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import Header from "src/components/common/Header";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { updateEmployee } from "../../services/crud-operations";
+import { Picker } from "@react-native-picker/picker";
 
 export default function EditEmployee() {
   // Callable cloud-function
@@ -26,8 +27,6 @@ export default function EditEmployee() {
   const [employeeNumber, setEmployeeNumber] = useState("");
   const [role, setRole] = useState("");
 
-  // Roles that can be choosed from the select dropdown
-  const roles = ["nurse", "doctor", "admin"];
 
   useEffect(() => {
     setName(employee.displayName);
@@ -64,32 +63,23 @@ export default function EditEmployee() {
 
       <Header title={"EmployeeNr: " + employeeNumber} />
       <ScrollView>
-        
-          <TextInputStyled
+
+        <TextInputStyled
           value={name}
           placeholderTextColor="#003f5c"
           onChangeText={(name) => setName(name)}
-          />
-
-
-        {/* https://www.npmjs.com/package/react-native-select-dropdown#onFocus */}
-        <SelectDropdown
-          data={roles}
-          defaultButtonText={role}
-          onSelect={(selectedItem, index) => {
-            setRole(selectedItem);
-          }}
-          buttonTextAfterSelection={(selectedItem, index) => {
-            // text represented after item is selected
-            // if data array is an array of objects then return selectedItem.property to render after item is selected
-            return selectedItem;
-          }}
-          rowTextForSelection={(item, index) => {
-            // text represented for each item in dropdown
-            // if data array is an array of objects then return item.property to represent item in dropdown
-            return item;
-          }}
+          style={styles.textInput}
         />
+
+        <Picker
+          style={styles.picker}
+          selectedValue={role}
+          onValueChange={(selectedItem) => setRole(selectedItem)}
+        >
+          <Picker.Item label="Nurse" value="nurse" />
+          <Picker.Item label="Doctor" value="doctor" />
+          <Picker.Item label="Admin" value="admin" />
+        </Picker>
       </ScrollView>
 
       <PrimaryButton title={"Save changes"} onPress={handleEdit} />

@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { postObservation } from "../../services/crud-operations";
 import { auth } from "../../../firebase-config";
 import PrimaryButton from "../../components/common/PrimaryButton";
+import HeaderAndIcon from "../../components/common/HeaderAndIcon";
 
 import { useRoute, useNavigation } from "@react-navigation/native";
 import styles from "./styles";
@@ -33,9 +34,10 @@ export default function InsertObservationScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textHeader}>
-        Insert observation for {patient.name}
-      </Text>
+            <HeaderAndIcon
+        title={"Insert observation for " + patient.name}
+        icon="user-doctor"
+      />
       <TextInput
         value={newobservationdesc}
         onChangeText={setNewObservationDesc}
@@ -44,7 +46,7 @@ export default function InsertObservationScreen() {
         multiline={true}
         numberOfLines={5}
       />
-      <PrimaryButton title="submit" onPress={handleSubmit} />
+      <PrimaryButton title="Submit" onPress={handleSubmit} />
     </View>
   );
 }
