@@ -11,10 +11,14 @@ import { useNavigation } from "@react-navigation/native";
 import { theme } from "src/res/theme";
 import { useRoute } from "@react-navigation/native";
 import TextInputStyled from "../../components/common/TextInputStyled";
+import { getFunctions, httpsCallable } from "firebase/functions";
 
 // note: new patients are not admitted to a room by default
-
 export default function EditPatient() {
+  // Callable cloud-function
+  const functions = getFunctions();
+  const exportPatientData = httpsCallable(functions, "exportPatientData");
+
   const navigation = useNavigation();
 
   const route = useRoute();
@@ -69,6 +73,11 @@ export default function EditPatient() {
     navigation.navigate("Patients");
   };
 
+  const exportData = async () => {
+    let res = await exportPatientData(ssn);
+    Alert.alert(res.data);
+  };
+
   return (
     <View style={styles.container}>
       <TextInputStyled
@@ -93,12 +102,10 @@ export default function EditPatient() {
         <Picker.Item label="Male" value="Male" />
         <Picker.Item label="Female" value="Female" />
       </Picker>
-
       <Text style={styles.textInput}>{dob.toDateString()}</Text>
-
-      <PrimaryButton title="set DOB" onPress={showDatepicker} />
-
+      <PrimaryButton onPress={showDatepicker} title="set DOB" />
       <PrimaryButton onPress={editPatient} title="Edit patient" />
+      <PrimaryButton onPress={exportData} title="Export patient data" />
     </View>
   );
 }
