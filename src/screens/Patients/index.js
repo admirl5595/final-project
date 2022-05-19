@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Alert } from "react-native";
 import PatientContext from "src/services/PatientContext";
-import PatientItem from "./component";
 import styles from "./style";
 import PrimaryButton from "src/components/common/PrimaryButton";
 import { getDoc, doc } from "firebase/firestore";

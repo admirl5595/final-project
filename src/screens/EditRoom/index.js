@@ -5,10 +5,10 @@ import AssignPatient from "./component";
 import { collection, doc, updateDoc, getDoc } from "firebase/firestore";
 import { db } from "../../../firebase-config";
 import { useNavigation } from "@react-navigation/native";
-import PatientItem from "../Patients/component";
 import PatientContext from "src/services/PatientContext";
 import RoomContext from "src/services/RoomContext";
 
+import SecondaryButton from "src/components/common/SecondaryButton";
 import PrimaryButton from "src/components/common/PrimaryButton";
 import { getRooms } from "../../services/crud-operations";
 
@@ -111,7 +111,10 @@ export default function EditRoom() {
 
       {prevPatient ? (
         <>
-          <PatientItem patient={prevPatient} />
+          <SecondaryButton
+            leftText={"name: " + prevPatient.name}
+            rightText={"gender: " + prevPatient.gender}
+          />
 
           <PrimaryButton onPress={removePatient} title="Remove patient" />
         </>

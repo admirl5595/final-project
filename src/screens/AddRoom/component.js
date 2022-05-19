@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { View, TextInput, Alert } from "react-native";
-import PatientItem from "../Patients/component";
+
 import styles from "./style";
 import PrimaryButton from "src/components/common/PrimaryButton";
+
+import SecondaryButton from "src/components/common/SecondaryButton";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase-config";
 
@@ -44,7 +46,12 @@ export default function AssignPatient({ ssn, setSsn, setPatient }) {
 
   return (
     <View>
-      {patientPreview ? <PatientItem patient={patientPreview} /> : null}
+      {patientPreview ? (
+        <SecondaryButton
+          leftText={"name: " + patientPreview.name}
+          rightText={"gender: " + patientPreview.gender}
+        />
+      ) : null}
       <TextInput
         value={ssn}
         onChangeText={setSsn}
