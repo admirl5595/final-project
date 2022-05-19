@@ -7,6 +7,7 @@ import PrimaryButton from "src/components/common/PrimaryButton";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase-config";
 import { async } from "@firebase/util";
+import SecondaryButton from "src/components/common/SecondaryButton";
 
 // TODO:
 // add search bar and return patient that matches ssn
@@ -31,7 +32,16 @@ export default function Patients({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {patient ? <PatientItem patient={patient} /> : null}
+      {patient ? (
+        <SecondaryButton
+          leftText={"name: " + patient.name}
+          rightText={"gender: " + patient.gender}
+          onPress={() =>
+            navigation.navigate("EditPatient", { patient: patient })
+          }
+        />
+      ) : null}
+
       <TextInput
         value={ssn}
         onChangeText={setSsn}
