@@ -9,6 +9,7 @@ import { getRooms } from "../../services/crud-operations";
 import RoomContext from "src/services/RoomContext";
 
 import PrimaryButton from "src/components/common/PrimaryButton";
+import TextInputStyled from "../../components/common/TextInputStyled";
 
 export default function AddRoom() {
   const [roomNr, setRoomNr] = useState("");
@@ -60,14 +61,14 @@ export default function AddRoom() {
 
   return (
     <View style={styles.container}>
-      <TextInput
+      <TextInputStyled
         value={roomNr}
         onChangeText={setRoomNr}
         style={styles.textInput}
         placeholder="Room Number"
         maxLength={10}
       />
-      <AssignPatient setPatient={setPatient} ssn={ssn} setSsn={setSsn} />
+      <AssignPatient style={styles.textInput} setPatient={setPatient} ssn={ssn} setSsn={setSsn} />
       <PrimaryButton onPress={addRoom} title="Add room and assign patient" />
     </View>
   );
