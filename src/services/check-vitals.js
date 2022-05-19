@@ -2,7 +2,7 @@
 export const checkBreathRate = (lastBreathRate) => {
   // check abnormal breath rate
   // above 25 or below 12
-  if (lastBreathRate < 12 || lastBreathRate > 25) {
+  if (lastBreathRate < 5 || lastBreathRate > 35) {
     return true;
   }
 
@@ -12,7 +12,7 @@ export const checkBreathRate = (lastBreathRate) => {
 export const checkHeartRate = (lastHeartRate) => {
   // check abnormal heart rate
   // above 130 or below 60
-  if (lastHeartRate < 60 || lastHeartRate > 130) {
+  if (lastHeartRate < 45 || lastHeartRate > 130) {
     return true;
   }
   return false;
@@ -20,7 +20,7 @@ export const checkHeartRate = (lastHeartRate) => {
 export const checko2Level = (lasto2Level) => {
   // check o2Level
   // below 90%
-  if (lasto2Level < 90) {
+  if (lasto2Level < 81) {
     return true;
   }
 
@@ -28,7 +28,7 @@ export const checko2Level = (lasto2Level) => {
 };
 export const checkSystolicBP = (lastSystolicBP) => {
   // above 120 mmHg or below 90 mmHg
-  if (lastSystolicBP < 90 || lastSystolicBP > 120) {
+  if (lastSystolicBP < 86 || lastSystolicBP > 140) {
     return true;
   }
 
@@ -37,7 +37,7 @@ export const checkSystolicBP = (lastSystolicBP) => {
 export const checkDiastolicBP = (lastDiastolicBP) => {
   // check diastolicBP
   // above 80 mmHg or below 60 mmHg
-  if (lastDiastolicBP < 60 || lastDiastolicBP > 80) {
+  if (lastDiastolicBP < 40 || lastDiastolicBP > 100) {
     return true;
   }
   return false;
