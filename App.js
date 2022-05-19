@@ -58,8 +58,6 @@ async function setupSnapshot(setPatients) {
   const q = query(collection(db, "patients"), where("admitted", "==", true));
 
   onSnapshot(q, (snapshot) => {
-    console.log("Patient:");
-
     snapshot.docChanges().forEach((change) => {
       // get id of document
       let id = change.doc.id;
@@ -68,7 +66,6 @@ async function setupSnapshot(setPatients) {
 
       // add id to patient object
       patient = { id: id, ...patient };
-      console.log("change type: " + change.type);
 
       // add patient to state
       if (change.type === "added") {
@@ -95,8 +92,6 @@ async function setupSnapshot(setPatients) {
         patient.heartRate = patient.heartRate.slice(-50);
         patient.o2Level = patient.o2Level.slice(-50);
         patient.systolicBP = patient.systolicBP.slice(-50);
-
-        console.log(patient);
 
         // add new patient to global context
         setPatients((prevPatients) => {

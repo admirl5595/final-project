@@ -32,13 +32,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 10,
     borderWidth: 4,
-    borderColor: "white",
+    borderColor: "black",
     alignSelf: "center",
     marginBottom: 100,
   },
   text: {
     fontSize: 20,
-    color: "#fff",
+    color: "black",
     fontWeight: "bold",
   },
 });

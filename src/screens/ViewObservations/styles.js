@@ -3,10 +3,10 @@ import { theme } from "src/res/theme";
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
     alignItems: "center",
     alignContent: "center",
     backgroundColor: theme.colors.background,
+    flex: 1,
   },
   header: {
     margin: theme.spacing.xl,

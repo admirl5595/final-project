@@ -6,11 +6,12 @@ import { doc, getDoc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import { NavigationContainer } from "@react-navigation/native";
-import TabNavigator from "./tabNavigator";
+import AdminTabNavigator from "./adminTabNavigator";
 import UserStack from "./userStack";
 import LoadingScreen from "src/screens/Loading";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AuthStack from "./authStack";
+import UserTabNavigator from "./userTabNavigator";
 
 export default function RootNavigator() {
   // listen to user authentication state
@@ -39,17 +40,16 @@ export default function RootNavigator() {
 
   const Stack = createNativeStackNavigator();
 
-
-  console.log(role)
+  console.log(role);
 
   // TODO: Flytte tannhjulet ut hit
   return (
     <NavigationContainer>
       {user ? (
         role === "admin" ? (
-          <TabNavigator />
+          <AdminTabNavigator />
         ) : (
-          <UserStack />
+          <UserTabNavigator />
         )
       ) : loading ? (
         <Stack.Screen name="Loading" component={LoadingScreen} />

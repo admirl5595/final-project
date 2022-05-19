@@ -1,8 +1,11 @@
 import { StyleSheet } from "react-native";
+import { theme } from "src/res/theme";
 
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
+    padding: 10,
+    backgroundColor: theme.colors.background,
+    flex: 1
   },
   userCard: {
     borderRadius: 10,
@@ -10,7 +13,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     padding: 10,
     alignItems: "center",
-    elevation: 10,
     margin: 10,
   },
   text: {
