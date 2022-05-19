@@ -1,4 +1,3 @@
-import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
 
 // patient: patient in question
@@ -18,9 +17,11 @@ const triggerAbnormalVitalNotifcation = (patient, vitalValue, vitalType) => {
 
   Notifications.scheduleNotificationAsync({
     content: {
-      title: "Abnormal observation detected",
+      title: "Abnormal observation detected for patient:" + patientId,
       body: vitalType + ": " + vitalValue,
     },
     trigger: null /* triggers instantly */,
   });
 };
+
+export default triggerAbnormalVitalNotifcation;
