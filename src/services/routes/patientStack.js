@@ -9,6 +9,7 @@ import AddPatient from "src/screens/AddPatient";
 import Settings from "src/screens/Settings/";
 import mainScreenStyle from "./navigationStyling/mainScreensStyle";
 import stackStyle from "./navigationStyling/stackStyling";
+import EditPatient from "src/screens/EditPatient";
 
 const options = ({ navigation }) => ({
   headerRight: () => (
@@ -32,6 +33,11 @@ const PatientStack = () => {
         options={stackStyle}
         name="AddPatient"
         component={AddPatient}
+      />
+      <Stack.Screen
+        options={stackStyle}
+        name="EditPatient"
+        component={EditPatient}
       />
       <Stack.Screen name="Settings" component={Settings} />
     </Stack.Navigator>
