@@ -1,5 +1,11 @@
 {
   "name": "habit-tracker",
+  "jest": {
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/?!(react-icons)"
+    ]
+  },
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -63,11 +69,5 @@
     "eslint-plugin-react-hooks": "^4.5.0",
     "react-test-renderer": "^17.0.2"
   },
-  "private": true,
-  "jest": {
-    "preset": "jest-expo",
-    "transformIgnorePatterns": [
-      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)"
-    ]
-  }
+  "private": true
 }
