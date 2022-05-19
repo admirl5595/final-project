@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   inputView: {
-    backgroundColor: "rgba(138,241,219,0.6)",
     borderRadius: 30,
     width: "70%",
     marginBottom: 20,
