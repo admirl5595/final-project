@@ -30,6 +30,7 @@ export default function TextInputStyled({
 
 const styles = StyleSheet.create({
   container: {
+    ...theme.shadowVariants.shadowInput,
     margin: theme.spacing.s,
     padding: theme.spacing.s,
     backgroundColor: "#fff",

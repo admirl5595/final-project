@@ -68,7 +68,7 @@ export default function AssignPatient({
       />
       <PrimaryButton
         onPress={findPatient}
-        title={prevPatient ? "Replace patient" : "Assign patient"}
+        title={"Search"}
       />
     </View>
   );

@@ -2,6 +2,7 @@ import { View, TextInput, ScrollView, Alert } from "react-native";
 import React, { useEffect, useState } from "react";
 import PrimaryButton from "src/components/common/PrimaryButton";
 import SecondaryButton from "src/components/common/SecondaryButton";
+import TextInputStyled from "src/components/common/TextInputStyled";
 import styles from "./styles";
 import SelectDropdown from "react-native-select-dropdown";
 import { db, auth } from "../../../firebase-config";
@@ -60,15 +61,16 @@ export default function EditEmployee() {
 
   return (
     <View style={styles.container}>
+
       <Header title={"EmployeeNr: " + employeeNumber} />
       <ScrollView>
-        <View style={styles.largeBox}>
-          <TextInput
-            value={name}
-            placeholderTextColor="#003f5c"
-            onChangeText={(name) => setName(name)}
+        
+          <TextInputStyled
+          value={name}
+          placeholderTextColor="#003f5c"
+          onChangeText={(name) => setName(name)}
           />
-        </View>
+
 
         {/* https://www.npmjs.com/package/react-native-select-dropdown#onFocus */}
         <SelectDropdown
@@ -90,8 +92,7 @@ export default function EditEmployee() {
         />
       </ScrollView>
 
-      <PrimaryButton title={"Cancel"} onPress={() => navigation.goBack()} />
-      <PrimaryButton title={"Edit Employee"} onPress={handleEdit} />
+      <PrimaryButton title={"Save changes"} onPress={handleEdit} />
       <PrimaryButton title={"Delete Employee"} onPress={handleDelete} />
     </View>
   );

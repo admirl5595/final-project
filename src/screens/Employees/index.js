@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import PrimaryButton from "src/components/common/PrimaryButton";
 import SecondaryButton from "src/components/common/SecondaryButton";
 import Header from "src/components/common/Header";
-import HeaderAndIcon from "src/components/common/HeaderAndIcon";
 import ListAttributes from "src/components/common/ListAttributes";
 
 import { theme } from "src/res/theme";
@@ -37,6 +36,7 @@ export default function Employees() {
 
   return (
     <View style={styles.container}>
+      <ListAttributes leftText={"Name"} rightText={"Role"} />
       <FlatList
         data={filteredEmployees}
         renderItem={({ item }) => (

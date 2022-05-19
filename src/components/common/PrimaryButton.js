@@ -17,6 +17,7 @@ export default function PrimaryButton({ onPress, title }) {
 
 const styles = StyleSheet.create({
   container: {
+    ...theme.shadowVariants.shadowBtn,
     backgroundColor: theme.colors.background,
     borderWidth: 4,
     alignContent: "center",
