@@ -7,6 +7,7 @@ import { render, fireEvent } from "@testing-library/react-native";
 // import component to be tested
 import LoginScreen from "./index";
 import PrimaryButton from "src/components/common/PrimaryButton";
+import HeaderAndIcon from "src/components/common/HeaderAndIcon";
 
 // mock hooks from react native navigation
 jest.mock("@react-navigation/native", () => {
@@ -64,6 +65,12 @@ describe("check contents", () => {
     const btn = getByTestId(testIdName);
 
     expect(btn).toBeTruthy();
+  });
+
+  it("shows header and icon", () => {
+    const tree = renderer.create(<HeaderAndIcon />).toJSON;
+
+    expect(tree).toMatchSnapshot();
   });
 });
 

@@ -6,7 +6,6 @@ import { getRooms } from "src/services/crud-operations";
 import RoomContext from "src/services/RoomContext";
 import RoomListItem from "./components/RoomListItem";
 
-
 import ListAttributes from "src/components/common/ListAttributes";
 import SecondaryButton from "src/components/common/SecondaryButton";
 import PrimaryButton from "src/components/common/PrimaryButton";
@@ -27,7 +26,11 @@ export default function ManageRooms() {
 
   return (
     <View style={styles.container}>
-      <ListAttributes leftText={"RoomNr"} rightText={"Patient Name"} />
+      <ListAttributes
+        testID="roomAttributes"
+        leftText={"Room number"}
+        rightText={"Patient name"}
+      />
       <FlatList
         data={rooms}
         renderItem={({ item }) => (

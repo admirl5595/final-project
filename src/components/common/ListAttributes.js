@@ -2,9 +2,9 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { theme } from "src/res/theme";
 
-export default function ListAttributes({ leftText, rightText }) {
+export default function ListAttributes({ leftText, rightText, testID }) {
   return (
-    <View style={styles.container}>
+    <View testID={testID} style={styles.container}>
       <Text style={styles.text}>{leftText}</Text>
       <Text style={styles.text}>{rightText}</Text>
     </View>
