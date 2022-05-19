@@ -14,16 +14,16 @@ export default function PatientVitals({
   return (
     <View>
       <VitalItem
-        title={"BPM"}
+        title={"BR"}
         value={breathRate ? breathRate : "N/A"}
-        icon="lungs"
+        icon="mask-ventilator"
         patientId={patientId}
         vitalTypes={["breathRate"]}
       />
       <VitalItem
         title="HR"
         value={heartRate ? heartRate : "N/A"}
-        icon="heart-pulse"
+        icon="stethoscope"
         patientId={patientId}
         vitalTypes={["heartRate"]}
       />

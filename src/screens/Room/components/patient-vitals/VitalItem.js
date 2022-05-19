@@ -12,7 +12,7 @@ export default function VitalItem({ title, value, icon, patientId }) {
   if (title === "spO2") unit = "%";
   if (title === "BP") unit = "mmHg";
   if (title === "HR") unit = "bpm";
-  if (title === "BPM") unit = "bpm";
+  if (title === "BR") unit = "bpm";
 
   let hasValues = true;
 
