@@ -32,7 +32,7 @@ const RoomStack = () => {
       />
       <Stack.Screen options={stackStyle} name="EditRoom" component={EditRoom} />
       <Stack.Screen options={stackStyle} name="AddRoom" component={AddRoom} />
-      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen options={stackStyle} name="Settings" component={Settings} />
     </Stack.Navigator>
   );
 };

@@ -1,8 +1,8 @@
 const palette = {
   white: "#FFFFFF",
   black: "#000000",
-  blueGreen: "#95E9CE",
-  darkBlueGreen: "#95E9DF",
+  blueGreen: "#A6E3E9",
+  darkBlueGreen: "#7ed7df",
 };
 
 const spacing = {
@@ -72,7 +72,7 @@ export const theme = {
       },
       shadowOpacity: 0.25,
       shadowRadius: 4.84,
-  
+
       elevation: 15,
     },
     shadowBtn: {
@@ -83,7 +83,7 @@ export const theme = {
       },
       shadowOpacity: 0.25,
       shadowRadius: 2.84,
-  
+
       elevation: 3,
     },
     shadowInput: {
@@ -94,9 +94,8 @@ export const theme = {
       },
       shadowOpacity: 0.25,
       shadowRadius: 4.84,
-  
+
       elevation: 3,
-    }
-  }
-  
+    },
+  },
 };

@@ -35,7 +35,7 @@ const UserStack = () => {
         name="Monitor"
         component={Monitor}
       />
-      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen options={stackStyle} name="Settings" component={Settings} />
     </Stack.Navigator>
   );
 };
