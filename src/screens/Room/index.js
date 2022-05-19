@@ -51,8 +51,28 @@ export default function Room({ patientId }) {
   }
 
   return (
-    <ScrollView
-      style={{ backgroundColor: theme.colors.background, flex: 1 }}
-    ></ScrollView>
+    <ScrollView style={{ backgroundColor: theme.colors.background, flex: 1 }}>
+      <RoomInfo roomNr={room.roomNr} name={room.name} date={new Date()} />
+      <PatientVitals
+        breathRate={breathRatePreview}
+        diastolicBP={diastolicBPPreview}
+        heartRate={heartRatePreview}
+        o2Level={o2LevelPreview}
+        systolicBP={systolicBPPreview}
+        patientId={patientId}
+      />
+      <PrimaryButton
+        onPress={() =>
+          navigation.navigate("ViewObservations", { patient: patient })
+        }
+        title="View Observations"
+      />
+      <PrimaryButton
+        onPress={() =>
+          navigation.navigate("InsertObservation", { patient: patient })
+        }
+        title="Insert Observation"
+      />
+    </ScrollView>
   );
 }

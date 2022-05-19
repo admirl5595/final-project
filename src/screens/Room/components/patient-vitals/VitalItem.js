@@ -19,6 +19,7 @@ export default function VitalItem({ title, value, icon, patientId }) {
   // prevent navigation to Monitor if there aren't any value
   if (value === "N/A") {
     hasValues = false;
+    unit = "";
   }
   return (
     <View style={styles.container}>

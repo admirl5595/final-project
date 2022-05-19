@@ -13,7 +13,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import { auth } from "../../../firebase-config";
 
-
 export default function Employees() {
   const [employees, setEmployees] = useState([]);
 

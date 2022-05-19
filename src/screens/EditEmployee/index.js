@@ -61,7 +61,8 @@ export default function EditEmployee() {
 
   return (
     <View style={styles.container}>
-      <Header title={"Employee nr: "+employeeNumber} />
+
+      <Header title={"EmployeeNr: " + employeeNumber} />
       <ScrollView>
         
           <TextInputStyled

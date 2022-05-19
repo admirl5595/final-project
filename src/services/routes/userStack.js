@@ -13,14 +13,6 @@ import InsertObservationScreen from "src/screens/InsertObservation";
 import stackStyle from "./navigationStyling/stackStyling";
 import mainScreenStyle from "./navigationStyling/mainScreensStyle";
 
-const options = ({ navigation }) => ({
-  headerRight: () => (
-    <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
-      <FontAwesomeIcon size={20} icon={"gear"} color={"rgba(0,0,0,0.5)"} />
-    </TouchableOpacity>
-  ),
-});
-
 const Stack = createNativeStackNavigator();
 
 const UserStack = () => {
