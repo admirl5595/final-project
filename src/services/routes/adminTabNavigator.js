@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import EmployeeStack from "./employeeStack";
-import PatientStack from "./patientStack";
-import RoomStack from "./roomStack";
-import UserStack from "./userStack";
+import EmployeeStack from "./stacks/employeeStack";
+import PatientStack from "./stacks/patientStack";
+import RoomStack from "./stacks/roomStack";
+import UserStack from "./stacks/userStack";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { theme } from "src/res/theme";
 

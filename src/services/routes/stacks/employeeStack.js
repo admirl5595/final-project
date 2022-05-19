@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { TouchableOpacity } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-import Patients from "src/screens/Patients";
-import AddPatient from "src/screens/AddPatient";
+import Employees from "src/screens/Employees";
+import RegisterEmployee from "src/screens/RegisterEmployee";
+import EditEmployee from "src/screens/EditEmployee";
+import mainScreenStyle from "../navigationStyling/mainScreensStyle";
+import stackStyle from "../navigationStyling/stackStyling";
 import Settings from "src/screens/Settings/";
-import mainScreenStyle from "./navigationStyling/mainScreensStyle";
-import stackStyle from "./navigationStyling/stackStyling";
-import EditPatient from "src/screens/EditPatient";
 
 const options = ({ navigation }) => ({
   headerRight: () => (
@@ -21,27 +21,27 @@ const options = ({ navigation }) => ({
 
 const Stack = createNativeStackNavigator();
 
-const PatientStack = () => {
+const EmployeeStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
         options={mainScreenStyle}
-        name="Patients"
-        component={Patients}
+        name="Employees"
+        component={Employees}
       />
       <Stack.Screen
         options={stackStyle}
-        name="AddPatient"
-        component={AddPatient}
+        name="RegisterEmployee"
+        component={RegisterEmployee}
       />
       <Stack.Screen
         options={stackStyle}
-        name="EditPatient"
-        component={EditPatient}
+        name="EditEmployee"
+        component={EditEmployee}
       />
       <Stack.Screen options={stackStyle} name="Settings" component={Settings} />
     </Stack.Navigator>
   );
 };
 
-export default PatientStack;
+export default EmployeeStack;

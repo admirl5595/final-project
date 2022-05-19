@@ -10,8 +10,8 @@ import Room from "src/screens/Room";
 import Monitor from "src/screens/Monitor";
 import ViewObservations from "src/screens/ViewObservations";
 import InsertObservationScreen from "src/screens/InsertObservation";
-import stackStyle from "./navigationStyling/stackStyling";
-import mainScreenStyle from "./navigationStyling/mainScreensStyle";
+import stackStyle from "../navigationStyling/stackStyling";
+import mainScreenStyle from "../navigationStyling/mainScreensStyle";
 
 const Stack = createNativeStackNavigator();
 
@@ -30,11 +30,7 @@ const UserStack = () => {
         name="InsertObservation"
         component={InsertObservationScreen}
       />
-      <Stack.Screen
-        options={stackStyle}
-        name="Monitor"
-        component={Monitor}
-      />
+      <Stack.Screen options={stackStyle} name="Monitor" component={Monitor} />
       <Stack.Screen options={stackStyle} name="Settings" component={Settings} />
     </Stack.Navigator>
   );

@@ -8,10 +8,9 @@ import { StatusBar } from "expo-status-bar";
 
 import { NavigationContainer } from "@react-navigation/native";
 import AdminTabNavigator from "./adminTabNavigator";
-import UserStack from "./userStack";
 import LoadingScreen from "src/screens/Loading";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import AuthStack from "./authStack";
+import AuthStack from "./stacks/authStack";
 import UserTabNavigator from "./userTabNavigator";
 
 export default function RootNavigator() {

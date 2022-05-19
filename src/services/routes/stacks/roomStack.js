@@ -9,8 +9,8 @@ import ManageRooms from "src/screens/ManageRooms";
 import EditRoom from "src/screens/EditRoom";
 import Settings from "src/screens/Settings/";
 
-import mainScreenStyle from "./navigationStyling/mainScreensStyle";
-import stackStyle from "./navigationStyling/stackStyling";
+import mainScreenStyle from "../navigationStyling/mainScreensStyle";
+import stackStyle from "../navigationStyling/stackStyling";
 
 const options = ({ navigation }) => ({
   headerRight: () => (
