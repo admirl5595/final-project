@@ -40,8 +40,6 @@ export default function RootNavigator() {
 
   const Stack = createNativeStackNavigator();
 
-  console.log(role);
-
   // TODO: Flytte tannhjulet ut hit
   return (
     <NavigationContainer>

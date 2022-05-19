@@ -36,8 +36,8 @@ export default function Patients({ navigation }) {
     <View style={styles.container}>
       {patient ? (
         <SecondaryButton
-          leftText={"name: " + patient.name}
-          rightText={"gender: " + patient.gender}
+          leftText={"Name: " + patient.name}
+          rightText={"Gender: " + patient.gender}
           onPress={() =>
             navigation.navigate("EditPatient", { patient: patient })
           }

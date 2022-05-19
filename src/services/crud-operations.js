@@ -42,7 +42,6 @@ export async function getEmployees(setEmployees) {
 }
 
 export async function updateEmployee(employee) {
-  console.log(employee);
   const docRef = doc(db, "users", employee.employeeNumber);
   const res = await setDoc(docRef, employee);
 }

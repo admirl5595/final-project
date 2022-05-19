@@ -101,8 +101,6 @@ export default function EditRoom() {
     setPrevPatient(null);
 
     getRooms(setRooms);
-
-    console.log("removed");
   };
 
   return (

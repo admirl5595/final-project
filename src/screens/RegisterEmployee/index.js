@@ -12,7 +12,7 @@ import { getFunctions, httpsCallable } from "firebase/functions";
 import Header from "src/components/common/Header";
 import { useNavigation } from "@react-navigation/native";
 import LoadingOverlay from "src/components/common/LoadingOverlay";
-import { Picker } from '@react-native-picker/picker';
+import { Picker } from "@react-native-picker/picker";
 
 export default function RegisterEmployee() {
   // Callable cloud-function
@@ -33,9 +33,7 @@ export default function RegisterEmployee() {
   // Roles that can be choosed from the select dropdown
   const roles = ["nurse", "doctor", "admin"];
 
-
   const handleRegister = async () => {
-    console.log("registering");
     if (password !== passwordConfirm) {
       Alert.alert("Failed to confirm password");
       return;
@@ -63,8 +61,6 @@ export default function RegisterEmployee() {
       });
   };
 
-
-
   return (
     <>
       <View style={styles.container}>
@@ -74,7 +70,6 @@ export default function RegisterEmployee() {
           iconColor={null}
         />
         <ScrollView>
-
           <TextInputStyled
             placeholder={"Employee Id"}
             onChangeText={(id) => setEmployeeNumber(id)}
@@ -104,7 +99,8 @@ export default function RegisterEmployee() {
               setPasswordConfirm(passwordConfirm)
             }
           />
-          <Picker style={styles.picker} 
+          <Picker
+            style={styles.picker}
             selectedValue={role}
             onValueChange={(selectedItem) => setRole(selectedItem)}
           >
@@ -113,8 +109,6 @@ export default function RegisterEmployee() {
             <Picker.Item label="Doctor" value="doctor" />
             <Picker.Item label="Admin" value="admin" />
           </Picker>
-
-
         </ScrollView>
 
         <PrimaryButton title={"Add Employee"} onPress={handleRegister} />
