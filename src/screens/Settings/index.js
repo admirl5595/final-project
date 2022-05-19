@@ -1,8 +1,9 @@
 import React from "react";
 import { View, ScrollView, Text } from "react-native";
-import LogoutBtn from "../../components/auth/LogoutBtn";
 import { auth } from "../../../firebase-config";
+import { signOut } from "firebase/auth";
 import styles from "./styles";
+import PrimaryButton from "src/components/common/PrimaryButton";
 
 export default function Settings() {
   // Show a settings interface for user
@@ -15,7 +16,17 @@ export default function Settings() {
           </Text>
         </View>
         <View style={styles.centeredView}>
-          <LogoutBtn />
+          <PrimaryButton
+            onPress={() =>
+              signOut(auth)
+                .then(() => {})
+                .catch((error) => {
+                  // An error happened
+                  console.log(error);
+                })
+            }
+            title="Log Out"
+          />
         </View>
       </ScrollView>
     </View>

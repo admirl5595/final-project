@@ -1,30 +1,31 @@
-import React, { useEffect, useState, useContext } from "react";
-import { ScrollView, Text } from "react-native";
+import React from "react";
+import { Text, FlatList, View } from "react-native";
 import styles from "./styles";
 import Observation from "./component";
 
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { useRoute } from "@react-navigation/native";
-import { theme } from "src/res/theme";
+import HeaderAndIcon from "src/components/common/HeaderAndIcon";
 
 export default function ViewObservations() {
   const route = useRoute();
   const patient = route.params.patient;
+
   const observations = [...patient.observations];
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.header}>Observations: {patient.name}</Text>
-      <FontAwesomeIcon
+    <View style={styles.container}>
+      <HeaderAndIcon
         icon="user-doctor"
-        size={150}
-        color={theme.colors.secondary_fontColor}
+        title={"Observations for: " + patient.name}
       />
-      {observations.length != 0 ? (
-        observations.map((o) => <Observation key={o.time} observation={o} />)
+      {observations.length !== 0 ? (
+        <FlatList
+          data={observations}
+          renderItem={({ item }) => <Observation observation={item} />}
+        />
       ) : (
-        <Text>No observations!</Text>
+        <Text>This patient has no observations</Text>
       )}
-    </ScrollView>
+    </View>
   );
 }

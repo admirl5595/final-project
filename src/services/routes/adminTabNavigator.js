@@ -16,11 +16,11 @@ const unfocusedColor = "grey";
 
 const Tab = createBottomTabNavigator();
 
-const TabNavigator = () => {
+const AdminTabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
+        tabBarIcon: ({ color }) => {
           let iconName;
 
           switch (route.name) {
@@ -65,4 +65,4 @@ function Icon({ icon, color }) {
   return <FontAwesomeIcon size={25} icon={icon} color={color} />;
 }
 
-export default TabNavigator;
+export default AdminTabNavigator;

@@ -27,16 +27,12 @@ export default function Home() {
   let occupiedRooms = null;
   // check if rooms exist
   if (rooms) {
-    console.log(rooms);
-
     let roomsCopy = [...rooms];
 
     occupiedRooms = roomsCopy.filter((room) => room.name.length !== 0);
   }
 
   useEffect(() => {
-    console.log("rooms");
-
     async function GetRooms() {
       await getRooms(setRooms);
     }

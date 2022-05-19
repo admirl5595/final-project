@@ -3,6 +3,8 @@ import React from "react";
 import { theme } from "src/res/theme";
 
 export default function Observation({ observation }) {
+  console.log("Observation: ");
+
   let date = new Date(observation.time);
 
   const yyyy = date.getFullYear();
