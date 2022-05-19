@@ -5,6 +5,7 @@ import Observation from "./component";
 
 import { useRoute } from "@react-navigation/native";
 import HeaderAndIcon from "src/components/common/HeaderAndIcon";
+import Header from "src/components/common/Header";
 
 export default function ViewObservations() {
   const route = useRoute();
@@ -19,12 +20,15 @@ export default function ViewObservations() {
         title={"Observations for: " + patient.name}
       />
       {observations.length !== 0 ? (
-        <FlatList style={styles.chartBox}
+        <FlatList
+          style={styles.chartBox}
           data={observations}
           renderItem={({ item }) => <Observation observation={item} />}
         />
       ) : (
-        <Text>This patient has no observations</Text>
+        <View style={{ marginTop: "15%" }}>
+          <Header title="This patient has no observations" />
+        </View>
       )}
     </View>
   );
