@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`check contents has chart component 1`] = `<component />`;
+
+exports[`check contents has icon in portrait mode 1`] = `
+<View
+  style={
+    Object {
+      "alignContent": "center",
+      "alignItems": "center",
+      "justifyContent": "center",
+      "margin": 8,
+      "padding": 8,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#FFFFFF",
+        "fontSize": 40,
+        "fontWeight": "bold",
+        "textAlign": "center",
+      }
+    }
+  />
+</View>
+`;

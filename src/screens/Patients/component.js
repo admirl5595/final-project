@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { theme } from "src/res/theme";
 import { useNavigation } from "@react-navigation/native";
 
-
 // TODO:
 // navigate to patient screen on press
 

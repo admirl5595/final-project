@@ -21,13 +21,13 @@ export default function InsertObservationScreen() {
 
   const [newobservationdesc, setNewObservationDesc] = useState("");
 
-  const newobservationInfo = {
-    author: user.displayName,
-    description: newobservationdesc,
-    time: Date.now(),
-  };
-
   const handleSubmit = async () => {
+    const newobservationInfo = {
+      author: user.displayName,
+      description: newobservationdesc,
+      time: Date.now(),
+    };
+
     await postObservation(newobservationInfo, patient.id);
     navigation.goBack();
   };

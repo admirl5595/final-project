@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Alert } from "react-native";
 import PatientContext from "src/services/PatientContext";
-import PatientItem from "./component";
 import styles from "./style";
 import PrimaryButton from "src/components/common/PrimaryButton";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase-config";
 import { async } from "@firebase/util";
+
+import SecondaryButton from "src/components/common/SecondaryButton";
+
 import TextInputStyled from "../../components/common/TextInputStyled";
 
 // TODO:
@@ -32,7 +34,16 @@ export default function Patients({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {patient ? <PatientItem patient={patient} /> : null}
+      {patient ? (
+        <SecondaryButton
+          leftText={"name: " + patient.name}
+          rightText={"gender: " + patient.gender}
+          onPress={() =>
+            navigation.navigate("EditPatient", { patient: patient })
+          }
+        />
+      ) : null}
+
       <TextInputStyled
         value={ssn}
         onChangeText={setSsn}

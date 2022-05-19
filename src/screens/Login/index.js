@@ -5,6 +5,7 @@ import {
   Text,
   Image,
   Keyboard,
+  Button,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { auth } from "../../../firebase-config";
@@ -73,7 +74,7 @@ export default function LoginScreen() {
       <Text style={styles.text}>Don't have a user? Contact an admin</Text>
 
       <View style={{ marginVertical: 20 }}>
-        <PrimaryButton title="Login" onPress={handleLogin} />
+        <PrimaryButton title="Login" testID="loginBtn" onPress={handleLogin} />
       </View>
     </View>
   );
