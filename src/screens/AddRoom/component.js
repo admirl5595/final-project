@@ -5,6 +5,7 @@ import styles from "./style";
 import PrimaryButton from "src/components/common/PrimaryButton";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase-config";
+import TextInputStyled from "../../components/common/TextInputStyled";
 
 export default function AssignPatient({ ssn, setSsn, setPatient }) {
   const [patientPreview, setPatientPreview] = useState(null);
@@ -45,7 +46,7 @@ export default function AssignPatient({ ssn, setSsn, setPatient }) {
   return (
     <View>
       {patientPreview ? <PatientItem patient={patientPreview} /> : null}
-      <TextInput
+      <TextInputStyled
         value={ssn}
         onChangeText={setSsn}
         placeholder="enter ssn"

@@ -11,6 +11,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     padding: theme.spacing.s,
     marginVertical: theme.spacing.s,
+    ...theme.shadowVariants.shadowInput,
+    margin: theme.spacing.s,
   },
 });
 

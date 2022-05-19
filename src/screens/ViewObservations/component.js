@@ -42,9 +42,10 @@ const styles = StyleSheet.create({
   container: {
     borderWidth: 3,
     padding: theme.spacing.m,
-    width: "80%",
+    width: "90%",
     marginVertical: 10,
     borderColor: theme.colors.secondary_fontColor,
+    alignSelf: "center",
   },
 
   textHeader: {

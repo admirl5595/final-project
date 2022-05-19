@@ -9,6 +9,8 @@ import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 
 import { useNavigation } from "@react-navigation/native";
 import { theme } from "src/res/theme";
+import SecondaryButton from "../../components/common/SecondaryButton";
+import TextInputStyled from "../../components/common/TextInputStyled";
 
 // note: new patients are not admitted to a room by default
 
@@ -80,17 +82,17 @@ export default function AddPatient() {
 
   return (
     <View style={styles.container}>
-      <TextInput
+      <TextInputStyled
         onChangeText={setName}
         value={name}
-        placeholder="name"
+        placeholder="Name"
         style={styles.textInput}
       />
-      <TextInput
+      <TextInputStyled
         keyboardType="numeric"
         onChangeText={setSsn}
         value={ssn}
-        placeholder="social security number"
+        placeholder="Social security number"
         style={styles.textInput}
         maxLength={9}
       />
@@ -102,11 +104,9 @@ export default function AddPatient() {
         <Picker.Item label="Male" value="Male" />
         <Picker.Item label="Female" value="Female" />
       </Picker>
+      <Text placeholderText={"poop"} style={styles.textInput}>{dob.toDateString()}</Text>
 
-      <Text style={theme.textVariants.body}>Date of birth</Text>
-      <Text style={styles.textInput}>{dob.toDateString()}</Text>
-
-      <Button title="set DOB" onPress={showDatepicker} />
+      <PrimaryButton title="set DOB" onPress={showDatepicker} />
 
       <PrimaryButton onPress={addPatient} title="Register patient" />
     </View>

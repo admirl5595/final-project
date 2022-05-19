@@ -3,7 +3,6 @@ import { theme } from "src/res/theme";
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
     alignContent: "center",
     backgroundColor: theme.colors.background,
     flex: 1,
@@ -15,7 +14,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   chartBox: {
-    margin: theme.spacing.l,
+    margin: theme.spacing.s,
+    padding: theme.spacing.s,
   },
 });
 

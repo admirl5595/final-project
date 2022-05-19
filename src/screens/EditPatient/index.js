@@ -10,6 +10,7 @@ import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import { useNavigation } from "@react-navigation/native";
 import { theme } from "src/res/theme";
 import { useRoute } from "@react-navigation/native";
+import TextInputStyled from "../../components/common/TextInputStyled";
 
 // note: new patients are not admitted to a room by default
 
@@ -70,13 +71,13 @@ export default function EditPatient() {
 
   return (
     <View style={styles.container}>
-      <TextInput
+      <TextInputStyled
         onChangeText={setName}
         value={name}
         placeholder="name"
         style={styles.textInput}
       />
-      <TextInput
+      <TextInputStyled
         keyboardType="numeric"
         onChangeText={setSsn}
         value={ssn}
@@ -85,7 +86,7 @@ export default function EditPatient() {
         maxLength={9}
       />
       <Picker
-        style={styles.textInput}
+        style={styles.picker}
         selectedValue={gender}
         onValueChange={(itemValue) => setGender(itemValue)}
       >
