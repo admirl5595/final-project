@@ -29,7 +29,10 @@ export const theme = {
       width: "30%",
       padding: spacing.l,
     },
-    m: {},
+    m: {
+      width: "91%",
+      padding: spacing.m,
+    },
     l: {
       width: "80%",
       padding: spacing.l,
@@ -60,4 +63,40 @@ export const theme = {
       fontWeight: "bold",
     },
   },
+  shadowVariants: {
+    shadowList: {
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4.84,
+  
+      elevation: 15,
+    },
+    shadowBtn: {
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 2.84,
+  
+      elevation: 3,
+    },
+    shadowInput: {
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 2.84,
+  
+      elevation: 3,
+    }
+  }
+
 };
