@@ -6,14 +6,6 @@ import * as Notifications from "expo-notifications";
 const triggerAbnormalVitalNotifcation = (patient, vitalValue, vitalType) => {
   const name = patient.name;
   const patientId = patient.id;
-  console.log(
-    "Detected abnormal observation in " +
-      name +
-      "'s " +
-      vitalType +
-      ": " +
-      vitalValue
-  );
 
   Notifications.scheduleNotificationAsync({
     content: {

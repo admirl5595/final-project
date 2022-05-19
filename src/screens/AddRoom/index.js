@@ -44,8 +44,6 @@ export default function AddRoom() {
 
     await addDoc(roomsCollectionRef, newRoom);
 
-    console.log(patient.ssn);
-
     // set patient as admitted to room
     const patientDocRef = doc(db, "patients", patient.ssn);
 

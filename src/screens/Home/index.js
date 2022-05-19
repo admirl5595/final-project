@@ -41,7 +41,7 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <ListAttributes leftText={"RoomNr"} rightText={"Patient Name"} />
+      <ListAttributes leftText={"Room number"} rightText={"Patient name"} />
       <FlatList
         data={occupiedRooms}
         renderItem={({ item }) => (

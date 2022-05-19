@@ -79,7 +79,6 @@ export default function Chart({ patientId, vType }) {
         break;
 
       default:
-        console.log("Switch went default");
         break;
     }
   }, [patients]);

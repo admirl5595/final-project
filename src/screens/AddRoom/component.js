@@ -22,8 +22,6 @@ export default function AssignPatient({ ssn, setSsn, setPatient }) {
 
     let patient = await getDoc(patientDocRef);
 
-    console.log(patient.data());
-
     // check if patient doesn't exist
     if (!patient.exists()) {
       Alert.alert("patient doesn't exist");
@@ -43,14 +41,12 @@ export default function AssignPatient({ ssn, setSsn, setPatient }) {
     setPatient({ ...patient, id: patient.id });
   };
 
-  console.log(ssn);
-
   return (
     <View>
       {patientPreview ? (
         <SecondaryButton
-          leftText={"name: " + patientPreview.name}
-          rightText={"gender: " + patientPreview.gender}
+          leftText={"Name: " + patientPreview.name}
+          rightText={"Gender: " + patientPreview.gender}
         />
       ) : null}
 

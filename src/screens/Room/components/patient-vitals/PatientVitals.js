@@ -11,9 +11,6 @@ export default function PatientVitals({
   systolicBP,
   patientId,
 }) {
-  console.log(systolicBP);
-  console.log(diastolicBP);
-
   return (
     <View>
       <VitalItem
