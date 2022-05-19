@@ -60,7 +60,7 @@ export default function EditEmployee() {
 
   return (
     <View style={styles.container}>
-      <Header title={employeeNumber} />
+      <Header title={"EmployeeNr: " + employeeNumber} />
       <ScrollView>
         <View style={styles.largeBox}>
           <TextInput

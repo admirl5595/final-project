@@ -1,6 +1,6 @@
 import { theme } from "src/res/theme";
 
-const stackStyle = ({ navigation }) => ({
+const stackStyle = () => ({
   headerStyle: {
     backgroundColor: theme.colors.topNavBar,
   },

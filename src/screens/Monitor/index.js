@@ -31,7 +31,6 @@ export default function Monitor() {
   } else {
     return (
       <View style={styles.container}>
-        <Text style={styles.headerRotated}>Monitor</Text>
         <Chart
           patientId={patientId}
           vType={vitalType}

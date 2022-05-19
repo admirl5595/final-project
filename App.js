@@ -22,10 +22,7 @@ import RoomContext from "./src/services/RoomContext";
 
 import { addIcons } from "./src/res/icons/fontAwsome";
 
-import RootDrawerNavigator from "./src/services/routes/tabNavigator";
-
-import { useRoute } from "@react-navigation/native";
-import ScreenSwitcher from "./src/navigation/ScreenSwitcher";
+import RootNavigator from "./src/services/routes/rootNavigator";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -49,7 +46,7 @@ const App = () => {
   return (
     <RoomContext.Provider value={{ rooms, setRooms }}>
       <PatientContext.Provider value={{ patients, setPatients }}>
-        <RootDrawerNavigator />
+        <RootNavigator />
       </PatientContext.Provider>
     </RoomContext.Provider>
   );
