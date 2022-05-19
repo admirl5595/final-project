@@ -30,7 +30,7 @@ export default function Chart({ patientId, vType }) {
         setStates(vitalsAry);
         break;
 
-      case "BPM":
+      case "BR":
         vitalsAry = patient.breathRate.slice(-dataPoints);
         setStates(vitalsAry);
         break;
