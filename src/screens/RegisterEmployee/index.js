@@ -1,15 +1,10 @@
-import { View, TextInput, ScrollView, Alert } from "react-native";
+import { View, Keyboard, ScrollView, Alert } from "react-native";
 import React, { useEffect, useState } from "react";
 import PrimaryButton from "src/components/common/PrimaryButton";
-import SecondaryButton from "src/components/common/SecondaryButton";
 import TextInputStyled from "src/components/common/TextInputStyled";
 import HeaderAndIcon from "src/components/common/HeaderAndIcon";
-import { theme } from "src/res/theme";
 import styles from "./styles";
-import SelectDropdown from "react-native-select-dropdown";
-import { db, auth } from "../../../firebase-config";
 import { getFunctions, httpsCallable } from "firebase/functions";
-import Header from "src/components/common/Header";
 import { useNavigation } from "@react-navigation/native";
 import LoadingOverlay from "src/components/common/LoadingOverlay";
 import { Picker } from "@react-native-picker/picker";
@@ -32,6 +27,22 @@ export default function RegisterEmployee() {
 
   // Roles that can be choosed from the select dropdown
   const roles = ["nurse", "doctor", "admin"];
+
+  // Remove header when keyboard is shown
+  const [keyboardOpen, setKeyboardOpen] = useState(false);
+  useEffect(() => {
+    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+      setKeyboardOpen(true);
+    });
+    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+      setKeyboardOpen(false);
+    });
+
+    return () => {
+      showSubscription.remove();
+      hideSubscription.remove();
+    };
+  });
 
   const handleRegister = async () => {
     if (password !== passwordConfirm) {
@@ -64,11 +75,14 @@ export default function RegisterEmployee() {
   return (
     <>
       <View style={styles.container}>
-        <HeaderAndIcon
-          title={"Register employee"}
-          icon={"hospital-user"}
-          iconColor={null}
-        />
+        {!keyboardOpen ? (
+          <HeaderAndIcon
+            title={"Register employee"}
+            icon={"hospital-user"}
+            iconColor={null}
+          />
+        ) : null}
+
         <ScrollView>
           <TextInputStyled
             placeholder={"Employee Id"}

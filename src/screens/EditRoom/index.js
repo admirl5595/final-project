@@ -15,8 +15,6 @@ import { getRooms } from "../../services/crud-operations";
 import { useRoute } from "@react-navigation/native";
 import Header from "src/components/common/Header";
 
-// TODO:
-// can remove patient
 
 export default function EditRoom() {
   const route = useRoute();

@@ -76,7 +76,6 @@ async function setupSnapshot(setPatients) {
 
       // add patient to state
       if (change.type === "added") {
-        // TODO: add to global context
 
         // filter by 50 latest vitals into stack
 
@@ -91,7 +90,6 @@ async function setupSnapshot(setPatients) {
       }
       // update vitals
       if (change.type === "modified") {
-        // TODO: pop and push new vital to context
         // note: we have all the data points so might as well slice again
 
         patient.breathRate = patient.breathRate.slice(-30);

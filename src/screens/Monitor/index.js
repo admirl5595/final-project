@@ -16,7 +16,7 @@ export default function Monitor() {
   if (orientation === "PORTRAIT") {
     return (
       <View style={styles.container}>
-        <HeaderAndIcon title="Monitor" icon={icon} iconColor="red" />
+        <HeaderAndIcon title="Monitor" icon={icon} iconColor="#AE0000" />
         <Chart patientId={patientId} vType={vitalType} />
       </View>
     );

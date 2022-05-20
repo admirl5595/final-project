@@ -16,28 +16,28 @@ export default function PatientVitals({
       <VitalItem
         title={"BR"}
         value={breathRate ? breathRate : "N/A"}
-        icon="mask-ventilator"
+        icon="lungs"
         patientId={patientId}
         vitalTypes={["breathRate"]}
       />
       <VitalItem
         title="HR"
         value={heartRate ? heartRate : "N/A"}
-        icon="stethoscope"
+        icon="heart-pulse"
         patientId={patientId}
         vitalTypes={["heartRate"]}
       />
       <VitalItem
         title={"spO2"}
         value={o2Level ? o2Level : "N/A"}
-        icon="lungs"
+        icon="mask-ventilator"
         patientId={patientId}
         vitalTypes={["o2Level"]}
       />
       <VitalItem
         title="BP"
         value={systolicBP ? systolicBP + "/" + diastolicBP : "N/A"}
-        icon="heart-pulse"
+        icon="stethoscope"
         patientId={patientId}
         vitalTypes={["systolicBP", "diastolicBP"]}
       />

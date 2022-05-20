@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { View, Text, TextInput } from "react-native";
+import { View, Alert } from "react-native";
 import styles from "./style";
 import AssignPatient from "./component";
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
@@ -25,9 +25,6 @@ export default function AddRoom() {
       Alert.alert("Enter a room number");
       return;
     }
-
-    // TODO:
-    // check if room already exists
 
     if (!patient) {
       Alert.alert("Assign a patient to this room");

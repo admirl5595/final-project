@@ -24,7 +24,7 @@ export default function VitalItem({ title, value, icon, patientId }) {
   return (
     <View style={styles.container}>
       <View style={styles.iconText}>
-        <FontAwesomeIcon size={40} icon={icon} color={"red"} />
+        <FontAwesomeIcon size={40} icon={icon} color={"#AE0000"} />
         <Text style={styles.text}>{title}</Text>
       </View>
       <View style={styles.iconText}>
@@ -40,7 +40,7 @@ export default function VitalItem({ title, value, icon, patientId }) {
               })
             }
           >
-            <FontAwesomeIcon size={40} icon="chart-line" color={"red"} />
+            <FontAwesomeIcon size={40} icon="chart-line" color={"#AE0000"} />
           </TouchableOpacity>
         ) : null}
       </View>
